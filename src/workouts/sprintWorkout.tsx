@@ -57,6 +57,9 @@ const SprintWorkout = ({
             count = count + 1
 
             if ((sprintDistance % 50 === 0 && easyDistance % 50 === 0) || count === 150) {
+                if (count === 150){
+                    console.log('Something is wrong, fix it on your end.')
+                }
                 break;
             }
         }
