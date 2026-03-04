@@ -149,6 +149,7 @@ function App() {
               <MenuItem value="xSpicy">Extra Spicy</MenuItem>
             </Select>
           </div>
+          {/* this button currently doesn't work hahahah */}
           <Button variant="outlined" onClick={() => generate()}>Generate</Button>
         </Box>
         <Box sx={{ width: '50%' }}>

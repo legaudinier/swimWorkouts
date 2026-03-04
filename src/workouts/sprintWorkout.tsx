@@ -56,6 +56,9 @@ const SprintWorkout = ({
             console.log('intervalTime', intervalTime, activeYardagePercentage, sprintDistanceInterval)
             think = think + '.'
 
+                        // need something to cut it if it thinks for too long
+
+
             // so we need to check that BOTH sprintDIstances 
             // and Easy distance are both whole numbers
             // and are both divisible by 50?
