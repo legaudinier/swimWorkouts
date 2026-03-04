@@ -29,6 +29,7 @@ const DistanceWorkout = ({
 
         // More complicated sets?
         let think: string = ''
+        let count: number = 1
 
         while (true) {
             random_boolean = Math.random() < 0.5; // make some sets have 50s
@@ -39,9 +40,14 @@ const DistanceWorkout = ({
 
             rounds = yardage / maxDistance
             console.log('Thinking' + think)
+            // need something to cut it if it thinks for too long
             think = think + '.'
 
-            if (rounds % 1 === 0) {
+            count = count + 1
+            if (rounds % 1 === 0 || count === 150) {
+                if (count === 150) {
+                    console.log('Something is wrong, fix it on your end.')
+                }
                 break;
             }
         }
