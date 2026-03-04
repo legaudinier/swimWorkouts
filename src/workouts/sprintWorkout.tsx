@@ -34,8 +34,8 @@ const SprintWorkout = ({
 
     if (yardage !== 0) {
 
-        // More complicated sets?
         let think: string = ''
+        let count: number = 1
 
         while (true) {
 
@@ -53,22 +53,15 @@ const SprintWorkout = ({
             sprintDistanceInterval = sprintDistance / 100
 
             console.log('Thinking' + think)
-            console.log('intervalTime', intervalTime, activeYardagePercentage, sprintDistanceInterval)
             think = think + '.'
+            count = count + 1
 
-                        // need something to cut it if it thinks for too long
-
-
-            // so we need to check that BOTH sprintDIstances 
-            // and Easy distance are both whole numbers
-            // and are both divisible by 50?
-            if (sprintDistance % 50 === 0 && easyDistance % 50 === 0) {
+            if ((sprintDistance % 50 === 0 && easyDistance % 50 === 0) || count === 150) {
                 break;
             }
         }
 
         intervalTime = intervalWithSpice(interval, spice)
-
 
         totalDistance = yardage
 
