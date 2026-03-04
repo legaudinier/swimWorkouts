@@ -52,6 +52,7 @@ const SprintWorkout = ({
             easyDistance = easyYardage / rounds
             sprintDistanceInterval = sprintDistance / 100
 
+            console.log(intervalTime, activeYardagePercentage, sprintDistanceInterval)
             console.log('Thinking' + think)
             think = think + '.'
             count = count + 1
