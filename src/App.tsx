@@ -10,7 +10,6 @@ import Button from "@mui/material/Button";
 import DistanceWorkout from './workouts/distanceWorkout';
 import SprintWorkout from "./workouts/sprintWorkout";
 import {Box} from "@mui/material";
-import './App.css'
 
 function App() {
   const [type, setType] = useState("distance");
