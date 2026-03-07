@@ -9,7 +9,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import DistanceWorkout from './workouts/distanceWorkout';
 import SprintWorkout from "./workouts/sprintWorkout";
-import {Box} from "@mui/material";
+import ThresholdWorkout from './workouts/thresholdWorkout';
+import { Box } from "@mui/material";
 
 function App() {
   const [type, setType] = useState("distance");
@@ -171,13 +172,19 @@ function App() {
                   yardage={yardage}
                   interval={interval}
                 />) :
-                type === 'sprint' &&
-                (<SprintWorkout
-                  spice={spice}
-                  type={type}
-                  yardage={yardage}
-                  interval={interval} // this is super messy // feed in sprint interval
-                />)
+                type === 'sprint' ?
+                  (<SprintWorkout
+                    spice={spice}
+                    type={type}
+                    yardage={yardage}
+                    interval={interval} // this is super messy // feed in sprint interval
+                  />) : (<ThresholdWorkout
+                    spice={spice}
+                    type={type}
+                    yardage={yardage}
+                    interval={interval} // this is super messy // feed in sprint interval
+                  />)
+              
               }
             </ul>
           </div>
