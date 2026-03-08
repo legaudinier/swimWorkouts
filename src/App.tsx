@@ -178,13 +178,13 @@ function App() {
                     type={type}
                     yardage={yardage}
                     interval={interval} // this is super messy // feed in sprint interval
-                  />) : (<ThresholdWorkout
+                  />) : type === 'threshold' && (<ThresholdWorkout
                     spice={spice}
                     type={type}
                     yardage={yardage}
                     interval={interval} // this is super messy // feed in sprint interval
                   />)
-              
+
               }
             </ul>
           </div>
