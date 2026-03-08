@@ -40,7 +40,6 @@ function App() {
   };
 
   const baseIntervalChange = (event: any) => {
-
     setInterval(event.target.valueAsNumber)
     setMediumInterval(calculateTime(event.target.valueAsNumber, 5))
     setHardInterval(calculateTime(event.target.valueAsNumber, -5))
@@ -107,6 +106,7 @@ function App() {
               label="Yardage"
               variant="outlined"
               type="number"
+              defaultValue={'3000'}
               onChange={yardageChange}
               InputProps={{
                 inputProps: {
@@ -125,7 +125,7 @@ function App() {
           </div> */}
           <div>
             <TextField
-              label="Base Interval (seconds) / 100"
+              label="Interval (seconds) / 100"
               variant="outlined"
               type="number"
               onChange={baseIntervalChange}
