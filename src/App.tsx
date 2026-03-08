@@ -3,13 +3,14 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
+// import Radio from "@mui/material/Radio";
+// import RadioGroup from "@mui/material/RadioGroup";
+// import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import DistanceWorkout from './workouts/distanceWorkout';
 import SprintWorkout from "./workouts/sprintWorkout";
 import ThresholdWorkout from './workouts/thresholdWorkout';
+import EasyWorkout from './workouts/easyWorkout';
 import { Box } from "@mui/material";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
   };
 
   const baseIntervalChange = (event: any) => {
+
     setInterval(event.target.valueAsNumber)
     setMediumInterval(calculateTime(event.target.valueAsNumber, 5))
     setHardInterval(calculateTime(event.target.valueAsNumber, -5))
@@ -151,14 +153,19 @@ function App() {
                   yardage={yardage}
                   interval={interval}
                 />) :
-                type === 'sprint' ?
-                  (<SprintWorkout
+                type === 'easy' ? (
+                  <EasyWorkout
                     yardage={yardage}
-                    interval={interval} // this is super messy // feed in sprint interval
-                  />) : type === 'threshold' && (<ThresholdWorkout
-                    yardage={yardage}
-                    interval={interval} // this is super messy // feed in sprint interval
-                  />)
+                    interval={interval}
+                  />) :
+                  type === 'sprint' ?
+                    (<SprintWorkout
+                      yardage={yardage}
+                      interval={interval} // this is super messy // feed in sprint interval
+                    />) : type === 'threshold' && (<ThresholdWorkout
+                      yardage={yardage}
+                      interval={interval} // this is super messy // feed in sprint interval
+                    />)
 
               }
             </ul>

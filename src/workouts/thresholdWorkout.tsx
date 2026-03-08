@@ -53,7 +53,7 @@ const ThresholdWorkout = ({
 
   return (
     <div>
-      <Box sx={{ marginTop: '20px', marginBottom: '20px' }}>*~~~* Distance Work Out *~~~*</Box>
+      <Box sx={{ marginTop: '20px', marginBottom: '20px' }}>*~~~* Threshold Work Out *~~~*</Box>
       <Box>Warm Up: {wcYardage?.warmUp}</Box>
       {/* <Box>Kick set?</Box> */}
       <Box sx={{ marginTop: '15px' }}>Main Set</Box>
