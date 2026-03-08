@@ -3,14 +3,12 @@ import Box from "@mui/material/Box";
 import { readableTime, intervalWithSpice, calculateWarmUpCoolDown } from '../utilities'
 
 export type DistanceWorkoutType = {
-    spice: any
     type: any
     yardage: any
     interval: any
 }
 
 const DistanceWorkout = ({
-    spice,
     yardage, interval,
 }: DistanceWorkoutType) => {
 

@@ -3,14 +3,12 @@ import Box from "@mui/material/Box";
 import { readableTime, intervalWithSpice, calculateWarmUpCoolDown } from '../utilities'
 
 export type SprintWorkoutType = {
-    spice: any
     type: any
     yardage: any
     interval: any
 }
 
 const SprintWorkout = ({
-    spice,
     yardage, interval,
 }: SprintWorkoutType) => {
 
@@ -19,14 +17,11 @@ const SprintWorkout = ({
         sprintRounds,
         rounds,
         totalDistance,
-        intervalTime,
         wcYardage,
         sprintYardagePercentage,
         sprintYardage,
         easyYardage,
-        activeYardagePercentage,
-        sprintDistance,
-        sprintDistanceInterval
+        sprintDistance
 
     const warmUpCoolDown = Math.floor(yardage * .5 / 100) * 100
 
@@ -36,6 +31,7 @@ const SprintWorkout = ({
 
         let think: string = ''
         let count: number = 1
+        let intervalTime, activeYardagePercentage, sprintDistanceInterval
 
         while (true) {
 
@@ -52,7 +48,6 @@ const SprintWorkout = ({
             easyDistance = easyYardage / rounds
             sprintDistanceInterval = sprintDistance / 100
 
-            console.log(intervalTime, activeYardagePercentage, sprintDistanceInterval)
             console.log('Thinking' + think)
             think = think + '.'
             count = count + 1

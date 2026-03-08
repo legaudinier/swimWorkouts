@@ -4,14 +4,13 @@ import Box from "@mui/material/Box";
 import { readableTime, intervalWithSpice, calculateWarmUpCoolDown } from '../utilities'
 
 export type ThresholdWorkoutType = {
-  spice: any
   type: any
   yardage: any
   interval: any
 }
 
 const ThresholdWorkout = ({
-  spice, type,
+  type,
   yardage, interval,
 }: ThresholdWorkoutType) => {
 
@@ -20,16 +19,14 @@ const ThresholdWorkout = ({
     sprintRounds,
     rounds,
     totalDistance,
-    intervalTime,
     wcYardage,
     sprintYardagePercentage,
     sprintYardage,
     easyYardage,
     activeYardagePercentage,
-    sprintDistance,
     sprintDistanceInterval
 
-  const warmUpCoolDown = Math.floor(yardage * .5 / 100) * 100
+  const warmUpCoolDown = Math.floor(yardage * .4 / 100) * 100
 
   yardage = yardage - warmUpCoolDown
 
@@ -37,11 +34,11 @@ const ThresholdWorkout = ({
 
     // More complicated sets?
     let think: string = ''
+    let intervalTime
 
     while (true) {
 
       rounds = ((Math.floor((Math.random() * 10) + 5) * 1))
-      sprintRounds = ((Math.floor((Math.random() * 6) + 1) * 1))
 
       sprintYardagePercentage = ((Math.floor((Math.random() * 3) + 5) / 10))
       activeYardagePercentage = 1 - sprintYardagePercentage
@@ -49,9 +46,7 @@ const ThresholdWorkout = ({
       easyYardage = yardage - sprintYardage
 
       sprintDistancePerRoundTotal = sprintYardage / rounds
-      sprintDistance = sprintDistancePerRoundTotal / sprintRounds
       easyDistance = easyYardage / rounds
-      sprintDistanceInterval = sprintDistance / 100
 
       console.log('Thinking' + think)
       think = think + '.'
@@ -59,21 +54,14 @@ const ThresholdWorkout = ({
       // so we need to check that BOTH sprintDIstances 
       // and Easy distance are both whole numbers
       // and are both divisible by 50?
-      if (sprintDistance % 50 === 0 && easyDistance % 50 === 0) {
+      if (easyDistance % 50 === 0) {
         break;
       }
     }
-
-    console.log('sprintRounds', sprintDistance / 100)
     intervalTime = intervalWithSpice(interval, spice)
-
-
     totalDistance = yardage
-
     wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
-
   }
-
 
   return (
     <div>
@@ -93,9 +81,9 @@ const ThresholdWorkout = ({
         // literally like 10 x 100s on pace
         // or 
         small rest between
-        // not a lot of rest // maybe 20 secs?
-        // nothing too long 100 - 500 distance
-        // heart rate? 85–90%
+      // not a lot of rest // maybe 20 secs?
+      // nothing too long 100 - 250 distance
+      // heart rate? 85–90%
 
       </Box>
       <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>

@@ -14,7 +14,6 @@ import { Box } from "@mui/material";
 
 function App() {
   const [type, setType] = useState("distance");
-  const [spice, setSpice] = useState("mild");
   const [yardage, setYardage] = useState(5000);
   const [interval, setInterval] = useState<any>(90);
   const [easyInterval, setEasyInterval] = useState<any>(0);
@@ -33,10 +32,6 @@ function App() {
 
   const typeChange = (event: any) => {
     setType(event.target.value);
-  };
-
-  const spiceChange = (event: any) => {
-    setSpice(event.target.value);
   };
 
   const yardageChange = (event: any) => {
@@ -100,7 +95,7 @@ function App() {
             >
               <MenuItem value="distance">Distance</MenuItem>
               <MenuItem value="sprint">Sprint</MenuItem>
-              <MenuItem value="threshold">Threshold</MenuItem>
+              <MenuItem value="threshold">Threshold/Pace</MenuItem>
               <MenuItem value="im">IM</MenuItem>
               <MenuItem value="easy">Easy</MenuItem>
               <MenuItem value="dealersChoice">Dealers Choice</MenuItem>
@@ -136,20 +131,6 @@ function App() {
               onChange={baseIntervalChange}
             />
           </div>
-          <div>
-            <InputLabel>Spice Level</InputLabel>
-            <Select
-              labelId="spice"
-              value={spice}
-              label="Spice Level"
-              onChange={spiceChange}
-            >
-              <MenuItem value="mild">Mild</MenuItem>
-              <MenuItem value="medium">Medium</MenuItem>
-              <MenuItem value="spicy">Spicy</MenuItem>
-              <MenuItem value="xSpicy">Extra Spicy</MenuItem>
-            </Select>
-          </div>
           {/* this button currently doesn't work hahahah */}
           <Button variant="outlined" onClick={() => generate()}>Generate</Button>
         </Box>
@@ -167,19 +148,16 @@ function App() {
               {showWorkout &&
                 type === 'distance' ? (
                 <DistanceWorkout
-                  spice={spice}
                   type={type}
                   yardage={yardage}
                   interval={interval}
                 />) :
                 type === 'sprint' ?
                   (<SprintWorkout
-                    spice={spice}
                     type={type}
                     yardage={yardage}
                     interval={interval} // this is super messy // feed in sprint interval
                   />) : type === 'threshold' && (<ThresholdWorkout
-                    spice={spice}
                     type={type}
                     yardage={yardage}
                     interval={interval} // this is super messy // feed in sprint interval
