@@ -1,7 +1,7 @@
 
 import React from 'react'
 import Box from "@mui/material/Box";
-import { readableTime, intervalWithSpice, calculateWarmUpCoolDown } from '../utilities'
+import { readableTime, calculateWarmUpCoolDown } from '../utilities'
 
 export type ThresholdWorkoutType = {
   type: any
@@ -10,7 +10,6 @@ export type ThresholdWorkoutType = {
 }
 
 const ThresholdWorkout = ({
-  type,
   yardage, interval,
 }: ThresholdWorkoutType) => {
 
@@ -58,7 +57,6 @@ const ThresholdWorkout = ({
         break;
       }
     }
-    intervalTime = intervalWithSpice(interval, spice)
     totalDistance = yardage
     wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
   }
@@ -89,7 +87,7 @@ const ThresholdWorkout = ({
       <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
         <Box>Main Set Distance: {totalDistance}</Box>
         <Box>Main Set Total Time: {sprintDistancePerRoundTotal && rounds !== undefined
-          && readableTime((((sprintDistancePerRoundTotal * rounds) / 100) * (intervalWithSpice(interval, spice))), true)}
+          && readableTime((((sprintDistancePerRoundTotal * rounds) / 100) * ((interval))), true)}
         </Box>
       </Box>
       <Box>Cool Down: {wcYardage?.coolDown}</Box>

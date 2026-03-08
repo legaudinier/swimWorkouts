@@ -1,6 +1,6 @@
 
 import Box from "@mui/material/Box";
-import { readableTime, intervalWithSpice, calculateWarmUpCoolDown } from '../utilities'
+import { readableTime, calculateWarmUpCoolDown } from '../utilities'
 
 export type DistanceWorkoutType = {
     type: any
@@ -50,7 +50,7 @@ const DistanceWorkout = ({
             }
         }
 
-        intervalTime = (maxDistance / 100) * intervalWithSpice(interval, spice)
+        intervalTime = (maxDistance / 100) * (interval)
         totalDistance = maxDistance * rounds
 
         wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
@@ -73,14 +73,14 @@ const DistanceWorkout = ({
                         {intervalTime !== undefined && readableTime(intervalTime, false)
                         }</Box>
                     <Box sx={{ fontStyle: 'italic', paddingLeft: '20px' }}>
-                        Pace: {readableTime(intervalWithSpice(interval, spice), false)} per 100
+                        Pace: {readableTime((interval), false)} per 100
                     </Box>
                 </Box>
             </Box>
             <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
                 <Box>Main Set Distance: {totalDistance}</Box>
                 <Box>Main Set Total Time: {maxDistance && rounds !== undefined
-                    && readableTime((((maxDistance * rounds) / 100) * (intervalWithSpice(interval, spice))), true)}
+                    && readableTime((((maxDistance * rounds) / 100) * ((interval))), true)}
                 </Box>
             </Box>
             <Box>Cool Down: {wcYardage?.coolDown}</Box>

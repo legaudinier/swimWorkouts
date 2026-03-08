@@ -1,6 +1,6 @@
 
 import Box from "@mui/material/Box";
-import { readableTime, intervalWithSpice, calculateWarmUpCoolDown } from '../utilities'
+import { readableTime, calculateWarmUpCoolDown } from '../utilities'
 
 export type SprintWorkoutType = {
     type: any
@@ -31,7 +31,7 @@ const SprintWorkout = ({
 
         let think: string = ''
         let count: number = 1
-        let intervalTime, activeYardagePercentage, sprintDistanceInterval
+        let activeYardagePercentage, sprintDistanceInterval
 
         while (true) {
 
@@ -53,19 +53,15 @@ const SprintWorkout = ({
             count = count + 1
 
             if ((sprintDistance % 50 === 0 && easyDistance % 50 === 0) || count === 150) {
-                if (count === 150){
+                if (count === 150) {
                     console.log('Something is wrong, fix it on your end.')
                 }
                 break;
             }
         }
 
-        intervalTime = intervalWithSpice(interval, spice)
-
         totalDistance = yardage
-
         wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
-
     }
 
 
@@ -83,7 +79,7 @@ const SprintWorkout = ({
                 <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
 
                     <Box>{sprintRounds} x {sprintDistance} on
-                        Pace: {sprintDistance && readableTime(intervalWithSpice(interval * sprintDistance / 100, spice), false)}
+                        Pace: {sprintDistance && readableTime((interval * sprintDistance / 100), false)}
                     </Box>
                     <Box>{easyDistance} easy</Box>
                 </Box>
@@ -91,7 +87,7 @@ const SprintWorkout = ({
             <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
                 <Box>Main Set Distance: {totalDistance}</Box>
                 <Box>Main Set Total Time: {sprintDistancePerRoundTotal && rounds !== undefined
-                    && readableTime((((sprintDistancePerRoundTotal * rounds) / 100) * (intervalWithSpice(interval, spice))), true)}
+                    && readableTime((((sprintDistancePerRoundTotal * rounds) / 100) * ((interval))), true)}
                 </Box>
             </Box>
             <Box>Cool Down: {wcYardage?.coolDown}</Box>

@@ -24,25 +24,3 @@ export const calculateWarmUpCoolDown = (warmUpCoolDownYardage: number) => {
 
     return warmCool;
 }
-
-export const intervalWithSpice = (intervalTime: number, spice: string) => {
-    let newInterval
-
-    switch (spice) {
-        case 'mild':
-            newInterval = intervalTime + 10
-            break;
-        case 'medium':
-            newInterval = intervalTime + 5
-            break;
-        case 'spicy':
-            newInterval = intervalTime - 5
-            break;
-        case 'xSpicy':
-            newInterval = intervalTime - 10
-            break;
-        default:
-            newInterval = intervalTime
-    }
-    return newInterval
-}
