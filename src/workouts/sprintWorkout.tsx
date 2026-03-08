@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import { readableTime, calculateWarmUpCoolDown } from '../utilities'
 
 export type SprintWorkoutType = {
-    type: any
     yardage: any
     interval: any
 }

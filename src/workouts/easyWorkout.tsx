@@ -2,14 +2,14 @@
 import Box from "@mui/material/Box";
 import { readableTime, calculateWarmUpCoolDown } from '../utilities'
 
-export type DistanceWorkoutType = {
+export type EasyWorkoutType = {
     yardage: any
     interval: any
 }
 
-const DistanceWorkout = ({
+const EasyWorkout = ({
     yardage, interval,
-}: DistanceWorkoutType) => {
+}: EasyWorkoutType) => {
 
     let maxDistance,
         rounds,
@@ -79,4 +79,4 @@ const DistanceWorkout = ({
     )
 }
 
-export default DistanceWorkout
+export default EasyWorkout

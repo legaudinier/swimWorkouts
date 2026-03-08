@@ -148,17 +148,14 @@ function App() {
               {showWorkout &&
                 type === 'distance' ? (
                 <DistanceWorkout
-                  type={type}
                   yardage={yardage}
                   interval={interval}
                 />) :
                 type === 'sprint' ?
                   (<SprintWorkout
-                    type={type}
                     yardage={yardage}
                     interval={interval} // this is super messy // feed in sprint interval
                   />) : type === 'threshold' && (<ThresholdWorkout
-                    type={type}
                     yardage={yardage}
                     interval={interval} // this is super messy // feed in sprint interval
                   />)
