@@ -12,10 +12,13 @@ const EasyWorkout = ({
 }: EasyWorkoutType) => {
 
     let kickPercentage,
-        remainderAfterKick,
+        kickDistance,
+        pullPercentage,
+        pullDistance,
         drillPercentage,
-        remainderAfterDrill,
+        drillDistance,
         breathPercentage,
+        breathDistance,
         rounds,
         totalDistance,
         random_boolean,
@@ -27,6 +30,7 @@ const EasyWorkout = ({
     // for easy mix of kick, drill, breathing
     // need to determine 
     // the kick percentage
+    // pull
     // drill percentage
     // breathing - rest is breathing
 
@@ -35,30 +39,39 @@ const EasyWorkout = ({
 
         while (true) {
             random_boolean = Math.random() < 0.5; // make some sets have 50s
-            kickPercentage = ((Math.floor((Math.random() * 10) + 1)))
-            remainderAfterKick = 10 - kickPercentage
-            drillPercentage = ((Math.floor((Math.random() * remainderAfterKick))))
-            breathPercentage = 10 - drillPercentage - remainderAfterKick
-
-            // rounds = yardage / maxDistance
+            kickPercentage = ((Math.floor((Math.random() * 7) + 1)))
+            pullPercentage = ((Math.floor((Math.random() * 7) + 1)))
+            drillPercentage = ((Math.floor((Math.random() * 7) + 1)))
+            breathPercentage = ((Math.floor((Math.random() * 7) + 1)))
 
             count = count + 1
             // make sure you get a little of each
-            if (kickPercentage >= 0 && drillPercentage >= 0 && breathPercentage >= 0 && count === 150) {
-                if (count === 150) {
+            if (kickPercentage + pullPercentage + drillPercentage + breathPercentage === 10
+                && breathPercentage > 0
+                && kickPercentage % 50 === 0
+                && pullPercentage % 50 === 0
+                && drillPercentage % 50 === 0
+                && breathPercentage % 50 === 0
+                || count === 650) {
+                if (count === 650) {
                     console.log('Something is wrong, fix it on your end.')
                 }
                 break;
             }
         }
 
+        // get the yardage now that the percentages are solid
+        console.log('kickPercentage', kickPercentage)
+
+        kickDistance = kickPercentage * 100
+        pullDistance = pullPercentage * 100
+        drillDistance = drillPercentage * 100
+        breathDistance = yardage - pullDistance - kickDistance - drillDistance
+
+
         // intervalTime = (maxDistance / 100) * (interval)
         // totalDistance = maxDistance * rounds
         wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
-        console.log('kickPercentage', kickPercentage)
-        console.log('drillPercentage', drillPercentage)
-
-        console.log('breathPercentage', breathPercentage)
     }
 
     return (
@@ -68,17 +81,11 @@ const EasyWorkout = ({
             {/* <Box>Kick set?</Box> */}
             <Box sx={{ marginTop: '15px' }}>Main Set</Box>
             <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
-                <Box sx={{
-                    paddingRight: '10px', display: 'flex',
-                    alignItems: 'center'
-                }}>{rounds} x</Box>
                 <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
-                    {/* <Box>{maxDistance} on the&nbsp;
-                        {intervalTime !== undefined && readableTime(intervalTime, false)
-                        }</Box> */}
-                    <Box sx={{ fontStyle: 'italic', paddingLeft: '20px' }}>
-                        Pace: {readableTime((interval), false)} per 100
-                    </Box>
+                    <div>KICK: {kickDistance}</div>
+                    <div>PULL: {pullDistance}</div>
+                    <div>DRILL: {drillDistance}</div>
+                    <div>BREATH: {breathDistance}</div>
                 </Box>
             </Box>
             <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
