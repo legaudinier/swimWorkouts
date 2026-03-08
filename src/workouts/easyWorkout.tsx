@@ -12,12 +12,13 @@ const EasyWorkout = ({
 }: EasyWorkoutType) => {
 
     let kickPercentage,
+        remainderAfterKick,
         drillPercentage,
+        remainderAfterDrill,
         breathPercentage,
         rounds,
         totalDistance,
         random_boolean,
-        intervalTime,
         wcYardage
 
     const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
@@ -34,29 +35,16 @@ const EasyWorkout = ({
 
         while (true) {
             random_boolean = Math.random() < 0.5; // make some sets have 50s
-            kickPercentage = ((Math.floor((Math.random() * 5))))
-            drillPercentage = ((Math.floor((Math.random() * 5))))
-            breathPercentage = ((Math.floor((Math.random() * 5))))
-
-            // 1. Generate two random cut points (indices) between 0 and targetSum.
-            let cutPoint1 = Math.floor(Math.random() * (10 + 1));
-            let cutPoint2 = Math.floor(Math.random() * (10 + 1));
-
-            // 2. Sort the cut points to define three distinct ranges/bins.
-            const cuts = [0, Math.min(cutPoint1, cutPoint2), Math.max(cutPoint1, cutPoint2), targetSum];
-
-            // 3. Calculate the length of each bin, which are the three numbers.
-            const num1 = cuts[1] - cuts[0];
-            const num2 = cuts[2] - cuts[1];
-            const num3 = cuts[3] - cuts[2];
-
-            console.log('*******numbers:', num1, num2, num3)
-
+            kickPercentage = ((Math.floor((Math.random() * 10) + 1)))
+            remainderAfterKick = 10 - kickPercentage
+            drillPercentage = ((Math.floor((Math.random() * remainderAfterKick))))
+            breathPercentage = 10 - drillPercentage - remainderAfterKick
 
             // rounds = yardage / maxDistance
 
             count = count + 1
-            if (count === 150) {
+            // make sure you get a little of each
+            if (kickPercentage >= 0 && drillPercentage >= 0 && breathPercentage >= 0 && count === 150) {
                 if (count === 150) {
                     console.log('Something is wrong, fix it on your end.')
                 }
@@ -67,6 +55,10 @@ const EasyWorkout = ({
         // intervalTime = (maxDistance / 100) * (interval)
         // totalDistance = maxDistance * rounds
         wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
+        console.log('kickPercentage', kickPercentage)
+        console.log('drillPercentage', drillPercentage)
+
+        console.log('breathPercentage', breathPercentage)
     }
 
     return (
