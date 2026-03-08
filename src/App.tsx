@@ -115,14 +115,14 @@ function App() {
               }}
             />
           </div>
-          <div>
+          {/* <div>
             <InputLabel>Pool Size</InputLabel>
             <RadioGroup defaultValue="LCM" name="radio-buttons-group">
               <FormControlLabel value="lc" control={<Radio />} label="LCM" />
               <FormControlLabel value="sc" control={<Radio />} label="SCY" />
               <FormControlLabel value="scm" control={<Radio />} label="SCM" />
             </RadioGroup>
-          </div>
+          </div> */}
           <div>
             <TextField
               label="Base Interval (seconds) / 100"

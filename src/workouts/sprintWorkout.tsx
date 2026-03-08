@@ -28,8 +28,6 @@ const SprintWorkout = ({
     yardage = yardage - warmUpCoolDown
 
     if (yardage !== 0) {
-
-        let think: string = ''
         let count: number = 1
         let activeYardagePercentage, sprintDistanceInterval
 
@@ -47,9 +45,6 @@ const SprintWorkout = ({
             sprintDistance = sprintDistancePerRoundTotal / sprintRounds
             easyDistance = easyYardage / rounds
             sprintDistanceInterval = sprintDistance / 100
-
-            console.log('Thinking' + think)
-            think = think + '.'
             count = count + 1
 
             if ((sprintDistance % 50 === 0 && easyDistance % 50 === 0) || count === 150) {

@@ -24,9 +24,6 @@ const DistanceWorkout = ({
     yardage = yardage - warmUpCoolDown
 
     if (yardage !== 0) {
-
-        // More complicated sets?
-        let think: string = ''
         let count: number = 1
 
         while (true) {
@@ -37,9 +34,6 @@ const DistanceWorkout = ({
             }
 
             rounds = yardage / maxDistance
-            console.log('Thinking' + think)
-            // need something to cut it if it thinks for too long
-            think = think + '.'
 
             count = count + 1
             if (rounds % 1 === 0 || count === 150) {
