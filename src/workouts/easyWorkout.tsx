@@ -13,8 +13,10 @@ const EasyWorkout = ({
 
     let kickPercentage,
         kickDistance,
+        kickRounds,
         pullPercentage,
         pullDistance,
+        pullRounds,
         drillPercentage,
         drillDistance,
         breathPercentage,
@@ -71,6 +73,31 @@ const EasyWorkout = ({
 
         // intervalTime = (maxDistance / 100) * (interval)
         // totalDistance = maxDistance * rounds
+        // do a while for the 
+
+        let kickCount = 1
+        let pullCount = 1
+
+        while (true) {
+            kickCount = kickCount + 1
+            kickRounds = ((Math.floor((Math.random() * 9) + 1)))
+            if (kickCount === 650 || kickDistance % kickCount === 0) {
+                console.log('Something is wrong, fix it on your end.')
+                break;
+            }
+        }
+
+        while (true) {
+            pullCount = pullCount + 1
+            pullRounds = ((Math.floor((Math.random() * 9) + 1)))
+            if (pullCount === 650 || pullDistance % pullCount === 0) {
+                console.log('Something is wrong, fix it on your end.')
+                break;
+            }
+        }
+
+
+
         wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
     }
 
@@ -82,10 +109,12 @@ const EasyWorkout = ({
             <Box sx={{ marginTop: '15px' }}>Main Set</Box>
             <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
                 <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
-                    <div>KICK: {kickDistance}</div>
-                    <div>PULL: {pullDistance}</div>
+                    <div>KICK: {kickDistance && kickRounds && kickDistance / kickRounds} x {kickRounds} ({kickDistance})</div>
+                    <div>PULL: {pullDistance && pullRounds && pullDistance / pullRounds} x {pullRounds} ({pullDistance})</div>
                     <div>DRILL: {drillDistance}</div>
+                    // list of drills
                     <div>BREATH: {breathDistance}</div>
+                    // breath work - by 50s
                 </Box>
             </Box>
             <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
