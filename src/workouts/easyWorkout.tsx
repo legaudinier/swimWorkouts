@@ -21,7 +21,7 @@ const EasyWorkout = ({
         drillDistance,
         breathPercentage,
         breathDistance,
-        rounds,
+        breathRounds,
         totalDistance,
         random_boolean,
         wcYardage
@@ -41,8 +41,8 @@ const EasyWorkout = ({
 
         while (true) {
             random_boolean = Math.random() < 0.5; // make some sets have 50s
-            kickPercentage = ((Math.floor((Math.random() * 7) + 1)))
-            pullPercentage = ((Math.floor((Math.random() * 7) + 1)))
+            kickPercentage = ((Math.floor((Math.random() * 7) + 2)))
+            pullPercentage = ((Math.floor((Math.random() * 7) + 2)))
             drillPercentage = ((Math.floor((Math.random() * 7) + 1)))
             breathPercentage = ((Math.floor((Math.random() * 7) + 1)))
 
@@ -62,26 +62,19 @@ const EasyWorkout = ({
             }
         }
 
-        // get the yardage now that the percentages are solid
-        console.log('kickPercentage', kickPercentage)
-
         kickDistance = kickPercentage * 100
         pullDistance = pullPercentage * 100
         drillDistance = drillPercentage * 100
         breathDistance = yardage - pullDistance - kickDistance - drillDistance
 
-
-        // intervalTime = (maxDistance / 100) * (interval)
-        // totalDistance = maxDistance * rounds
-        // do a while for the 
-
         let kickCount = 1
         let pullCount = 1
+        let breathCount = 1
 
         while (true) {
             kickCount = kickCount + 1
             kickRounds = ((Math.floor((Math.random() * 9) + 1)))
-            if (kickCount === 650 || kickDistance % kickCount === 0) {
+            if (kickCount === 650 || ((kickDistance / kickRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
                 break;
             }
@@ -90,7 +83,16 @@ const EasyWorkout = ({
         while (true) {
             pullCount = pullCount + 1
             pullRounds = ((Math.floor((Math.random() * 9) + 1)))
-            if (pullCount === 650 || pullDistance % pullCount === 0) {
+            if (pullCount === 650 || ((pullDistance / pullRounds) % 50 === 0)) {
+                console.log('Something is wrong, fix it on your end.')
+                break;
+            }
+        }
+
+        while (true) {
+            breathCount = breathCount + 1
+            breathRounds = ((Math.floor((Math.random() * 6) + 2)))
+            if (breathCount === 650 || ((breathDistance / breathRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
                 break;
             }
@@ -105,16 +107,16 @@ const EasyWorkout = ({
         <div>
             <Box sx={{ marginTop: '20px', marginBottom: '20px' }}>*~~~* Easy Work Out *~~~*</Box>
             <Box>Warm Up: {wcYardage?.warmUp}</Box>
-            {/* <Box>Kick set?</Box> */}
             <Box sx={{ marginTop: '15px' }}>Main Set</Box>
             <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
                 <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
-                    <div>KICK: {kickDistance && kickRounds && kickDistance / kickRounds} x {kickRounds} ({kickDistance})</div>
-                    <div>PULL: {pullDistance && pullRounds && pullDistance / pullRounds} x {pullRounds} ({pullDistance})</div>
+                    <div>KICK: {kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</div>
+                    <div>PULL: {pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</div>
                     <div>DRILL: {drillDistance}</div>
                     // list of drills
-                    <div>BREATH: {breathDistance}</div>
+                    <div>BREATH: {breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</div>
                     // breath work - by 50s
+                    // how to break up the distance?
                 </Box>
             </Box>
             <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
