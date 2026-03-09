@@ -1,6 +1,6 @@
 
 import Box from "@mui/material/Box";
-import { readableTime, calculateWarmUpCoolDown } from '../utilities'
+import { calculateWarmUpCoolDown } from '../utilities'
 
 export type EasyWorkoutType = {
     yardage: any
@@ -8,7 +8,7 @@ export type EasyWorkoutType = {
 }
 
 const EasyWorkout = ({
-    yardage, interval,
+    yardage,
 }: EasyWorkoutType) => {
 
     let kickPercentage,
@@ -23,7 +23,6 @@ const EasyWorkout = ({
         breathDistance,
         breathRounds,
         totalDistance,
-        random_boolean,
         wcYardage
 
     const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
@@ -40,7 +39,6 @@ const EasyWorkout = ({
         let count: number = 1
 
         while (true) {
-            random_boolean = Math.random() < 0.5; // make some sets have 50s
             kickPercentage = ((Math.floor((Math.random() * 7) + 2)))
             pullPercentage = ((Math.floor((Math.random() * 7) + 2)))
             drillPercentage = ((Math.floor((Math.random() * 7) + 1)))
@@ -98,10 +96,11 @@ const EasyWorkout = ({
             }
         }
 
-
-
         wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
     }
+
+    // need to break up the drills
+    // need to break up the breathing 
 
     return (
         <div>
@@ -109,21 +108,25 @@ const EasyWorkout = ({
             <Box>Warm Up: {wcYardage?.warmUp}</Box>
             <Box sx={{ marginTop: '15px' }}>Main Set</Box>
             <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
+                <Box sx={{ paddingRight: '10px' }}>
+                    <div>Kick</div>
+                    <div>Pull</div>
+                    <div>Drill</div>
+                    <div>Breath</div>
+                </Box>
                 <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
-                    <div>KICK: {kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</div>
-                    <div>PULL: {pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</div>
-                    <div>DRILL: {drillDistance}</div>
-                    // list of drills
-                    <div>BREATH: {breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</div>
-                    // breath work - by 50s
-                    // how to break up the distance?
+                    <div>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</div>
+                    <div>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</div>
+                    <div>{drillDistance}</div>
+                    <div>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</div>
                 </Box>
             </Box>
             <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
-                <Box>Main Set Distance: {totalDistance}</Box>
-                {/* <Box>Main Set Total Time: {maxDistance && rounds !== undefined
-                    && readableTime((((maxDistance * rounds) / 100) * ((interval))), true)}
-                </Box> */}
+                <Box>Main Set Distance: {kickDistance
+                    && pullDistance &&
+                    drillDistance &&
+                    breathDistance &&
+                    kickDistance + pullDistance + drillDistance + breathDistance}</Box>
             </Box>
             <Box>Cool Down: {wcYardage?.coolDown}</Box>
         </div >
