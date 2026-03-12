@@ -21,14 +21,13 @@ const SprintWorkout = ({
         sprintYardage,
         easyYardage,
         sprintDistance
-
+        
     const warmUpCoolDown = Math.floor(yardage * .5 / 100) * 100
 
     yardage = yardage - warmUpCoolDown
 
     if (yardage !== 0) {
         let count: number = 1
-        let activeYardagePercentage, sprintDistanceInterval
 
         while (true) {
 
@@ -36,14 +35,12 @@ const SprintWorkout = ({
             sprintRounds = ((Math.floor((Math.random() * 6) + 1) * 1))
 
             sprintYardagePercentage = ((Math.floor((Math.random() * 3) + 5) / 10))
-            activeYardagePercentage = 1 - sprintYardagePercentage
             sprintYardage = yardage * sprintYardagePercentage
             easyYardage = yardage - sprintYardage
 
             sprintDistancePerRoundTotal = sprintYardage / rounds
             sprintDistance = sprintDistancePerRoundTotal / sprintRounds
             easyDistance = easyYardage / rounds
-            sprintDistanceInterval = sprintDistance / 100
             count = count + 1
 
             if ((sprintDistance % 50 === 0 && easyDistance % 50 === 0) || count === 150) {

@@ -22,7 +22,6 @@ const EasyWorkout = ({
         breathPercentage,
         breathDistance,
         breathRounds,
-        totalDistance,
         wcYardage
 
     const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
