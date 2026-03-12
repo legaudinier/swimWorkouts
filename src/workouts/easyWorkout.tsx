@@ -143,6 +143,7 @@ const EasyWorkout = ({
                     <div>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</div>
                     <div>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</div>
                     <div>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</div>
+                    <Box sx={{marginLeft: '20px'}}>
                     {drills?.map(
                         (drill: string, index: number) => {
                             return (
@@ -150,6 +151,7 @@ const EasyWorkout = ({
                             )
                         }
                     )}
+                    </Box>
                     <div>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</div>
                 </Box>
             </Box>
