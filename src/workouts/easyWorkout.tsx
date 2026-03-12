@@ -1,6 +1,6 @@
 
 import Box from "@mui/material/Box";
-import { calculateWarmUpCoolDown } from '../utilities'
+import { calculateWarmUpCoolDown, getDrills } from '../utilities'
 
 export type EasyWorkoutType = {
     yardage: any
@@ -19,6 +19,8 @@ const EasyWorkout = ({
         pullRounds,
         drillPercentage,
         drillDistance,
+        drillRounds,
+        drills,
         breathPercentage,
         breathDistance,
         breathRounds,
@@ -27,12 +29,6 @@ const EasyWorkout = ({
     const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
 
     yardage = yardage - warmUpCoolDown
-    // for easy mix of kick, drill, breathing
-    // need to determine 
-    // the kick percentage
-    // pull
-    // drill percentage
-    // breathing - rest is breathing
 
     if (yardage !== 0) {
         let count: number = 1
@@ -67,6 +63,7 @@ const EasyWorkout = ({
         let kickCount = 1
         let pullCount = 1
         let breathCount = 1
+        let drillCount = 1
 
         while (true) {
             kickCount = kickCount + 1
@@ -95,11 +92,32 @@ const EasyWorkout = ({
             }
         }
 
+        while (true) {
+            drillCount = drillCount + 1
+            drillRounds = ((Math.floor((Math.random() * 10) + 1)))
+            // NOTE: there are currently 11 drills so we will pick for 11 to use
+
+            // need to send the drills will randomise and send some back
+            // this amount will be broken up and assigned distances
+
+            // the amount needs to divide with the rounds
+
+            drills = getDrills(drillRounds)
+            console.log('distance / drills', drillDistance, drills.length, drillDistance / drills.length)
+
+            if (drillCount === 650 || ((drillDistance / drillRounds) % 50 === 0)) {
+                console.log('Something is wrong, fix it on your end.')
+                break;
+            }
+        }
+
+        console.log('DRILLS', drills)
         wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
     }
 
     // need to break up the drills
     // need to break up the breathing 
+
 
     return (
         <div>
@@ -111,12 +129,27 @@ const EasyWorkout = ({
                     <div>Kick</div>
                     <div>Pull</div>
                     <div>Drill</div>
+                    {drills?.map(
+                        (drill: string, index: number) => {
+                            return (
+                                // fix the spacing
+                                <div key={`${drill.replace(/ /g, '')}${index}`}>&nbsp;</div>
+                            )
+                        }
+                    )}
                     <div>Breath</div>
                 </Box>
                 <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
                     <div>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</div>
                     <div>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</div>
-                    <div>{drillDistance}</div>
+                    <div>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</div>
+                    {drills?.map(
+                        (drill: string, index: number) => {
+                            return (
+                                <div key={`drill${index}`}>{drill}</div>
+                            )
+                        }
+                    )}
                     <div>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</div>
                 </Box>
             </Box>

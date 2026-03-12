@@ -25,13 +25,30 @@ export const calculateWarmUpCoolDown = (warmUpCoolDownYardage: number) => {
     return warmCool;
 }
 
-export const drill = () => {
+export const getDrills = (amount: number) => {
 
     let drills =
-        ['Catch Up', 'Closed Fist', 'One Arm',
-            'Fingertip Drag', 'Heads up Freestyle',
-            'Scull', '3 Second Glide Free', '3 Second Glide Breast',
-            'Double Breast Kick', 'Armpit touch', '3 - 4 underwaters off walls']
+        ['Catch Up',
+            'Closed Fist',
+            'One Arm Free',
+            'Fingertip Drag',
+            'Heads up Freestyle',
+            'Scull',
+            '3 Second Glide Free',
+            '3 Second Glide Breast',
+            'Double Breast Kick',
+            'Armpit touch',
+            '3 - 4 underwaters off walls']
 
-    return drills;
+    /* Randomize array in-place using Durstenfeld shuffle algorithm */
+    for (var i = drills.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = drills[i];
+        drills[i] = drills[j];
+        drills[j] = temp;
+    }
+    // Only bring the first amount that get randomnly pulled
+    const slicedDrills = drills.slice(0, amount);
+
+    return slicedDrills;
 }
