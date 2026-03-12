@@ -24,3 +24,14 @@ export const calculateWarmUpCoolDown = (warmUpCoolDownYardage: number) => {
 
     return warmCool;
 }
+
+export const drill = () => {
+
+    let drills =
+        ['Catch Up', 'Closed Fist', 'One Arm',
+            'Fingertip Drag', 'Heads up Freestyle',
+            'Scull', '3 Second Glide Free', '3 Second Glide Breast',
+            'Double Breast Kick', 'Armpit touch', '3 - 4 underwaters off walls']
+
+    return drills;
+}
