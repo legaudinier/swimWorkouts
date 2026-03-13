@@ -1,6 +1,6 @@
 
 import Box from "@mui/material/Box";
-import { calculateWarmUpCoolDown, getDrills } from '../utilities'
+import { calculateWarmUpCoolDown, getDrills, getBreathWorkPattern } from '../utilities'
 
 export type EasyWorkoutType = {
     yardage: any
@@ -24,6 +24,7 @@ const EasyWorkout = ({
         breathPercentage,
         breathDistance,
         breathRounds,
+        breathWorkout,
         wcYardage
 
     const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
@@ -97,11 +98,6 @@ const EasyWorkout = ({
             drillRounds = ((Math.floor((Math.random() * 10) + 1)))
             // NOTE: there are currently 11 drills so we will pick for 11 to use
 
-            // need to send the drills will randomise and send some back
-            // this amount will be broken up and assigned distances
-
-            // the amount needs to divide with the rounds
-
             drills = getDrills(drillRounds)
             console.log('distance / drills', drillDistance, drills.length, drillDistance / drills.length)
 
@@ -111,11 +107,22 @@ const EasyWorkout = ({
             }
         }
 
-        console.log('DRILLS', drills)
+         while (true) {
+            breathCount = breathCount + 1
+            breathRounds = ((Math.floor((Math.random() * 10) + 1)))
+            // NOTE: there are currently 11 drills so we will pick for 11 to use
+
+            breathWorkout = getDrills(breathRounds)
+            console.log('distance / drills', drillDistance, drills.length, drillDistance / drills.length)
+
+            if (drillCount === 650 || ((drillDistance / drillRounds) % 50 === 0)) {
+                console.log('Something is wrong, fix it on your end.')
+                break;
+            }
+        }
+
         wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
     }
-
-    // need to break up the drills
     // need to break up the breathing 
 
 
@@ -143,14 +150,16 @@ const EasyWorkout = ({
                     <div>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</div>
                     <div>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</div>
                     <div>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</div>
-                    <Box sx={{marginLeft: '20px'}}>
-                    {drills?.map(
-                        (drill: string, index: number) => {
-                            return (
-                                <div key={`drill${index}`}>{drill}</div>
-                            )
-                        }
-                    )}
+                    <Box sx={{ marginLeft: '20px' }}>
+                        <ul>
+                            {drills?.map(
+                                (drill: string, index: number) => {
+                                    return (
+                                        <li key={`drill${index}`}>{drill}</li>
+                                    )
+                                }
+                            )}
+                        </ul>
                     </Box>
                     <div>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</div>
                 </Box>

@@ -53,10 +53,19 @@ export const getDrills = (amount: number) => {
     return slicedDrills;
 }
 
-  export const calculateTime = (time: string | number, offset: number) => {
+export const getBreathWorkPattern = (distance: number) => {
+    // need to get the distance
+    // generate the rounds
+    // divide the distance by the round
+    // some sort of pattern
+    // and how many 
+    return
+}
+
+export const calculateTime = (time: string | number, offset: number) => {
     const minutes = Math.floor((Number(time) / 60));
     const seconds = Number(time) - minutes * 60 + offset;
     const convertedTime = `${minutes}:${seconds}`
 
     return convertedTime;
-  }
+}
