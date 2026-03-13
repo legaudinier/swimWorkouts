@@ -52,3 +52,11 @@ export const getDrills = (amount: number) => {
 
     return slicedDrills;
 }
+
+  export const calculateTime = (time: string | number, offset: number) => {
+    const minutes = Math.floor((Number(time) / 60));
+    const seconds = Number(time) - minutes * 60 + offset;
+    const convertedTime = `${minutes}:${seconds}`
+
+    return convertedTime;
+  }

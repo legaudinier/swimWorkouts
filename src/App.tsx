@@ -3,9 +3,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
-// import Radio from "@mui/material/Radio";
-// import RadioGroup from "@mui/material/RadioGroup";
-// import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import DistanceWorkout from './workouts/distanceWorkout';
 import SprintWorkout from "./workouts/sprintWorkout";
@@ -17,19 +14,7 @@ function App() {
   const [type, setType] = useState("distance");
   const [yardage, setYardage] = useState(5000);
   const [interval, setInterval] = useState<any>(90);
-  const [easyInterval, setEasyInterval] = useState<any>(0);
-  const [mediumInterval, setMediumInterval] = useState<any>(0);
-  const [hardInterval, setHardInterval] = useState<any>(0);
-  const [sprintInterval, setSprintInterval] = useState<any>(0);
   const [showWorkout, setShowWorkout] = useState(false)
-
-  const calculateTime = (time: string | number, offset: number) => {
-    const minutes = Math.floor((Number(time) / 60));
-    const seconds = Number(time) - minutes * 60 + offset;
-    const convertedTime = `${minutes}:${seconds}`
-
-    return convertedTime;
-  }
 
   const typeChange = (event: any) => {
     setType(event.target.value);
@@ -41,12 +26,7 @@ function App() {
   };
 
   const baseIntervalChange = (event: any) => {
-
     setInterval(event.target.valueAsNumber)
-    setMediumInterval(calculateTime(event.target.valueAsNumber, 5))
-    setHardInterval(calculateTime(event.target.valueAsNumber, -5))
-    setSprintInterval(calculateTime(event.target.valueAsNumber, -10));
-    setEasyInterval(calculateTime(event.target.valueAsNumber, 10));
   };
 
   const generate = () => {
@@ -117,14 +97,6 @@ function App() {
               }}
             />
           </div>
-          {/* <div>
-            <InputLabel>Pool Size</InputLabel>
-            <RadioGroup defaultValue="LCM" name="radio-buttons-group">
-              <FormControlLabel value="lc" control={<Radio />} label="LCM" />
-              <FormControlLabel value="sc" control={<Radio />} label="SCY" />
-              <FormControlLabel value="scm" control={<Radio />} label="SCM" />
-            </RadioGroup>
-          </div> */}
           <div>
             <TextField
               label="Interval (seconds) / 100"
@@ -137,16 +109,8 @@ function App() {
           <Button variant="outlined" onClick={() => generate()}>Generate</Button>
         </Box>
         <Box sx={{ width: '50%' }}>
-          <Box>Your Workout</Box>
           <div>
             <ul>
-              <li>Intervals</li>
-              <ul>
-                <li>Easy: {easyInterval}</li>
-                <li>Medium: {mediumInterval}</li>
-                <li>Hard: {hardInterval}</li>
-                <li>Sprint: {sprintInterval}</li>
-              </ul>
               {showWorkout &&
                 type === 'distance' ? (
                 <DistanceWorkout
