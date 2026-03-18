@@ -110,10 +110,9 @@ const EasyWorkout = ({
          while (true) {
             breathCount = breathCount + 1
             breathRounds = ((Math.floor((Math.random() * 10) + 1)))
-            // NOTE: there are currently 11 drills so we will pick for 11 to use
+            breathWorkout = getBreathWorkPattern(breathDistance, breathRounds)
 
-            breathWorkout = getDrills(breathRounds)
-            console.log('distance / drills', drillDistance, drills.length, drillDistance / drills.length)
+            console.log('breathWorkout', breathWorkout)
 
             if (drillCount === 650 || ((drillDistance / drillRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')

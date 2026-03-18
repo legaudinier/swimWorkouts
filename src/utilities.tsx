@@ -47,19 +47,21 @@ export const getDrills = (amount: number) => {
         drills[i] = drills[j];
         drills[j] = temp;
     }
-    // Only bring the first amount that get randomnly pulled
-    const slicedDrills = drills.slice(0, amount);
-
-    return slicedDrills;
+    return drills.slice(0, amount);
 }
 
-export const getBreathWorkPattern = (distance: number) => {
-    // need to get the distance
-    // generate the rounds
-    // divide the distance by the round
-    // some sort of pattern
-    // and how many 
-    return
+export const getBreathWorkPattern = () => {
+    const breathingPattern = ['3', '5', '7', '9', '11', 'choice']
+    const randomBreathingNumber = Math.floor(Math.random() * 6) + 1;
+
+    for (var i = breathingPattern.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = breathingPattern[i];
+        breathingPattern[i] = breathingPattern[j];
+        breathingPattern[j] = temp;
+    }
+
+    return breathingPattern.slice(0, randomBreathingNumber);
 }
 
 export const calculateTime = (time: string | number, offset: number) => {
