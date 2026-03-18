@@ -56,7 +56,7 @@ function App() {
         marginTop: '20px',
         marginBottom: '20px'
       }}>
-        <Box>Swim Workout Generator</Box>
+        <h1>Swim Workout Generator</h1>
       </Box>
       <Box sx={{
         display: 'flex',

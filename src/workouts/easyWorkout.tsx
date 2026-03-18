@@ -24,7 +24,7 @@ const EasyWorkout = ({
         breathPercentage,
         breathDistance,
         breathRounds,
-        breathWorkout,
+        breathWorkoutPattern,
         wcYardage
 
     const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
@@ -107,14 +107,18 @@ const EasyWorkout = ({
             }
         }
 
-         while (true) {
+        while (true) {
             breathCount = breathCount + 1
             breathRounds = ((Math.floor((Math.random() * 10) + 1)))
-            breathWorkout = getBreathWorkPattern(breathDistance, breathRounds)
+            breathWorkoutPattern = getBreathWorkPattern()
 
-            console.log('breathWorkout', breathWorkout)
 
-            if (drillCount === 650 || ((drillDistance / drillRounds) % 50 === 0)) {
+            console.log('breathWorkout', breathWorkoutPattern)
+            console.log('breathRounds', breathRounds)
+            console.log('breathDistance', breathDistance)
+
+
+            if (breathCount === 650 || ((breathDistance / breathRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
                 break;
             }
@@ -146,9 +150,15 @@ const EasyWorkout = ({
                     <div>Breath</div>
                 </Box>
                 <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
-                    <div>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</div>
-                    <div>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</div>
-                    <div>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</div>
+                    {kickRounds !== 1 ?
+                        <div>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</div>
+                        : <div>{kickDistance}</div>}
+                    {pullRounds !== 1 ?
+                        <div>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</div>
+                        : <div>{pullDistance}</div>}
+                    {drillRounds !== 1 ?
+                        <div>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</div>
+                        : <div>{drillDistance}</div>}
                     <Box sx={{ marginLeft: '20px' }}>
                         <ul>
                             {drills?.map(
@@ -160,7 +170,9 @@ const EasyWorkout = ({
                             )}
                         </ul>
                     </Box>
-                    <div>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</div>
+                    {breathRounds !== 1 ?
+                        <div>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</div>
+                        : <div>{breathDistance}</div>}
                 </Box>
             </Box>
             <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>

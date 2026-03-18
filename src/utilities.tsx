@@ -38,7 +38,7 @@ export const getDrills = (amount: number) => {
             '3 Second Glide Breast',
             'Double Breast Kick',
             'Armpit touch',
-            '3 - 4 underwaters off walls']
+            '3 underwater kicks']
 
     /* Randomize array in-place using Durstenfeld shuffle algorithm */
     for (var i = drills.length - 1; i > 0; i--) {
@@ -47,6 +47,7 @@ export const getDrills = (amount: number) => {
         drills[i] = drills[j];
         drills[j] = temp;
     }
+
     return drills.slice(0, amount);
 }
 
