@@ -38,11 +38,11 @@ function App() {
   return (
     <Box sx={{
       '& .MuiFormControl-root': {
-        width: '300px'
+        // width: '200px'
       },
 
       '& .MuiOutlinedInput-root': {
-        width: '300px',
+        // width: '200px',
         marginBottom: '20px'
       },
 
@@ -58,57 +58,70 @@ function App() {
       }}>
         <h1>Swim Workout Generator</h1>
       </Box>
-      <Box sx={{
-        display: 'flex',
-        flexDirection: 'row'
-      }}>
+      <Box>
         <Box sx={{
           marginLeft: '40px',
-          width: '50%'
+          marginRight: '40px',
+          paddingTop: '40px',
+          borderTop: '40px solid #7d34eb',
+          borderLeft: '1px solid #7d34eb',
+          borderRight: '1px solid #7d34eb',
+          borderBottom: '1px solid #7d34eb',
+          borderRadius: '10px'
+
         }}>
-          <div>
-            <InputLabel>Workout Type</InputLabel>
-            <Select
-              labelId="type"
-              value={type}
-              label="Type of Workout"
-              onChange={typeChange}
-            >
-              <MenuItem value="distance">Distance</MenuItem>
-              <MenuItem value="sprint">Sprint</MenuItem>
-              <MenuItem value="threshold">Threshold/Pace</MenuItem>
-              <MenuItem value="im">IM</MenuItem>
-              <MenuItem value="easy">Easy</MenuItem>
-              <MenuItem value="dealersChoice">Dealers Choice</MenuItem>
-            </Select>
-          </div>
-          <div>
-            <TextField
-              id="outlined-basic"
-              label="Yardage"
-              variant="outlined"
-              type="number"
-              defaultValue={'3000'}
-              onChange={yardageChange}
-              InputProps={{
-                inputProps: {
-                  max: 10000, min: 50, step: 50
-                }
-              }}
-            />
-          </div>
-          <div>
-            <TextField
-              label="Interval (seconds) / 100"
-              variant="outlined"
-              type="number"
-              onChange={baseIntervalChange}
-            />
-          </div>
-          {/* this button currently doesn't work hahahah */}
-          <Button variant="outlined" onClick={() => generate()}>Generate</Button>
+          <Box sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            // round corners
+
+          }}>
+            <Box>
+              <InputLabel>Workout Type</InputLabel>
+              <Select
+                labelId="type"
+                value={type}
+                label="Type of Workout"
+                onChange={typeChange}
+              >
+                <MenuItem value="distance">Distance</MenuItem>
+                <MenuItem value="sprint">Sprint</MenuItem>
+                <MenuItem value="threshold">Threshold/Pace</MenuItem>
+                <MenuItem value="im">IM</MenuItem>
+                <MenuItem value="easy">Easy</MenuItem>
+                <MenuItem value="dealersChoice">Dealers Choice</MenuItem>
+              </Select>
+            </Box>
+            <div>
+              <TextField
+                id="outlined-basic"
+                label="Yardage"
+                variant="outlined"
+                type="number"
+                defaultValue={'3000'}
+                onChange={yardageChange}
+                InputProps={{
+                  inputProps: {
+                    max: 10000, min: 50, step: 50
+                  }
+                }}
+              />
+            </div>
+            <div>
+              <TextField
+                label="Interval (seconds) / 100"
+                variant="outlined"
+                type="number"
+                onChange={baseIntervalChange}
+              />
+            </div>
+          </Box>
+          {/* actually hook this up */}
+          <Button variant="outlined"
+            sx={{ width: '100%' }}
+            onClick={() => generate()}>Generate</Button>
         </Box>
-        <Box sx={{ width: '50%' }}>
+        <Box>
           <div>
             <ul>
               {showWorkout &&
