@@ -2,6 +2,7 @@ import { useState } from 'react'
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import FormControl from '@mui/material/FormControl';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import DistanceWorkout from './workouts/distanceWorkout';
@@ -73,24 +74,27 @@ function App() {
           <Box sx={{
             display: 'flex',
             flexDirection: 'row',
-            // round corners
 
           }}>
             <Box>
-              <InputLabel>Workout Type</InputLabel>
-              <Select
-                labelId="type"
-                value={type}
-                label="Type of Workout"
-                onChange={typeChange}
-              >
-                <MenuItem value="distance">Distance</MenuItem>
-                <MenuItem value="sprint">Sprint</MenuItem>
-                <MenuItem value="threshold">Threshold/Pace</MenuItem>
-                <MenuItem value="im">IM</MenuItem>
-                <MenuItem value="easy">Easy</MenuItem>
-                <MenuItem value="dealersChoice">Dealers Choice</MenuItem>
-              </Select>
+              <FormControl fullWidth>
+                <InputLabel id="type">Type</InputLabel>
+                <Select
+                  labelId="type"
+                  id="type-select"
+                  value={type}
+                  label="Type of Workout"
+                  onChange={typeChange}
+                  variant='outlined'
+                >
+                  <MenuItem value="distance">Distance</MenuItem>
+                  <MenuItem value="sprint">Sprint</MenuItem>
+                  <MenuItem value="threshold">Threshold/Pace</MenuItem>
+                  <MenuItem value="im">IM</MenuItem>
+                  <MenuItem value="easy">Easy</MenuItem>
+                  <MenuItem value="dealersChoice">Dealers Choice</MenuItem>
+                </Select>
+              </FormControl>
             </Box>
             <div>
               <TextField
@@ -113,6 +117,7 @@ function App() {
                 variant="outlined"
                 type="number"
                 onChange={baseIntervalChange}
+                defaultValue={90}
               />
             </div>
           </Box>
