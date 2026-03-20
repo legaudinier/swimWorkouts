@@ -38,13 +38,8 @@ function App() {
 
   return (
     <Box sx={{
-      '& .MuiFormControl-root': {
-        // width: '200px'
-      },
-
       '& .MuiOutlinedInput-root': {
-        // width: '200px',
-        marginBottom: '20px'
+        marginBottom: '40px'
       },
 
       '& .MuiFormGroup-root': {
@@ -121,12 +116,21 @@ function App() {
               />
             </div>
           </Box>
-          {/* actually hook this up */}
-          <Button variant="outlined"
-            sx={{ width: '100%' }}
-            onClick={() => generate()}>Generate</Button>
         </Box>
-        <Box>
+        {/* actually hook this up */}
+        <Button variant="outlined"
+          sx={{ color: '#7d34eb', 
+            marginLeft: '40px', 
+            marginRight: '40px', 
+            marginTop: '20px' }}
+          onClick={() => generate()}>Generate</Button>
+        <Box sx={{
+          marginLeft: '40px',
+          marginRight: '40px',
+          marginTop: '20px',
+          border: '1px solid #7d34eb',
+          borderRadius: '10px'
+        }}>
           <div>
             <ul>
               {showWorkout &&
@@ -153,6 +157,14 @@ function App() {
             </ul>
           </div>
         </Box>
+      </Box>
+      <Box sx={{ display: 'flex', marginLeft: '40px', marginRight: '40px', marginTop: '20px' }}>
+        <Button variant="outlined"
+          sx={{ width: '100%', color: '#7d34eb' }}
+        >Export to Excel</Button>
+        <Button variant="outlined"
+          sx={{ width: '100%', color: '#7d34eb' }}
+        >Email Workout</Button>
       </Box>
     </Box >
   );
