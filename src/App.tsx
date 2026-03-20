@@ -9,7 +9,7 @@ import DistanceWorkout from './workouts/distanceWorkout';
 import SprintWorkout from "./workouts/sprintWorkout";
 import ThresholdWorkout from './workouts/thresholdWorkout';
 import EasyWorkout from './workouts/easyWorkout';
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 function App() {
   const [type, setType] = useState("distance");
@@ -52,26 +52,33 @@ function App() {
         marginTop: '20px',
         marginBottom: '20px'
       }}>
-        <h1>Swim Workout Generator</h1>
       </Box>
       <Box>
         <Box sx={{
           marginLeft: '40px',
           marginRight: '40px',
-          paddingTop: '40px',
-          borderTop: '40px solid #7d34eb',
+          paddingBottom: '40px',
+          borderTop: '1px solid #7d34eb',
           borderLeft: '1px solid #7d34eb',
           borderRight: '1px solid #7d34eb',
           borderBottom: '1px solid #7d34eb',
           borderRadius: '10px'
 
         }}>
+          <Typography sx={{
+            textAlign: 'center',
+            backgroundColor: '#7d34eb',
+            color: 'white',
+            borderRadius: '10px 10px 0 0',
+            paddingTop: '10px',
+            paddingBottom: '10px',
+          }}>Swim Workout Generator</Typography>
           <Box sx={{
             display: 'flex',
             flexDirection: 'row',
-
+            paddingTop: '40px'
           }}>
-            <Box>
+            <Box sx={{ flex: '0 1 200px' }}>
               <FormControl fullWidth>
                 <InputLabel id="type">Type</InputLabel>
                 <Select
@@ -91,7 +98,7 @@ function App() {
                 </Select>
               </FormControl>
             </Box>
-            <div>
+            <Box>
               <TextField
                 id="outlined-basic"
                 label="Yardage"
@@ -105,8 +112,8 @@ function App() {
                   }
                 }}
               />
-            </div>
-            <div>
+            </Box>
+            <Box>
               <TextField
                 label="Interval (seconds) / 100"
                 variant="outlined"
@@ -114,16 +121,23 @@ function App() {
                 onChange={baseIntervalChange}
                 defaultValue={90}
               />
-            </div>
+            </Box>
           </Box>
         </Box>
         {/* actually hook this up */}
-        <Button variant="outlined"
-          sx={{ color: '#7d34eb', 
-            marginLeft: '40px', 
-            marginRight: '40px', 
-            marginTop: '20px' }}
-          onClick={() => generate()}>Generate</Button>
+        <Box sx={{
+          marginLeft: '40px',
+          marginRight: '40px',
+          marginTop: '20px'
+        }}>
+          <Button variant="outlined"
+            sx={{
+              color: '#7d34eb',
+              width: '100%'
+
+            }}
+            onClick={() => generate()}>Generate</Button>
+        </Box>
         <Box sx={{
           marginLeft: '40px',
           marginRight: '40px',
@@ -133,6 +147,7 @@ function App() {
         }}>
           <div>
             <ul>
+              {/*  need to clean this up */}
               {showWorkout &&
                 type === 'distance' ? (
                 <DistanceWorkout
