@@ -1,5 +1,5 @@
 
-import Box from "@mui/material/Box";
+import { Box, Typography } from "@mui/material";
 import { calculateWarmUpCoolDown, getDrills, getBreathWorkPattern } from '../utilities'
 
 export type EasyWorkoutType = {
@@ -131,14 +131,14 @@ const EasyWorkout = ({
 
     return (
         <div>
-            <Box sx={{ marginTop: '20px', marginBottom: '20px' }}>*~~~* Easy Work Out *~~~*</Box>
-            <Box>Warm Up: {wcYardage?.warmUp}</Box>
-            <Box sx={{ marginTop: '15px' }}>Main Set</Box>
+            <Typography sx={{ marginTop: '20px', marginBottom: '20px' }}>Easy Work Out</Typography>
+            <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
+            <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
             <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
                 <Box sx={{ paddingRight: '10px' }}>
-                    <div>Kick</div>
-                    <div>Pull</div>
-                    <div>Drill</div>
+                    <Typography>Kick</Typography>
+                    <Typography>Pull</Typography>
+                    <Typography>Drill</Typography>
                     {drills?.map(
                         (drill: string, index: number) => {
                             return (
@@ -147,42 +147,42 @@ const EasyWorkout = ({
                             )
                         }
                     )}
-                    <div>Breath</div>
+                    <Typography>Breath</Typography>
                 </Box>
                 <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
                     {kickRounds !== 1 ?
-                        <div>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</div>
-                        : <div>{kickDistance}</div>}
+                        <Typography>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</Typography>
+                        : <Typography>{kickDistance}</Typography>}
                     {pullRounds !== 1 ?
-                        <div>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</div>
-                        : <div>{pullDistance}</div>}
+                        <Typography>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</Typography>
+                        : <Typography>{pullDistance}</Typography>}
                     {drillRounds !== 1 ?
-                        <div>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</div>
-                        : <div>{drillDistance}</div>}
+                        <Typography>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</Typography>
+                        : <Typography>{drillDistance}</Typography>}
                     <Box sx={{ marginLeft: '20px' }}>
                         <ul>
                             {drills?.map(
                                 (drill: string, index: number) => {
                                     return (
-                                        <li key={`drill${index}`}>{drill}</li>
+                                        <Typography> <li key={`drill${index}`}>{drill}</li></Typography>
                                     )
                                 }
                             )}
                         </ul>
                     </Box>
                     {breathRounds !== 1 ?
-                        <div>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</div>
-                        : <div>{breathDistance}</div>}
+                        <Typography>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</Typography>
+                        : <Typography>{breathDistance}</Typography>}
                 </Box>
             </Box>
             <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
-                <Box>Main Set Distance: {kickDistance
+                <Typography>Main Set Distance: {kickDistance
                     && pullDistance &&
                     drillDistance &&
                     breathDistance &&
-                    kickDistance + pullDistance + drillDistance + breathDistance}</Box>
+                    kickDistance + pullDistance + drillDistance + breathDistance}</Typography>
             </Box>
-            <Box>Cool Down: {wcYardage?.coolDown}</Box>
+            <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
         </div >
     )
 }

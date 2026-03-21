@@ -1,5 +1,5 @@
 
-import Box from "@mui/material/Box";
+import { Box, Typography } from "@mui/material";
 import { readableTime, calculateWarmUpCoolDown } from '../utilities'
 
 export type SprintWorkoutType = {
@@ -21,7 +21,7 @@ const SprintWorkout = ({
         sprintYardage,
         easyYardage,
         sprintDistance
-        
+
     const warmUpCoolDown = Math.floor(yardage * .5 / 100) * 100
 
     yardage = yardage - warmUpCoolDown
@@ -58,30 +58,30 @@ const SprintWorkout = ({
 
     return (
         <div>
-            <Box sx={{ marginTop: '20px', marginBottom: '20px' }}>*~~~* Sprint Work Out *~~~*</Box>
-            <Box>Warm Up: {wcYardage?.warmUp}</Box>
+            <Typography sx={{ marginTop: '20px', marginBottom: '20px' }}>Sprint Work Out</Typography>
+            <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
             {/* <Box>Kick set?</Box> */}
-            <Box sx={{ marginTop: '15px' }}>Main Set</Box>
+            <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
             <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
-                <Box sx={{
+                <Typography sx={{
                     paddingRight: '10px', display: 'flex',
                     alignItems: 'center'
-                }}>{rounds} x</Box>
+                }}>{rounds} x</Typography>
                 <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
 
-                    <Box>{sprintRounds} x {sprintDistance} on
+                    <Typography>{sprintRounds} x {sprintDistance} on
                         Pace: {sprintDistance && readableTime((interval * sprintDistance / 100), false)}
-                    </Box>
-                    <Box>{easyDistance} easy</Box>
+                    </Typography>
+                    <Typography>{easyDistance} easy</Typography>
                 </Box>
             </Box>
             <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
-                <Box>Main Set Distance: {totalDistance}</Box>
-                <Box>Main Set Total Time: {sprintDistancePerRoundTotal && rounds !== undefined
+                <Typography>Main Set Distance: {totalDistance}</Typography>
+                <Typography>Main Set Total Time: {sprintDistancePerRoundTotal && rounds !== undefined
                     && readableTime((((sprintDistancePerRoundTotal * rounds) / 100) * ((interval))), true)}
-                </Box>
+                </Typography>
             </Box>
-            <Box>Cool Down: {wcYardage?.coolDown}</Box>
+            <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
         </div >
     )
 }

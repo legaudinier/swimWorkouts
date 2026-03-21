@@ -1,5 +1,5 @@
 
-import Box from "@mui/material/Box";
+import { Box, Typography } from "@mui/material";
 import { readableTime, calculateWarmUpCoolDown } from '../utilities'
 
 export type DistanceWorkoutType = {
@@ -50,31 +50,31 @@ const DistanceWorkout = ({
 
     return (
         <div>
-            <Box sx={{ marginTop: '20px', marginBottom: '20px' }}>*~~~* Distance Work Out *~~~*</Box>
-            <Box>Warm Up: {wcYardage?.warmUp}</Box>
+            <Typography sx={{ marginTop: '20px', marginBottom: '20px' }}>Distance Work Out</Typography>
+            <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
             {/* <Box>Kick set?</Box> */}
-            <Box sx={{ marginTop: '15px' }}>Main Set</Box>
+            <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
             <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
-                <Box sx={{
+                <Typography sx={{
                     paddingRight: '10px', display: 'flex',
                     alignItems: 'center'
-                }}>{rounds} x</Box>
+                }}>{rounds} x</Typography>
                 <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
-                    <Box>{maxDistance} on the&nbsp;
+                    <Typography>{maxDistance} on the&nbsp;
                         {intervalTime !== undefined && readableTime(intervalTime, false)
-                        }</Box>
-                    <Box sx={{ fontStyle: 'italic', paddingLeft: '20px' }}>
+                        }</Typography>
+                    <Typography sx={{ fontStyle: 'italic', paddingLeft: '20px' }}>
                         Pace: {readableTime((interval), false)} per 100
-                    </Box>
+                    </Typography>
                 </Box>
             </Box>
             <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
-                <Box>Main Set Distance: {totalDistance}</Box>
-                <Box>Main Set Total Time: {maxDistance && rounds !== undefined
+                <Typography>Main Set Distance: {totalDistance}</Typography>
+                <Typography>Main Set Total Time: {maxDistance && rounds !== undefined
                     && readableTime((((maxDistance * rounds) / 100) * ((interval))), true)}
-                </Box>
+                </Typography>
             </Box>
-            <Box>Cool Down: {wcYardage?.coolDown}</Box>
+            <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
         </div >
     )
 }
