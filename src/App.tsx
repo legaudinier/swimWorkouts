@@ -94,7 +94,6 @@ function App() {
                   <MenuItem value="threshold">Threshold/Pace</MenuItem>
                   <MenuItem value="im">IM</MenuItem>
                   <MenuItem value="easy">Easy</MenuItem>
-                  <MenuItem value="dealersChoice">Dealers Choice</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -143,33 +142,32 @@ function App() {
           marginRight: '40px',
           marginTop: '20px',
           border: '1px solid #7d34eb',
-          borderRadius: '10px'
+          borderRadius: '10px',
+          minHeight: '200px'
         }}>
           <div>
-            <ul>
-              {/*  need to clean this up */}
-              {showWorkout &&
-                type === 'distance' ? (
-                <DistanceWorkout
+            {/*  need to clean this up */}
+            {showWorkout &&
+              type === 'distance' ? (
+              <DistanceWorkout
+                yardage={yardage}
+                interval={interval}
+              />) :
+              type === 'easy' ? (
+                <EasyWorkout
                   yardage={yardage}
                   interval={interval}
                 />) :
-                type === 'easy' ? (
-                  <EasyWorkout
+                type === 'sprint' ?
+                  (<SprintWorkout
                     yardage={yardage}
-                    interval={interval}
-                  />) :
-                  type === 'sprint' ?
-                    (<SprintWorkout
-                      yardage={yardage}
-                      interval={interval} // this is super messy // feed in sprint interval
-                    />) : type === 'threshold' && (<ThresholdWorkout
-                      yardage={yardage}
-                      interval={interval} // this is super messy // feed in sprint interval
-                    />)
+                    interval={interval} // this is super messy // feed in sprint interval
+                  />) : type === 'threshold' && (<ThresholdWorkout
+                    yardage={yardage}
+                    interval={interval} // this is super messy // feed in sprint interval
+                  />)
 
-              }
-            </ul>
+            }
           </div>
         </Box>
       </Box>

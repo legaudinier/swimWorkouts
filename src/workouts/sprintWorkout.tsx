@@ -57,32 +57,43 @@ const SprintWorkout = ({
 
 
     return (
-        <div>
-            <Typography sx={{ marginTop: '20px', marginBottom: '20px' }}>Sprint Work Out</Typography>
-            <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
-            {/* <Box>Kick set?</Box> */}
-            <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
-            <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
-                <Typography sx={{
-                    paddingRight: '10px', display: 'flex',
-                    alignItems: 'center'
-                }}>{rounds} x</Typography>
-                <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
+        <Box sx={{ paddingBottom: '20px' }}>
+            <Typography sx={{
+                marginTop: '20px',
+                marginBottom: '20px',
+                textAlign: 'center',
+                backgroundColor: '#7d34eb',
+                color: 'white',
+                borderRadius: '10px 10px 0 0',
+                paddingTop: '10px',
+                paddingBottom: '10px'
+            }}>Sprint Work Out</Typography>
+            <Box sx={{ paddingLeft: '20px' }}>
+                <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
+                {/* <Box>Kick set?</Box> */}
+                <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
+                <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
+                    <Typography sx={{
+                        paddingRight: '10px', display: 'flex',
+                        alignItems: 'center'
+                    }}>{rounds} x</Typography>
+                    <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
 
-                    <Typography>{sprintRounds} x {sprintDistance} on
-                        Pace: {sprintDistance && readableTime((interval * sprintDistance / 100), false)}
-                    </Typography>
-                    <Typography>{easyDistance} easy</Typography>
+                        <Typography>{sprintRounds} x {sprintDistance} on
+                            Pace: {sprintDistance && readableTime((interval * sprintDistance / 100), false)}
+                        </Typography>
+                        <Typography>{easyDistance} easy</Typography>
+                    </Box>
                 </Box>
+                <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
+                    <Typography>Main Set Distance: {totalDistance}</Typography>
+                    <Typography>Main Set Total Time: {sprintDistancePerRoundTotal && rounds !== undefined
+                        && readableTime((((sprintDistancePerRoundTotal * rounds) / 100) * ((interval))), true)}
+                    </Typography>
+                </Box>
+                <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
             </Box>
-            <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
-                <Typography>Main Set Distance: {totalDistance}</Typography>
-                <Typography>Main Set Total Time: {sprintDistancePerRoundTotal && rounds !== undefined
-                    && readableTime((((sprintDistancePerRoundTotal * rounds) / 100) * ((interval))), true)}
-                </Typography>
-            </Box>
-            <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
-        </div >
+        </Box>
     )
 }
 

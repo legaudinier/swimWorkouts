@@ -130,60 +130,71 @@ const EasyWorkout = ({
 
 
     return (
-        <div>
-            <Typography sx={{ marginTop: '20px', marginBottom: '20px' }}>Easy Work Out</Typography>
-            <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
-            <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
-            <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
-                <Box sx={{ paddingRight: '10px' }}>
-                    <Typography>Kick</Typography>
-                    <Typography>Pull</Typography>
-                    <Typography>Drill</Typography>
-                    {drills?.map(
-                        (drill: string, index: number) => {
-                            return (
-                                // fix the spacing
-                                <div key={`${drill.replace(/ /g, '')}${index}`}>&nbsp;</div>
-                            )
-                        }
-                    )}
-                    <Typography>Breath</Typography>
-                </Box>
-                <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
-                    {kickRounds !== 1 ?
-                        <Typography>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</Typography>
-                        : <Typography>{kickDistance}</Typography>}
-                    {pullRounds !== 1 ?
-                        <Typography>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</Typography>
-                        : <Typography>{pullDistance}</Typography>}
-                    {drillRounds !== 1 ?
-                        <Typography>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</Typography>
-                        : <Typography>{drillDistance}</Typography>}
-                    <Box sx={{ marginLeft: '20px' }}>
-                        <ul>
-                            {drills?.map(
-                                (drill: string, index: number) => {
-                                    return (
-                                        <Typography> <li key={`drill${index}`}>{drill}</li></Typography>
-                                    )
-                                }
-                            )}
-                        </ul>
+        <Box sx={{paddingBottom: '20px'}}>
+            <Typography sx={{
+                marginTop: '20px',
+                marginBottom: '20px',
+                textAlign: 'center',
+                backgroundColor: '#7d34eb',
+                color: 'white',
+                borderRadius: '10px 10px 0 0',
+                paddingTop: '10px',
+                paddingBottom: '10px',
+            }}>Easy Work Out</Typography>
+            <Box sx={{ paddingLeft: '20px' }}>
+                <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
+                <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
+                <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
+                    <Box sx={{ paddingRight: '10px' }}>
+                        <Typography>Kick</Typography>
+                        <Typography>Pull</Typography>
+                        <Typography>Drill</Typography>
+                        {drills?.map(
+                            (drill: string, index: number) => {
+                                return (
+                                    // fix the spacing
+                                    <div key={`${drill.replace(/ /g, '')}${index}`}>&nbsp;</div>
+                                )
+                            }
+                        )}
+                        <Typography>Breath</Typography>
                     </Box>
-                    {breathRounds !== 1 ?
-                        <Typography>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</Typography>
-                        : <Typography>{breathDistance}</Typography>}
+                    <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
+                        {kickRounds !== 1 ?
+                            <Typography>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</Typography>
+                            : <Typography>{kickDistance}</Typography>}
+                        {pullRounds !== 1 ?
+                            <Typography>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</Typography>
+                            : <Typography>{pullDistance}</Typography>}
+                        {drillRounds !== 1 ?
+                            <Typography>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</Typography>
+                            : <Typography>{drillDistance}</Typography>}
+                        <Box sx={{ marginLeft: '20px' }}>
+                            <ul>
+                                {drills?.map(
+                                    (drill: string, index: number) => {
+                                        return (
+                                            <Typography> <li key={`drill${index}`}>{drill}</li></Typography>
+                                        )
+                                    }
+                                )}
+                            </ul>
+                        </Box>
+                        {breathRounds !== 1 ?
+                            <Typography>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</Typography>
+                            : <Typography>{breathDistance}</Typography>}
+                    </Box>
                 </Box>
+                <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
+                    <Typography>Main Set Distance: {kickDistance
+                        && pullDistance &&
+                        drillDistance &&
+                        breathDistance &&
+                        kickDistance + pullDistance + drillDistance + breathDistance}</Typography>
+                </Box>
+                <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
             </Box>
-            <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
-                <Typography>Main Set Distance: {kickDistance
-                    && pullDistance &&
-                    drillDistance &&
-                    breathDistance &&
-                    kickDistance + pullDistance + drillDistance + breathDistance}</Typography>
-            </Box>
-            <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
-        </div >
+        </Box>
     )
 }
 
