@@ -132,7 +132,6 @@ const EasyWorkout = ({
     return (
         <Box sx={{paddingBottom: '20px'}}>
             <Typography sx={{
-                marginTop: '20px',
                 marginBottom: '20px',
                 textAlign: 'center',
                 backgroundColor: '#7d34eb',
