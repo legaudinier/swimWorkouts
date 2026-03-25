@@ -16,7 +16,8 @@ const DistanceWorkout = ({
         totalDistance,
         random_boolean,
         intervalTime,
-        wcYardage
+        wcYardage,
+        couldNotGenerate
 
     const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
 
@@ -38,7 +39,10 @@ const DistanceWorkout = ({
             if (rounds % 1 === 0 || count === 150) {
                 if (count === 150) {
                     console.log('Something is wrong, fix it on your end.')
+                    couldNotGenerate = true
+                    break;
                 }
+                couldNotGenerate = false
                 break;
             }
         }
@@ -61,32 +65,35 @@ const DistanceWorkout = ({
             }}>
                 Distance Work Out
             </Typography>
-            <Box sx={{ paddingLeft: '20px' }}>
-                <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
-                {/* <Box>Kick set?</Box> */}
-                <Typography sx={{ marginTop: '15px' }}>Main Set: {totalDistance} </Typography>
-                <Box sx={{ display: 'flex', paddingLeft: '40px', paddingTop: '10px', paddingBottom: '10px' }}>
-                    <Typography sx={{
-                        paddingRight: '10px', display: 'flex',
-                        alignItems: 'center'
-                    }}>{rounds} x</Typography>
-                    <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
-                        <Typography>{maxDistance} on the&nbsp;
-                            {intervalTime !== undefined && readableTime(intervalTime, false)
-                            }</Typography>
-                        <Typography sx={{ fontStyle: 'italic', paddingLeft: '20px' }}>
-                            Pace: {readableTime((interval), false)} per 100
-                        </Typography>
+            {!couldNotGenerate ?
+                <Box sx={{ paddingLeft: '20px' }}>
+                    <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
+                    {/* <Box>Kick set?</Box> */}
+                    <Typography sx={{ marginTop: '15px' }}>Main Set: {totalDistance} </Typography>
+                    <Box sx={{ display: 'flex', paddingLeft: '40px', paddingTop: '10px', paddingBottom: '10px' }}>
+                        <Typography sx={{
+                            paddingRight: '10px', display: 'flex',
+                            alignItems: 'center'
+                        }}>{rounds} x</Typography>
+                        <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
+                            <Typography>{maxDistance} on the&nbsp;
+                                {intervalTime !== undefined && readableTime(intervalTime, false)
+                                }</Typography>
+                            <Typography sx={{ fontStyle: 'italic', paddingLeft: '20px' }}>
+                                Pace: {readableTime((interval), false)} per 100
+                            </Typography>
+                        </Box>
                     </Box>
-                </Box>
-                {/* <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
+                    {/* <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
                     <Typography>Main Set Distance: {totalDistance}</Typography>
                     <Typography>Main Set Total Time: {maxDistance && rounds !== undefined
                         && readableTime((((maxDistance * rounds) / 100) * ((interval))), true)}
                     </Typography>
                 </Box> */}
-                <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
-            </Box>
+                    <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
+                </Box> : <Typography sx={{ paddingLeft: '20px' }}>
+                    The math is not working, please adjust your yardage
+                </Typography>}
         </Box>
     )
 }

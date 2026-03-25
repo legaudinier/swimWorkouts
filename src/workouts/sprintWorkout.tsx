@@ -48,6 +48,7 @@ const SprintWorkout = ({
                 if (count === 150) {
                     console.log('Something is wrong, fix it on your end.')
                     couldNotGenerate = true
+                    break;
                 }
                 else { couldNotGenerate = false }
                 break;
@@ -93,8 +94,10 @@ const SprintWorkout = ({
                     </Typography>
                 </Box> */}
                 <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
-            </Box>) : 
-            <Typography sx={{ paddingLeft: '20px' }}>The math is not working, please adjust your yardage</Typography>}
+            </Box>) :
+                <Typography sx={{ paddingLeft: '20px' }}>
+                    The math is not working, please adjust your yardage
+                </Typography>}
         </Box>
     )
 }
