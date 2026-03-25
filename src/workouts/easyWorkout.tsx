@@ -26,8 +26,7 @@ const EasyWorkout = ({
         breathRounds,
         breathWorkoutPattern,
         breathWorkPatternText,
-        wcYardage,
-        couldNotGenerate
+        wcYardage
 
     const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
 
@@ -73,9 +72,7 @@ const EasyWorkout = ({
             kickRounds = ((Math.floor((Math.random() * 9) + 1)))
             if (kickCount === 650 || ((kickDistance / kickRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
-                couldNotGenerate = true
             }
-            else { couldNotGenerate = false }
             break;
         }
 
@@ -84,9 +81,7 @@ const EasyWorkout = ({
             pullRounds = ((Math.floor((Math.random() * 9) + 1)))
             if (pullCount === 650 || ((pullDistance / pullRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
-                couldNotGenerate = true
             }
-            else { couldNotGenerate = false }
             break;
         }
 
@@ -95,9 +90,7 @@ const EasyWorkout = ({
             breathRounds = ((Math.floor((Math.random() * 6) + 2)))
             if (breathCount === 650 || ((breathDistance / breathRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
-                couldNotGenerate = true
             }
-            else { couldNotGenerate = false }
             break;
         }
 
@@ -109,10 +102,8 @@ const EasyWorkout = ({
             drills = getDrills(drillRounds)
             if (drillCount === 650 || ((drillDistance / drillRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
-                couldNotGenerate = true
                 break;
             }
-            else { couldNotGenerate = false }
             break;
         }
 
@@ -126,11 +117,8 @@ const EasyWorkout = ({
                 ((breathDistance / breathRounds) % 50 === 0) ||
                 (breathDistance / breathWorkoutPattern.length % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
-                couldNotGenerate = true
                 break;
             }
-            else { couldNotGenerate = false }
-
         }
 
         wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
