@@ -13,7 +13,6 @@ const ThresholdWorkout = ({
 
   let maxDistance,
     rounds,
-    totalDistance,
     random_boolean,
     intervalTime,
     wcYardage,
@@ -37,7 +36,7 @@ const ThresholdWorkout = ({
       rounds = yardage / maxDistance
       count = count + 1
 
-      if (rounds % 1 === 0) {
+      if (rounds % 1 === 0 || count === 150) {
         if (count === 150) {
           console.log('Something is wrong, fix it on your end.')
           couldNotGenerate = true
@@ -49,7 +48,6 @@ const ThresholdWorkout = ({
     }
 
     intervalTime = (maxDistance / 100) * (interval)
-    totalDistance = maxDistance * rounds
 
     wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
 

@@ -15,7 +15,6 @@ const SprintWorkout = ({
         easyDistance,
         sprintRounds,
         rounds,
-        totalDistance,
         wcYardage,
         sprintYardagePercentage,
         sprintYardage,
@@ -55,7 +54,6 @@ const SprintWorkout = ({
             }
         }
 
-        totalDistance = yardage
         wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
     }
 
