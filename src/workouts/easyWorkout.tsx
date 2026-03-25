@@ -25,7 +25,9 @@ const EasyWorkout = ({
         breathDistance,
         breathRounds,
         breathWorkoutPattern,
-        wcYardage
+        breathWorkPatternText,
+        wcYardage,
+        couldNotGenerate
 
     const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
 
@@ -71,8 +73,10 @@ const EasyWorkout = ({
             kickRounds = ((Math.floor((Math.random() * 9) + 1)))
             if (kickCount === 650 || ((kickDistance / kickRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
-                break;
+                couldNotGenerate = true
             }
+            else { couldNotGenerate = false }
+            break;
         }
 
         while (true) {
@@ -80,8 +84,10 @@ const EasyWorkout = ({
             pullRounds = ((Math.floor((Math.random() * 9) + 1)))
             if (pullCount === 650 || ((pullDistance / pullRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
-                break;
+                couldNotGenerate = true
             }
+            else { couldNotGenerate = false }
+            break;
         }
 
         while (true) {
@@ -89,8 +95,10 @@ const EasyWorkout = ({
             breathRounds = ((Math.floor((Math.random() * 6) + 2)))
             if (breathCount === 650 || ((breathDistance / breathRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
-                break;
+                couldNotGenerate = true
             }
+            else { couldNotGenerate = false }
+            break;
         }
 
         while (true) {
@@ -99,35 +107,34 @@ const EasyWorkout = ({
             // NOTE: there are currently 11 drills so we will pick for 11 to use
 
             drills = getDrills(drillRounds)
-            console.log('distance / drills', drillDistance, drills.length, drillDistance / drills.length)
-
             if (drillCount === 650 || ((drillDistance / drillRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
+                couldNotGenerate = true
                 break;
             }
+            else { couldNotGenerate = false }
+            break;
         }
 
         while (true) {
             breathCount = breathCount + 1
             breathRounds = ((Math.floor((Math.random() * 10) + 1)))
             breathWorkoutPattern = getBreathWorkPattern()
+            breathWorkPatternText = '[' + breathWorkoutPattern.join(", ") + ']'
 
-
-            console.log('breathWorkout', breathWorkoutPattern)
-            console.log('breathRounds', breathRounds)
-            console.log('breathDistance', breathDistance)
-
-
-            if (breathCount === 650 || ((breathDistance / breathRounds) % 50 === 0)) {
+            if (breathCount === 650 ||
+                ((breathDistance / breathRounds) % 50 === 0) ||
+                (breathDistance / breathWorkoutPattern.length % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
+                couldNotGenerate = true
                 break;
             }
+            else { couldNotGenerate = false }
+
         }
 
         wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
     }
-    // need to break up the breathing 
-
 
     return (
         <Box sx={{ paddingBottom: '20px' }}>
@@ -183,6 +190,9 @@ const EasyWorkout = ({
                         {breathRounds !== 1 ?
                             <Typography>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</Typography>
                             : <Typography>{breathDistance}</Typography>}
+                        <Typography sx={{ marginLeft: '40px' }}>
+                            {breathWorkPatternText} by 50s
+                        </Typography>
                     </Box>
                 </Box>
                 <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
