@@ -16,7 +16,8 @@ const ThresholdWorkout = ({
     totalDistance,
     random_boolean,
     intervalTime,
-    wcYardage
+    wcYardage,
+    couldNotGenerate
 
   const warmUpCoolDown = Math.floor(yardage * .5 / 100) * 100
 
@@ -36,10 +37,13 @@ const ThresholdWorkout = ({
       rounds = yardage / maxDistance
       count = count + 1
 
-      if (rounds % 1 === 0 || count === 150) {
+      if (rounds % 1 === 0) {
         if (count === 150) {
           console.log('Something is wrong, fix it on your end.')
+          couldNotGenerate = true
+          break;
         }
+        couldNotGenerate = false
         break;
       }
     }
@@ -62,10 +66,10 @@ const ThresholdWorkout = ({
         paddingTop: '10px',
         paddingBottom: '10px'
       }}>Threshold Work Out</Typography>
-      <Box sx={{ paddingLeft: '20px' }}>
+      {!couldNotGenerate ? <Box sx={{ paddingLeft: '20px' }}>
         <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
         {/* <Box>Kick set?</Box> */}
-        <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
+        <Typography sx={{ marginTop: '15px' }}>Main Set: {yardage}</Typography>
         <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
           <Typography sx={{
             paddingRight: '10px', display: 'flex',
@@ -81,13 +85,14 @@ const ThresholdWorkout = ({
           </Box>
         </Box>
         <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
-          <Typography>Main Set Distance: {totalDistance}</Typography>
-          <Typography>Main Set Total Time: {maxDistance && rounds !== undefined
+          {/* <Typography>Main Set Total Time: {maxDistance && rounds !== undefined
             && readableTime((((maxDistance * rounds) / 100) * ((interval))), true)}
-          </Typography>
+          </Typography> */}
         </Box>
         <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
-      </Box>
+      </Box> : <Typography sx={{ paddingLeft: '20px' }}>
+        The math is not working, please adjust your yardage
+      </Typography>}
     </Box>
   )
 }
