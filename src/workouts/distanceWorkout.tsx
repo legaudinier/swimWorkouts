@@ -49,7 +49,7 @@ const DistanceWorkout = ({
     }
 
     return (
-        <Box sx={{paddingBottom: '20px'}}>
+        <Box sx={{ paddingBottom: '20px' }}>
             <Typography sx={{
                 marginBottom: '20px',
                 textAlign: 'center',
@@ -61,11 +61,11 @@ const DistanceWorkout = ({
             }}>
                 Distance Work Out
             </Typography>
-            <Box sx={{paddingLeft: '20px'}}>
+            <Box sx={{ paddingLeft: '20px' }}>
                 <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
                 {/* <Box>Kick set?</Box> */}
-                <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
-                <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
+                <Typography sx={{ marginTop: '15px' }}>Main Set: {totalDistance} </Typography>
+                <Box sx={{ display: 'flex', paddingLeft: '40px', paddingTop: '10px', paddingBottom: '10px' }}>
                     <Typography sx={{
                         paddingRight: '10px', display: 'flex',
                         alignItems: 'center'
@@ -79,12 +79,12 @@ const DistanceWorkout = ({
                         </Typography>
                     </Box>
                 </Box>
-                <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
+                {/* <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
                     <Typography>Main Set Distance: {totalDistance}</Typography>
                     <Typography>Main Set Total Time: {maxDistance && rounds !== undefined
                         && readableTime((((maxDistance * rounds) / 100) * ((interval))), true)}
                     </Typography>
-                </Box>
+                </Box> */}
                 <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
             </Box>
         </Box>

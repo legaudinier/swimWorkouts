@@ -20,7 +20,8 @@ const SprintWorkout = ({
         sprintYardagePercentage,
         sprintYardage,
         easyYardage,
-        sprintDistance
+        sprintDistance,
+        couldNotGenerate
 
     const warmUpCoolDown = Math.floor(yardage * .5 / 100) * 100
 
@@ -46,7 +47,9 @@ const SprintWorkout = ({
             if ((sprintDistance % 50 === 0 && easyDistance % 50 === 0) || count === 150) {
                 if (count === 150) {
                     console.log('Something is wrong, fix it on your end.')
+                    couldNotGenerate = true
                 }
+                else { couldNotGenerate = false }
                 break;
             }
         }
@@ -67,10 +70,10 @@ const SprintWorkout = ({
                 paddingTop: '10px',
                 paddingBottom: '10px'
             }}>Sprint Work Out</Typography>
-            <Box sx={{ paddingLeft: '20px' }}>
+            {!couldNotGenerate ? (<Box sx={{ paddingLeft: '20px' }}>
                 <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
                 {/* <Box>Kick set?</Box> */}
-                <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
+                <Typography sx={{ marginTop: '15px' }}>Main Set: {yardage}</Typography>
                 <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
                     <Typography sx={{
                         paddingRight: '10px', display: 'flex',
@@ -84,14 +87,14 @@ const SprintWorkout = ({
                         <Typography>{easyDistance} easy</Typography>
                     </Box>
                 </Box>
-                <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
-                    <Typography>Main Set Distance: {totalDistance}</Typography>
+                {/* <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
                     <Typography>Main Set Total Time: {sprintDistancePerRoundTotal && rounds !== undefined
                         && readableTime((((sprintDistancePerRoundTotal * rounds) / 100) * ((interval))), true)}
                     </Typography>
-                </Box>
+                </Box> */}
                 <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
-            </Box>
+            </Box>) : 
+            <Typography sx={{ paddingLeft: '20px' }}>The math is not working, please adjust your yardage</Typography>}
         </Box>
     )
 }
