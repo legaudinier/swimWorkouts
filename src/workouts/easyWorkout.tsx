@@ -130,7 +130,7 @@ const EasyWorkout = ({
 
 
     return (
-        <Box sx={{paddingBottom: '20px'}}>
+        <Box sx={{ paddingBottom: '20px' }}>
             <Typography sx={{
                 marginBottom: '20px',
                 textAlign: 'center',
@@ -152,7 +152,8 @@ const EasyWorkout = ({
                             (drill: string, index: number) => {
                                 return (
                                     // fix the spacing
-                                    <div key={`${drill.replace(/ /g, '')}${index}`}>&nbsp;</div>
+                                    <Box sx={{ height: '24px' }} key={`${drill.replace(/ /g, '')}
+                                    ${index}`}>&nbsp;</Box>
                                 )
                             }
                         )}
@@ -169,7 +170,7 @@ const EasyWorkout = ({
                             <Typography>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</Typography>
                             : <Typography>{drillDistance}</Typography>}
                         <Box sx={{ marginLeft: '20px' }}>
-                            <ul>
+                            <Box component="ul" sx={{ marginTop: 0, marginBottom: 0 }}>
                                 {drills?.map(
                                     (drill: string, index: number) => {
                                         return (
@@ -177,7 +178,7 @@ const EasyWorkout = ({
                                         )
                                     }
                                 )}
-                            </ul>
+                            </Box>
                         </Box>
                         {breathRounds !== 1 ?
                             <Typography>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</Typography>
