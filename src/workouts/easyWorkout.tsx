@@ -76,7 +76,8 @@ const EasyWorkout = ({
         while (true) {
             kickCount = kickCount + 1
             kickRounds = ((Math.floor((Math.random() * 9) + 1)))
-            if (kickCount === 650 || ((kickDistance / kickRounds) % 50 === 0)) {
+            if (kickCount === 650 || ((kickDistance / kickRounds) % 50 === 0)
+                || kickRounds % 1 === 0 || kickDistance % 50 == 0) {
                 console.log('Something is wrong, fix it on your end.')
                 errorMessage = true
                 break;
@@ -90,7 +91,8 @@ const EasyWorkout = ({
         while (true) {
             pullCount = pullCount + 1
             pullRounds = ((Math.floor((Math.random() * 9) + 1)))
-            if (pullCount === 650 || ((pullDistance / pullRounds) % 50 === 0)) {
+            if (pullCount === 650 || ((pullDistance / pullRounds) % 50 === 0)
+                || pullRounds % 1 === 0 || (pullDistance % 50 == 0)) {
                 console.log('Something is wrong, fix it on your end.')
                 errorMessage = true
                 break;
@@ -104,7 +106,9 @@ const EasyWorkout = ({
         while (true) {
             breathCount = breathCount + 1
             breathRounds = ((Math.floor((Math.random() * 6) + 2)))
-            if (breathCount === 650 || ((breathDistance / breathRounds) % 50 === 0)) {
+            if (breathCount === 650 ||
+                ((breathDistance / breathRounds) % 50 === 0) ||
+                breathRounds % 1 === 0 || breathDistance % 50 == 0) {
                 console.log('Something is wrong, fix it on your end.')
                 errorMessage = true
                 break;
@@ -121,7 +125,8 @@ const EasyWorkout = ({
             // NOTE: there are currently 11 drills so we will pick for 11 to use
 
             drills = getDrills(drillRounds)
-            if (drillCount === 650 || ((drillDistance / drillRounds) % 50 === 0)) {
+            if (drillCount === 650 || ((drillDistance / drillRounds) % 50 === 0)
+                || drillRounds % 1 === 0 || drillDistance % 50 === 0) {
                 console.log('Something is wrong, fix it on your end.')
                 errorMessage = true
                 break;
@@ -139,8 +144,8 @@ const EasyWorkout = ({
             breathWorkPatternText = '[' + breathWorkoutPattern.join(", ") + ']'
 
             if (breathCount === 650 ||
-                ((breathDistance / breathRounds) % 50 === 0) ||
-                (breathDistance / breathWorkoutPattern.length % 50 === 0)) {
+                ((breathDistance / breathRounds) % 50 !== 0) ||
+                (breathDistance / breathWorkoutPattern.length % 50 === 0) || breathRounds % 1 === 0 || breathDistance % 50 === 0) {
                 console.log('Something is wrong, fix it on your end.')
                 errorMessage = true
                 break;
