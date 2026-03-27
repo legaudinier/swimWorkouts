@@ -26,7 +26,8 @@ const EasyWorkout = ({
         breathRounds,
         breathWorkoutPattern,
         breathWorkPatternText,
-        wcYardage
+        wcYardage,
+        errorMessage
 
     const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
 
@@ -52,8 +53,13 @@ const EasyWorkout = ({
                 || count === 650) {
                 if (count === 650) {
                     console.log('Something is wrong, fix it on your end.')
+                    errorMessage = true
+                    break;
                 }
-                break;
+                else {
+                    errorMessage = false
+                    break;
+                }
             }
         }
 
@@ -72,8 +78,13 @@ const EasyWorkout = ({
             kickRounds = ((Math.floor((Math.random() * 9) + 1)))
             if (kickCount === 650 || ((kickDistance / kickRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
+                errorMessage = true
+                break;
             }
-            break;
+            else {
+                errorMessage = false
+                break;
+            }
         }
 
         while (true) {
@@ -81,8 +92,13 @@ const EasyWorkout = ({
             pullRounds = ((Math.floor((Math.random() * 9) + 1)))
             if (pullCount === 650 || ((pullDistance / pullRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
+                errorMessage = true
+                break;
             }
-            break;
+            else {
+                errorMessage = false
+                break;
+            }
         }
 
         while (true) {
@@ -90,8 +106,13 @@ const EasyWorkout = ({
             breathRounds = ((Math.floor((Math.random() * 6) + 2)))
             if (breathCount === 650 || ((breathDistance / breathRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
+                errorMessage = true
+                break;
             }
-            break;
+            else {
+                errorMessage = false
+                break;
+            }
         }
 
         while (true) {
@@ -102,9 +123,13 @@ const EasyWorkout = ({
             drills = getDrills(drillRounds)
             if (drillCount === 650 || ((drillDistance / drillRounds) % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
+                errorMessage = true
                 break;
             }
-            break;
+            else {
+                errorMessage = false
+                break;
+            }
         }
 
         while (true) {
@@ -117,6 +142,11 @@ const EasyWorkout = ({
                 ((breathDistance / breathRounds) % 50 === 0) ||
                 (breathDistance / breathWorkoutPattern.length % 50 === 0)) {
                 console.log('Something is wrong, fix it on your end.')
+                errorMessage = true
+                break;
+            }
+            else {
+                errorMessage = false
                 break;
             }
         }
@@ -135,63 +165,66 @@ const EasyWorkout = ({
                 paddingTop: '10px',
                 paddingBottom: '10px',
             }}>Easy Work Out</Typography>
-            <Box sx={{ paddingLeft: '20px' }}>
-                <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
-                <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
-                <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
-                    <Box sx={{ paddingRight: '10px' }}>
-                        <Typography>Kick</Typography>
-                        <Typography>Pull</Typography>
-                        <Typography>Drill</Typography>
-                        {drills?.map(
-                            (drill: string, index: number) => {
-                                return (
-                                    // fix the spacing
-                                    <Box sx={{ height: '24px' }} key={`${drill.replace(/ /g, '')}
+            {errorMessage ? (
+                <Box sx={{ paddingLeft: '20px' }}>
+                    <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
+                    <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
+                    <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
+                        <Box sx={{ paddingRight: '10px' }}>
+                            <Typography>Kick</Typography>
+                            <Typography>Pull</Typography>
+                            <Typography>Drill</Typography>
+                            {drills?.map(
+                                (drill: string, index: number) => {
+                                    return (
+                                        // fix the spacing
+                                        <Box sx={{ height: '24px' }} key={`${drill.replace(/ /g, '')}
                                     ${index}`}>&nbsp;</Box>
-                                )
-                            }
-                        )}
-                        <Typography>Breath</Typography>
-                    </Box>
-                    <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
-                        {kickRounds !== 1 ?
-                            <Typography>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</Typography>
-                            : <Typography>{kickDistance}</Typography>}
-                        {pullRounds !== 1 ?
-                            <Typography>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</Typography>
-                            : <Typography>{pullDistance}</Typography>}
-                        {drillRounds !== 1 ?
-                            <Typography>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</Typography>
-                            : <Typography>{drillDistance}</Typography>}
-                        <Box sx={{ marginLeft: '20px' }}>
-                            <Box component="ul" sx={{ marginTop: 0, marginBottom: 0 }}>
-                                {drills?.map(
-                                    (drill: string, index: number) => {
-                                        return (
-                                            <Typography> <li key={`drill${index}`}>{drill}</li></Typography>
-                                        )
-                                    }
-                                )}
-                            </Box>
+                                    )
+                                }
+                            )}
+                            <Typography>Breath</Typography>
                         </Box>
-                        {breathRounds !== 1 ?
-                            <Typography>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</Typography>
-                            : <Typography>{breathDistance}</Typography>}
-                        <Typography sx={{ marginLeft: '40px' }}>
-                            {breathWorkPatternText} by 50s
-                        </Typography>
+                        <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
+                            {kickRounds !== 1 ?
+                                <Typography>{kickRounds} x {kickDistance && kickRounds && kickDistance / kickRounds} ({kickDistance})</Typography>
+                                : <Typography>{kickDistance}</Typography>}
+                            {pullRounds !== 1 ?
+                                <Typography>{pullRounds} x {pullDistance && pullRounds && pullDistance / pullRounds} ({pullDistance})</Typography>
+                                : <Typography>{pullDistance}</Typography>}
+                            {drillRounds !== 1 ?
+                                <Typography>{drillRounds}  x {drillDistance && drillRounds && drillDistance / drillRounds}</Typography>
+                                : <Typography>{drillDistance}</Typography>}
+                            <Box sx={{ marginLeft: '20px' }}>
+                                <Box component="ul" sx={{ marginTop: 0, marginBottom: 0 }}>
+                                    {drills?.map(
+                                        (drill: string, index: number) => {
+                                            return (
+                                                <Typography> <li key={`drill${index}`}>{drill}</li></Typography>
+                                            )
+                                        }
+                                    )}
+                                </Box>
+                            </Box>
+                            {breathRounds !== 1 ?
+                                <Typography>{breathRounds} x {breathDistance && breathRounds && breathDistance / breathRounds} ({breathDistance})</Typography>
+                                : <Typography>{breathDistance}</Typography>}
+                            <Typography sx={{ marginLeft: '40px' }}>
+                                {breathWorkPatternText} by 50s
+                            </Typography>
+                        </Box>
                     </Box>
-                </Box>
-                <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
-                    <Typography>Main Set Distance: {kickDistance
-                        && pullDistance &&
-                        drillDistance &&
-                        breathDistance &&
-                        kickDistance + pullDistance + drillDistance + breathDistance}</Typography>
-                </Box>
-                <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
-            </Box>
+                    <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
+                        <Typography>Main Set Distance: {kickDistance
+                            && pullDistance &&
+                            drillDistance &&
+                            breathDistance &&
+                            kickDistance + pullDistance + drillDistance + breathDistance}</Typography>
+                    </Box>
+                    <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
+                </Box>) : <Typography sx={{ paddingLeft: '20px' }}>
+                The math is not working, please adjust your yardage
+            </Typography>}
         </Box>
     )
 }

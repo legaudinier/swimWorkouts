@@ -17,7 +17,7 @@ const DistanceWorkout = ({
         random_boolean,
         intervalTime,
         wcYardage,
-        couldNotGenerate
+        errorMessage
 
     const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
 
@@ -39,10 +39,10 @@ const DistanceWorkout = ({
             if (rounds % 1 === 0 || count === 150) {
                 if (count === 150) {
                     console.log('Something is wrong, fix it on your end.')
-                    couldNotGenerate = true
+                    errorMessage = true
                     break;
                 }
-                couldNotGenerate = false
+                errorMessage = false
                 break;
             }
         }
@@ -65,7 +65,7 @@ const DistanceWorkout = ({
             }}>
                 Distance Work Out
             </Typography>
-            {!couldNotGenerate ?
+            {!errorMessage ?
                 <Box sx={{ paddingLeft: '20px' }}>
                     <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
                     {/* <Box>Kick set?</Box> */}

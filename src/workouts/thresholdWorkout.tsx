@@ -16,7 +16,7 @@ const ThresholdWorkout = ({
     random_boolean,
     intervalTime,
     wcYardage,
-    couldNotGenerate
+    errorMessage
 
   const warmUpCoolDown = Math.floor(yardage * .5 / 100) * 100
 
@@ -39,10 +39,10 @@ const ThresholdWorkout = ({
       if (rounds % 1 === 0 || count === 150) {
         if (count === 150) {
           console.log('Something is wrong, fix it on your end.')
-          couldNotGenerate = true
+          errorMessage = true
           break;
         }
-        couldNotGenerate = false
+        errorMessage = false
         break;
       }
     }
@@ -64,7 +64,7 @@ const ThresholdWorkout = ({
         paddingTop: '10px',
         paddingBottom: '10px'
       }}>Threshold Work Out</Typography>
-      {!couldNotGenerate ? <Box sx={{ paddingLeft: '20px' }}>
+      {!errorMessage ? <Box sx={{ paddingLeft: '20px' }}>
         <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
         {/* <Box>Kick set?</Box> */}
         <Typography sx={{ marginTop: '15px' }}>Main Set: {yardage}</Typography>
