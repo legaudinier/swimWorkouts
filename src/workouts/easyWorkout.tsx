@@ -51,15 +51,7 @@ const EasyWorkout = ({
                 && drillPercentage % 50 === 0
                 && breathPercentage % 50 === 0
                 || count === 650) {
-                if (count === 650) {
-                    console.log('Something is wrong, fix it on your end.')
-                    errorMessage = true
-                    break;
-                }
-                else {
-                    errorMessage = false
-                    break;
-                }
+                break;
             }
         }
 
@@ -76,13 +68,10 @@ const EasyWorkout = ({
         while (true) {
             kickCount = kickCount + 1
             kickRounds = ((Math.floor((Math.random() * 9) + 1)))
-            if (kickCount === 650 || ((kickDistance / kickRounds) % 50 === 0)
-                || kickRounds % 1 === 0 || kickDistance % 50 == 0) {
-                console.log('Something is wrong, fix it on your end.')
-                errorMessage = true
-                break;
-            }
-            else {
+            if ((kickCount === 650) || ((kickDistance / kickRounds) % 50 === 0)
+                && ((kickDistance / kickRounds) % 1 === 0)
+                && (kickRounds % 1 === 0)
+                && (kickDistance % 50 == 0)) {
                 errorMessage = false
                 break;
             }
@@ -92,28 +81,19 @@ const EasyWorkout = ({
             pullCount = pullCount + 1
             pullRounds = ((Math.floor((Math.random() * 9) + 1)))
             if (pullCount === 650 || ((pullDistance / pullRounds) % 50 === 0)
-                || pullRounds % 1 === 0 || (pullDistance % 50 == 0)) {
-                console.log('Something is wrong, fix it on your end.')
-                errorMessage = true
-                break;
-            }
-            else {
+                && pullRounds % 1 === 0 && (pullDistance % 50 === 0)) {
                 errorMessage = false
                 break;
             }
+
         }
 
         while (true) {
             breathCount = breathCount + 1
             breathRounds = ((Math.floor((Math.random() * 6) + 2)))
             if (breathCount === 650 ||
-                ((breathDistance / breathRounds) % 50 === 0) ||
-                breathRounds % 1 === 0 || breathDistance % 50 == 0) {
-                console.log('Something is wrong, fix it on your end.')
-                errorMessage = true
-                break;
-            }
-            else {
+                ((breathDistance / breathRounds) % 50 === 0) &&
+                breathRounds % 1 === 0 && breathDistance % 50 === 0) {
                 errorMessage = false
                 break;
             }
@@ -126,12 +106,7 @@ const EasyWorkout = ({
 
             drills = getDrills(drillRounds)
             if (drillCount === 650 || ((drillDistance / drillRounds) % 50 === 0)
-                || drillRounds % 1 === 0 || drillDistance % 50 === 0) {
-                console.log('Something is wrong, fix it on your end.')
-                errorMessage = true
-                break;
-            }
-            else {
+                && drillRounds % 1 === 0 && drillDistance % 50 === 0) {
                 errorMessage = false
                 break;
             }
@@ -144,13 +119,9 @@ const EasyWorkout = ({
             breathWorkPatternText = '[' + breathWorkoutPattern.join(", ") + ']'
 
             if (breathCount === 650 ||
-                ((breathDistance / breathRounds) % 50 !== 0) ||
-                (breathDistance / breathWorkoutPattern.length % 50 === 0) || breathRounds % 1 === 0 || breathDistance % 50 === 0) {
-                console.log('Something is wrong, fix it on your end.')
-                errorMessage = true
-                break;
-            }
-            else {
+                ((breathDistance / breathRounds) % 50 === 0) &&
+                ((breathDistance / breathWorkoutPattern.length % 50 === 0)
+                    && breathRounds % 1 === 0 && breathDistance % 50 === 0)) {
                 errorMessage = false
                 break;
             }
@@ -170,7 +141,7 @@ const EasyWorkout = ({
                 paddingTop: '10px',
                 paddingBottom: '10px',
             }}>Easy Work Out</Typography>
-            {errorMessage ? (
+            {!errorMessage ? (
                 <Box sx={{ paddingLeft: '20px' }}>
                     <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
                     <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
