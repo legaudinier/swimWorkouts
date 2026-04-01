@@ -84,12 +84,6 @@ const DistanceWorkout = ({
                             </Typography>
                         </Box>
                     </Box>
-                    {/* <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
-                    <Typography>Main Set Distance: {totalDistance}</Typography>
-                    <Typography>Main Set Total Time: {maxDistance && rounds !== undefined
-                        && readableTime((((maxDistance * rounds) / 100) * ((interval))), true)}
-                    </Typography>
-                </Box> */}
                     <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
                 </Box> : <Typography sx={{ paddingLeft: '20px' }}>
                     The math is not working, please adjust your yardage

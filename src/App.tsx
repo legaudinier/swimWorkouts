@@ -92,7 +92,6 @@ function App() {
                   <MenuItem value="distance">Distance</MenuItem>
                   <MenuItem value="sprint">Sprint</MenuItem>
                   <MenuItem value="threshold">Threshold/Pace</MenuItem>
-                  <MenuItem value="im">IM</MenuItem>
                   <MenuItem value="easy">Easy</MenuItem>
                 </Select>
               </FormControl>
