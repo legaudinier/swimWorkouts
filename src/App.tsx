@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
@@ -12,17 +12,16 @@ import EasyWorkout from './workouts/easyWorkout';
 import { Box, Typography } from "@mui/material";
 
 function App() {
-  const [type, setType] = useState("distance");
+  const [workoutType, setWorkoutType] = useState("distance");
   const [yardage, setYardage] = useState(5000);
   const [interval, setInterval] = useState<any>(90);
   const [showWorkout, setShowWorkout] = useState(false)
 
-  const typeChange = (event: any) => {
-    setType(event.target.value);
+  const workoutTypeChange = (event: any) => {
+    setWorkoutType(event.target.value);
   };
 
   const yardageChange = (event: any) => {
-    setShowWorkout(false)
     setYardage(event.target.valueAsNumber);
   };
 
@@ -35,6 +34,11 @@ function App() {
     // ability to re-generate with all the same info
     setShowWorkout(true)
   }
+
+  useEffect(() => {
+    setShowWorkout(false)
+  }, [workoutType, yardage, interval])
+
 
   return (
     <Box sx={{
@@ -80,13 +84,13 @@ function App() {
           }}>
             <Box sx={{ flex: '0 1 200px' }}>
               <FormControl fullWidth>
-                <InputLabel id="type">Type</InputLabel>
+                <InputLabel id="workoutType">workoutType</InputLabel>
                 <Select
-                  labelId="type"
-                  id="type-select"
-                  value={type}
-                  label="Type of Workout"
-                  onChange={typeChange}
+                  labelId="workoutType"
+                  id="workoutType-select"
+                  value={workoutType}
+                  label="workoutType of Workout"
+                  onChange={workoutTypeChange}
                   variant='outlined'
                 >
                   <MenuItem value="distance">Distance</MenuItem>
@@ -145,26 +149,26 @@ function App() {
           minHeight: '200px'
         }}>
           <div>
-            {/*  need to clean this up */}
-            {showWorkout &&
-              type === 'distance' ? (
-              <DistanceWorkout
-                yardage={yardage}
-                interval={interval}
-              />) :
-              type === 'easy' ? (
-                <EasyWorkout
+            {!showWorkout ? <></> :
+              workoutType === 'distance' ? (
+                <DistanceWorkout
                   yardage={yardage}
                   interval={interval}
                 />) :
-                type === 'sprint' ?
-                  (<SprintWorkout
+                workoutType === 'easy' ? (
+                  <EasyWorkout
                     yardage={yardage}
-                    interval={interval} // this is super messy // feed in sprint interval
-                  />) : type === 'threshold' && (<ThresholdWorkout
-                    yardage={yardage}
-                    interval={interval} // this is super messy // feed in sprint interval
-                  />)
+                    interval={interval}
+                  />) :
+                  workoutType === 'sprint' ?
+                    (<SprintWorkout
+                      yardage={yardage}
+                      interval={interval}
+                    />) : workoutType === 'threshold'
+                    && (<ThresholdWorkout
+                      yardage={yardage}
+                      interval={interval}
+                    />)
 
             }
           </div>
