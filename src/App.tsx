@@ -126,35 +126,203 @@ function App() {
             </Box>
           </Box>
           <Box sx={{
-            border: '2px solid blue', height: '80px', 
-            backgroundColor: '#90D5FF', 
+            border: '2px solid blue', height: '80px',
+            backgroundColor: '#90D5FF',
             marginLeft: '5px', marginRight: '5px'
           }}>
-            <Box sx={{
-              height: '33%', borderBottom: '2px dotted white', '&::before': {
-                content: '""', // Required for before/after to appear
-                position: 'absolute',
-                top: '50%',
-                left: 0,
-                width: '100%',
-                height: '1px',
-                backgroundColor: 'primary.main',
-              }
-            }}></Box>
             <Box sx={{
               height: '33%', borderBottom: '2px dotted white',
               position: 'relative',
               '&::before': {
-                content: '""', // Required for before/after to appear
+                content: '""', // top lane line
                 position: 'absolute',
-                top: '50%',
-                left: 0,
-                width: '100%',
+                top: '44%',
+                left: '3%',
+                width: '94%',
                 height: '1px',
                 backgroundColor: 'primary.main',
               },
-            }} ></Box>
-            <Box sx={{ height: '33%' }}></Box>
+            }}>
+              {/* faster swimmer */}
+              <Box sx={{
+                width: '10px',
+                height: '10px',
+                position: 'relative',
+                animationName: 'myAnimationFast',
+                animationDuration: '6s',
+                animationIterationCount: 'infinite',
+                '@keyframes myAnimationFast': {
+                  "0%": {
+                    backgroundColor: 'blue; left:0%; top:7px',
+                  },
+                  "50%": {
+                    backgroundColor: 'blue; left:98%; top:7px',
+                  },
+                  "100%": {
+                    backgroundColor: 'blue; left:0px; top:7px',
+                  }
+                }
+              }}></Box>
+              <Box sx={{
+                '&::before': {
+                  content: '""', // left T line
+                  position: 'absolute',
+                  top: '29%',
+                  left: '3%',
+                  width: '95%',
+                  height: '10px',
+                  borderLeft: '1px solid #1976d2'
+                },
+              }}></Box>
+              <Box sx={{
+                '&::before': {
+                  content: '""', // right T line
+                  position: 'absolute',
+                  top: '29%',
+                  left: '97%',
+                  width: '95%',
+                  height: '10px',
+                  borderLeft: '1px solid #1976d2'
+                },
+              }}></Box>
+            </Box>
+            <Box sx={{
+              height: '33%', borderBottom: '2px dotted white',
+              position: 'relative',
+              '&::before': {
+                content: '""', // main lane line middle
+                position: 'absolute',
+                top: '44%',
+                left: '3%',
+                width: '94%',
+                height: '1px',
+                backgroundColor: 'primary.main',
+              },
+            }} >
+              {/* slower swimmer */}
+              <Box sx={{
+                width: '10px',
+                height: '10px',
+                position: 'relative',
+                animationName: 'myAnimationSlow',
+                animationDuration: '9s',
+                animationIterationCount: 'infinite',
+                '@keyframes myAnimationSlow': {
+                  "0%": {
+                    backgroundColor: 'green; left:0px; top:7px',
+                  },
+                  "50%": {
+                    backgroundColor: 'green; left:98%; top:7px',
+                  },
+                  "100%": {
+                    backgroundColor: 'green; left:0px; top:7px',
+                  }
+                }
+              }}></Box>
+              <Box sx={{
+                '&::before': {
+                  content: '""', // left t line
+                  position: 'absolute',
+                  top: '29%',
+                  left: '3%',
+                  width: '95%',
+                  height: '10px',
+                  borderLeft: '1px solid #1976d2'
+                },
+              }}></Box>
+              <Box sx={{
+                '&::before': {
+                  content: '""', // right T line
+                  position: 'absolute',
+                  top: '29%',
+                  left: '97%',
+                  width: '95%',
+                  height: '10px',
+                  borderLeft: '1px solid #1976d2'
+                },
+              }}></Box>
+            </Box>
+            <Box sx={{
+              height: '33%', borderBottom: '2px dotted white',
+              position: 'relative',
+              '&::before': {
+                content: '""', // bottom floating swimmer
+                position: 'absolute',
+                top: '44%',
+                left: '3%',
+                width: '94%',
+                height: '1px',
+                backgroundColor: 'primary.main',
+              },
+            }} >
+              {/* faster swimmer */}
+              <Box sx={{
+                width: '15px',
+                height: '15px',
+                borderRadius: '50%',
+                position: 'relative',
+                animationName: 'myAnimationFloat',
+                animationDuration: '40s',
+                animationIterationCount: 'infinite',
+                '@keyframes myAnimationFloat': {
+                  "0%": {
+                    backgroundColor: 'purple; left:0%; top:7px',
+                  },
+                  "10%": {
+                    backgroundColor: 'purple; left:25%; top:4px',
+                  },
+                  "20%": {
+                    backgroundColor: 'purple; left:50%; top:0px',
+                  },
+                  "30%": {
+                    backgroundColor: 'purple; left:60%; top:-3px',
+                  },
+                  "40%": {
+                    backgroundColor: 'purple; left:70%; top:0px',
+                  },
+                   "50%": {
+                    backgroundColor: 'purple; left: 98%; top:10px',
+                  },
+                   "60%": {
+                    backgroundColor: 'purple; left:80%; top:7px',
+                  },
+                   "70%": {
+                    backgroundColor: 'purple; left:60%; top:0px',
+                  },
+                   "80%": {
+                    backgroundColor: 'purple; left:50%; top:9px',
+                  },
+                   "90%": {
+                    backgroundColor: 'purple; left:25%; top:7px',
+                  },
+                  "100%": {
+                    backgroundColor: 'purple; left:0px; top:7px',
+                  }
+                }
+              }}></Box>
+              <Box sx={{
+                '&::before': {
+                  content: '""', // left t line
+                  position: 'absolute',
+                  top: '29%',
+                  left: '3%',
+                  width: '95%',
+                  height: '10px',
+                  borderLeft: '1px solid #1976d2'
+                },
+              }}></Box>
+              <Box sx={{
+                '&::before': {
+                  content: '""', // right T line
+                  position: 'absolute',
+                  top: '29%',
+                  left: '97%',
+                  width: '95%',
+                  height: '10px',
+                  borderLeft: '1px solid #1976d2'
+                },
+              }}></Box>
+            </Box>
 
           </Box>
           {/* lines at the bottom of the pool */}
