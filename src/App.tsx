@@ -61,7 +61,7 @@ function App() {
         <Box sx={{
           marginLeft: '40px',
           marginRight: '40px',
-          paddingBottom: '40px',
+          paddingBottom: '20px',
           borderTop: '1px solid #7d34eb',
           borderLeft: '1px solid #7d34eb',
           borderRight: '1px solid #7d34eb',
@@ -125,6 +125,43 @@ function App() {
               />
             </Box>
           </Box>
+          <Box sx={{
+            border: '2px solid blue', height: '80px', 
+            backgroundColor: '#90D5FF', 
+            marginLeft: '5px', marginRight: '5px'
+          }}>
+            <Box sx={{
+              height: '33%', borderBottom: '2px dotted white', '&::before': {
+                content: '""', // Required for before/after to appear
+                position: 'absolute',
+                top: '50%',
+                left: 0,
+                width: '100%',
+                height: '1px',
+                backgroundColor: 'primary.main',
+              }
+            }}></Box>
+            <Box sx={{
+              height: '33%', borderBottom: '2px dotted white',
+              position: 'relative',
+              '&::before': {
+                content: '""', // Required for before/after to appear
+                position: 'absolute',
+                top: '50%',
+                left: 0,
+                width: '100%',
+                height: '1px',
+                backgroundColor: 'primary.main',
+              },
+            }} ></Box>
+            <Box sx={{ height: '33%' }}></Box>
+
+          </Box>
+          {/* lines at the bottom of the pool */}
+          {/* blue at the end, add flags, white and red alternating */}
+          {/* two swimmers, one fast, one slow, the fast one keeps going, 
+          the slow one takes a break at walls and then goes after a while*/}
+          {/* another one is just in a floaty */}
         </Box>
         {/* actually hook this up */}
         <Box sx={{
