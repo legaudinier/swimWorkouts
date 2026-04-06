@@ -181,7 +181,7 @@ function App() {
                   position: 'absolute',
                   top: '29%',
                   left: '97%',
-                  width: '95%',
+                  // width: '95%',
                   height: '10px',
                   borderLeft: '1px solid #1976d2'
                 },
@@ -232,12 +232,12 @@ function App() {
                 },
               }}></Box>
               <Box sx={{
-                '&::before': {
+                '&::before': { // right t line
                   content: "''",
                   position: 'absolute',
                   top: '29%',
                   left: '97%',
-                  width: '95%',
+                  // width: '95%',
                   height: '10px',
                   borderLeft: '1px solid #1976d2'
                 },
@@ -336,7 +336,7 @@ function App() {
                   position: 'absolute',
                   top: '29%',
                   left: '97%',
-                  width: '95%',
+                  // width: '95%',
                   height: '10px',
                   borderLeft: '1px solid #1976d2'
                 },
