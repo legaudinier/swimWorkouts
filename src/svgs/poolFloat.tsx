@@ -1,7 +1,7 @@
 export const PoolFloat = () => {
     return (
         <div style={{ zIndex: 1 }}>
-            <svg width="525" height="500" xmlns="http://www.w3.org/2000/svg">
+            <svg width="75" height="70" xmlns="http://www.w3.org/2000/svg" viewBox="315 410 460 60">
                 <g>
                     <rect fill="#7a7ddd" strokeWidth="0" strokeDasharray="5,2,2,2,2,2" x="428.75" y="281.5" width="17.5" height="45.75" id="svg_49" stroke="#000" />
                     <g id="svg_8">
@@ -53,7 +53,7 @@ export const PoolFloat = () => {
                     <ellipse fill="#7a7ddd" strokeWidth="0" strokeDasharray="5,2,2,2,2,2" cx="393.875" cy="308" id="svg_47" rx="31.625" ry="13.25" stroke="#000" />
                     <ellipse fill="#7a7ddd" strokeWidth="0" strokeDasharray="5,2,2,2,2,2" cx="430.67087" cy="323.57676" id="svg_48" rx="23.69913" ry="13.24973" stroke="#000" transform="rotate(69.3937 430.671 323.577)" />
                     <rect fill="#7a7ddd" strokeWidth="0" strokeDasharray="5,2,2,2,2,2" x="426.59281" y="279.22056" width="17.5" height="24.68501" id="svg_50" stroke="#000" transform="rotate(7.67792 435.343 291.563)" />
-                    <path fill="none" stroke="#000" strokeWidth="0" strokeDasharray="5,2,2,2,2,2" id="svg_51" d="m361.5,313.25c0.25,0 0.75967,-0.12015 1.5,0c0.78036,0.12665 1.51904,0.40433 1.75,0.5c0.32663,0.13528 0.5,0.5 0.5,0.5c0.25,0.25 0.25,0.25 0.25,0.25c0,0 0,0.25 0,0.25l0,0l-0.25,0l-0.25,0" />
+                    <path fill="none" stroke="#fee8e8" strokeWidth="0" strokeDasharray="5,2,2,2,2,2" id="svg_51" d="m361.5,313.25c0.25,0 0.75967,-0.12015 1.5,0c0.78036,0.12665 1.51904,0.40433 1.75,0.5c0.32663,0.13528 0.5,0.5 0.5,0.5c0.25,0.25 0.25,0.25 0.25,0.25c0,0 0,0.25 0,0.25l0,0l-0.25,0l-0.25,0" />
                     <ellipse fill="#7a7ddd" strokeWidth="0" strokeDasharray="5,2,2,2,2,2" cx="371.19631" cy="317.25002" id="svg_53" rx="9.90361" ry="5.72074" stroke="#000" transform="rotate(159.903 371.196 317.25)" />
                     <path fill="#7a7ddd" strokeWidth="0" strokeDasharray="5,2,2,2,2,2" opacity="undefined" d="m444.05143,334.32082c-7.16546,0 -12.96947,-2.0339 -12.96947,-4.54489c0,-2.51099 5.80402,-4.54489 12.96947,-4.54489c7.16546,0 12.96947,2.0339 12.96947,4.54489c0,2.51099 -5.80402,4.54489 -12.96947,4.54489z" id="svg_55" stroke="#000" transform="rotate(99.9776 444.051 329.776)" />
                     <ellipse fill="#7a7ddd" strokeWidth="0" strokeDasharray="5,2,2,2,2,2" cx="355.95745" cy="312.34043" id="svg_56" rx="13.40426" ry="5.10638" stroke="#000" />

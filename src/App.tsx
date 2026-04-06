@@ -266,12 +266,10 @@ function App() {
                 animationName: 'myAnimationFloat',
                 animationDuration: '30s',
                 animationIterationCount: 'infinite',
-                border: '3px solid red',
                 '@keyframes myAnimationFloat': {
                   "0%": {
-                    backgroundColor: 'transparent; left:3%; top:0px',
+                    backgroundColor: 'transparent; left:4%; top:0px',
                     transform: 'rotate(15deg)'
-
                   },
                   "10%": {
                     backgroundColor: 'transparent; left:25%; top:-5px',
@@ -284,7 +282,6 @@ function App() {
                   "30%": {
                     backgroundColor: 'transparent; left:60%; top:-3px',
                     transform: 'rotate(-5deg)'
-
                   },
                   "40%": {
                     backgroundColor: 'transparent; left:70%; top:0px',
