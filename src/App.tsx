@@ -10,6 +10,8 @@ import SprintWorkout from "./workouts/sprintWorkout";
 import ThresholdWorkout from './workouts/thresholdWorkout';
 import EasyWorkout from './workouts/easyWorkout';
 import { Box, Typography } from "@mui/material";
+import { PoolFloat } from './svgs/poolFloat'
+
 
 function App() {
   const [workoutType, setWorkoutType] = useState("distance");
@@ -38,7 +40,6 @@ function App() {
   useEffect(() => {
     setShowWorkout(false)
   }, [workoutType, yardage, interval])
-
 
   return (
     <Box sx={{
@@ -232,7 +233,7 @@ function App() {
               }}></Box>
               <Box sx={{
                 '&::before': {
-                  content: '""', // right T line
+                  content: "''",
                   position: 'absolute',
                   top: '29%',
                   left: '97%',
@@ -243,7 +244,8 @@ function App() {
               }}></Box>
             </Box>
             <Box sx={{
-              height: '33%', borderBottom: '2px dotted white',
+              height: '33%',
+              borderBottom: '2px dotted white',
               position: 'relative',
               '&::before': {
                 content: '""', // bottom floating swimmer
@@ -255,51 +257,71 @@ function App() {
                 backgroundColor: 'primary.main',
               },
             }} >
-              {/* faster swimmer */}
+              {/* floater swimmer */}
               <Box sx={{
                 width: '15px',
                 height: '15px',
-                borderRadius: '50%',
+                // borderRadius: '50%',
                 position: 'relative',
                 animationName: 'myAnimationFloat',
-                animationDuration: '40s',
+                animationDuration: '30s',
                 animationIterationCount: 'infinite',
+                border: '3px solid red',
                 '@keyframes myAnimationFloat': {
                   "0%": {
-                    backgroundColor: 'purple; left:0%; top:7px',
+                    backgroundColor: 'transparent; left:3%; top:0px',
+                    transform: 'rotate(15deg)'
+
                   },
                   "10%": {
-                    backgroundColor: 'purple; left:25%; top:4px',
+                    backgroundColor: 'transparent; left:25%; top:-5px',
+                    transform: 'rotate(-10deg)'
                   },
                   "20%": {
-                    backgroundColor: 'purple; left:50%; top:0px',
+                    backgroundColor: 'transparent; left:50%; top:-7px',
+                    transform: 'rotate(25deg)'
                   },
                   "30%": {
-                    backgroundColor: 'purple; left:60%; top:-3px',
+                    backgroundColor: 'transparent; left:60%; top:-3px',
+                    transform: 'rotate(-5deg)'
+
                   },
                   "40%": {
-                    backgroundColor: 'purple; left:70%; top:0px',
+                    backgroundColor: 'transparent; left:70%; top:0px',
+                    transform: 'rotate(12deg)'
+
                   },
-                   "50%": {
-                    backgroundColor: 'purple; left: 98%; top:10px',
+                  "50%": {
+                    backgroundColor: 'transparent; left: 95%; top:-3px',
+                    transform: 'rotate(-12deg)'
                   },
-                   "60%": {
-                    backgroundColor: 'purple; left:80%; top:7px',
+                  "51%": {
+                    transform: 'scaleX(-1)'
                   },
-                   "70%": {
-                    backgroundColor: 'purple; left:60%; top:0px',
+                  "60%": {
+                    backgroundColor: 'transparent; left:80%; top:0px',
+                    transform: 'scaleX(-1) rotate(15deg)',
                   },
-                   "80%": {
-                    backgroundColor: 'purple; left:50%; top:9px',
+                  "70%": {
+                    backgroundColor: 'transparent; left:60%; top:-5px',
+                    transform: 'scaleX(-1) rotate(-15deg)'
                   },
-                   "90%": {
-                    backgroundColor: 'purple; left:25%; top:7px',
+                  "80%": {
+                    backgroundColor: 'transparent; left:50%; top:1px',
+                    transform: ' scaleX(-1) rotate(10deg)'
+                  },
+                  "90%": {
+                    backgroundColor: 'transparent; left:25%; top:-5px',
+                    transform: ' scaleX(-1) rotate(-22deg)'
                   },
                   "100%": {
-                    backgroundColor: 'purple; left:0px; top:7px',
+                    backgroundColor: 'transparent; left:0px; top:4px',
+                    transform: 'scaleX(-1)'
                   }
                 }
-              }}></Box>
+              }}>
+                <PoolFloat />
+              </Box>
               <Box sx={{
                 '&::before': {
                   content: '""', // left t line
