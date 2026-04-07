@@ -1,7 +1,8 @@
 
 import { Box } from "@mui/material";
 import { PoolFloat } from "./svgs/poolFloat";
-
+import Swimmer1 from './assets/butterflySwim.gif'
+import Swimmer2 from './assets/freestyleSwim.gif'
 
 const AnimatedPool = () => {
 
@@ -24,26 +25,49 @@ const AnimatedPool = () => {
           backgroundColor: 'primary.main',
         },
       }}>
-        {/* faster swimmer */}
+        {/* butterfly swimmer */}
         <Box sx={{
           width: '10px',
           height: '10px',
           position: 'relative',
           animationName: 'myAnimationFast',
-          animationDuration: '6s',
+          animationDuration: '60s',
           animationIterationCount: 'infinite',
           '@keyframes myAnimationFast': {
             "0%": {
-              backgroundColor: 'blue; left:0%; top:7px',
+              backgroundColor: 'none; left: 3%; top:7px',
+              transform: 'rotate(90deg)'
+
             },
             "50%": {
-              backgroundColor: 'blue; left:98%; top:7px',
+              backgroundColor: 'none; left:98%; top:7px',
+              transform: 'rotate(90deg)'
+
+            },
+            "51%": {
+              backgroundColor: 'none; left:98%; top:7px',
+              transform: 'rotate(270deg)'
+
             },
             "100%": {
-              backgroundColor: 'blue; left:0px; top:7px',
+              backgroundColor: 'none; left:0px; top:7px',
+              transform: 'rotate(270deg)'
+
             }
           }
-        }}></Box>
+        }}>
+          <Box
+            component="img"
+            sx={{
+              height: 60,
+              width: 60,
+              position: 'absolute',
+              left: '-25px'
+            }}
+            alt="butterfly swimmer"
+            src={Swimmer1}
+          />
+        </Box>
         <Box sx={{
           '&::before': {
             content: '""', // left T line
@@ -90,16 +114,39 @@ const AnimatedPool = () => {
           animationIterationCount: 'infinite',
           '@keyframes myAnimationSlow': {
             "0%": {
-              backgroundColor: 'green; left:0px; top:7px',
+              backgroundColor: 'none; left:0px; top:7px',
+              transform: 'rotate(90deg)'
+
             },
             "50%": {
-              backgroundColor: 'green; left:98%; top:7px',
+              backgroundColor: 'none; left:98%; top:7px',
+              transform: 'rotate(90deg)'
+
+            },
+            "51%": {
+              backgroundColor: 'none; left:98%; top:7px',
+              transform: 'rotate(270deg)'
+
             },
             "100%": {
-              backgroundColor: 'green; left:0px; top:7px',
+              backgroundColor: 'none; left:0px; top:7px',
+              transform: 'rotate(270deg)'
+
             }
           }
-        }}></Box>
+        }}>
+          <Box
+            component="img"
+            sx={{
+              height: 55,
+              width: 45,
+              position: 'absolute',
+              left: '-25px'
+            }}
+            alt="Freestyle swimmer 1"
+            src={Swimmer2}
+          />
+        </Box>
         <Box sx={{
           '&::before': {
             content: '""', // left t line

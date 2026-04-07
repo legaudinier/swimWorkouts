@@ -10,7 +10,6 @@ import SprintWorkout from "./workouts/sprintWorkout";
 import ThresholdWorkout from './workouts/thresholdWorkout';
 import EasyWorkout from './workouts/easyWorkout';
 import { Box, Typography } from "@mui/material";
-import { PoolFloat } from './svgs/poolFloat'
 import AnimatedPool from './animatedPool';
 
 
