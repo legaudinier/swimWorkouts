@@ -25,33 +25,36 @@ const AnimatedPool = () => {
           backgroundColor: 'primary.main',
         },
       }}>
-        {/* butterfly swimmer */}
+        {/* freestyle swimmer */}
         <Box sx={{
           width: '10px',
           height: '10px',
           position: 'relative',
           animationName: 'myAnimationFast',
-          animationDuration: '60s',
+          animationDuration: '10s',
+          animationTimingFunction: 'linear',
           animationIterationCount: 'infinite',
           '@keyframes myAnimationFast': {
             "0%": {
-              backgroundColor: 'none; left: 3%; top:7px',
+              backgroundColor: 'none; left: 10%; top:27px',
               transform: 'rotate(90deg)'
 
             },
             "50%": {
-              backgroundColor: 'none; left:98%; top:7px',
+              backgroundColor: 'none; left:88%; top:27px',
               transform: 'rotate(90deg)'
 
             },
-            "51%": {
-              backgroundColor: 'none; left:98%; top:7px',
-              transform: 'rotate(270deg)'
+            "50.1%": {
+              backgroundColor: 'none; left:88%; top:-10px',
+              transform: 'rotate(270deg)',
+              transitionTimingFunction: 'step-end'
 
             },
             "100%": {
-              backgroundColor: 'none; left:0px; top:7px',
-              transform: 'rotate(270deg)'
+              backgroundColor: 'none; left: 10%; top:-10px',
+              transform: 'rotate(270deg)',
+              transitionTimingFunction: 'step-end'
 
             }
           }
@@ -59,13 +62,13 @@ const AnimatedPool = () => {
           <Box
             component="img"
             sx={{
-              height: 60,
-              width: 60,
+              width: 32.4,
+              height: 57.6,
               position: 'absolute',
               left: '-25px'
             }}
-            alt="butterfly swimmer"
-            src={Swimmer1}
+            alt="Freestyle swimmer"
+            src={Swimmer2}
           />
         </Box>
         <Box sx={{
@@ -104,48 +107,8 @@ const AnimatedPool = () => {
           backgroundColor: 'primary.main',
         },
       }} >
-        {/* slower swimmer */}
-        <Box sx={{
-          width: '10px',
-          height: '10px',
-          position: 'relative',
-          animationName: 'myAnimationSlow',
-          animationDuration: '9s',
-          animationIterationCount: 'infinite',
-          '@keyframes myAnimationSlow': {
-            "0%": {
-              backgroundColor: 'none; left:0px; top:7px',
-              transform: 'rotate(90deg)'
-
-            },
-            "50%": {
-              backgroundColor: 'none; left:98%; top:7px',
-              transform: 'rotate(90deg)'
-
-            },
-            "51%": {
-              backgroundColor: 'none; left:98%; top:7px',
-              transform: 'rotate(270deg)'
-
-            },
-            "100%": {
-              backgroundColor: 'none; left:0px; top:7px',
-              transform: 'rotate(270deg)'
-
-            }
-          }
-        }}>
-          <Box
-            component="img"
-            sx={{
-              height: 55,
-              width: 45,
-              position: 'absolute',
-              left: '-25px'
-            }}
-            alt="Freestyle swimmer 1"
-            src={Swimmer2}
-          />
+        {/* empty middle lane */}
+        <Box>
         </Box>
         <Box sx={{
           '&::before': {
@@ -175,7 +138,7 @@ const AnimatedPool = () => {
         borderBottom: '2px dotted white',
         position: 'relative',
         '&::before': {
-          content: '""', // bottom floating swimmer
+          content: '""',
           position: 'absolute',
           top: '44%',
           left: '3%',
@@ -184,16 +147,15 @@ const AnimatedPool = () => {
           backgroundColor: 'primary.main',
         },
       }} >
-        {/* floater swimmer */}
+        {/* unicorn pool float */}
         <Box sx={{
           width: '15px',
           height: '15px',
           // borderRadius: '50%',
           position: 'relative',
           animationName: 'myAnimationFloat',
-          animationDuration: '30s',
-          animationIterationCount: 'infinite',
-          '@keyframes myAnimationFloat': {
+          animationDuration: '40s',
+          animationIterationCount: 'infinite','@keyframes myAnimationFloat': {
             "0%": {
               backgroundColor: 'transparent; left:4%; top:0px',
               transform: 'rotate(15deg)'
@@ -216,7 +178,7 @@ const AnimatedPool = () => {
 
             },
             "50%": {
-              backgroundColor: 'transparent; left: 95%; top:-3px',
+              backgroundColor: 'transparent; left: 94%; top:-3px',
               transform: 'rotate(-12deg)'
             },
             "51%": {
@@ -239,7 +201,7 @@ const AnimatedPool = () => {
               transform: ' scaleX(-1) rotate(-22deg)'
             },
             "100%": {
-              backgroundColor: 'transparent; left:0px; top:4px',
+              backgroundColor: 'transparent; left:4%; top:4px',
               transform: 'scaleX(-1)'
             }
           }
@@ -270,7 +232,7 @@ const AnimatedPool = () => {
         }}></Box>
       </Box>
 
-    </Box>
+    </Box >
   )
 }
 
