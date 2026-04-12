@@ -1,7 +1,7 @@
 
 import { Box } from "@mui/material";
 import { PoolFloat } from "./svgs/poolFloat";
-import Swimmer1 from './assets/butterflySwim.gif'
+// import Swimmer1 from './assets/butterflySwim.gif'
 import Swimmer2 from './assets/freestyleSwim.gif'
 
 const AnimatedPool = () => {
