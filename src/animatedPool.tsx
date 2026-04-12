@@ -154,7 +154,7 @@ const AnimatedPool = () => {
           // borderRadius: '50%',
           position: 'relative',
           animationName: 'myAnimationFloat',
-          animationDuration: '40s',
+          animationDuration: '200s',
           animationIterationCount: 'infinite','@keyframes myAnimationFloat': {
             "0%": {
               backgroundColor: 'transparent; left:4%; top:0px',
@@ -166,7 +166,7 @@ const AnimatedPool = () => {
             },
             "20%": {
               backgroundColor: 'transparent; left:50%; top:-7px',
-              transform: 'rotate(25deg)'
+              transform: 'rotate(19deg)'
             },
             "30%": {
               backgroundColor: 'transparent; left:60%; top:-3px',

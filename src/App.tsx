@@ -12,7 +12,6 @@ import EasyWorkout from './workouts/easyWorkout';
 import { Box, Typography } from "@mui/material";
 import AnimatedPool from './animatedPool';
 
-
 function App() {
   const [workoutType, setWorkoutType] = useState("distance");
   const [yardage, setYardage] = useState(5000);
@@ -44,7 +43,7 @@ function App() {
   return (
     <Box sx={{
       '& .MuiOutlinedInput-root': {
-        marginBottom: '40px'
+        marginBottom: '10px'
       },
 
       '& .MuiFormGroup-root': {
@@ -80,11 +79,12 @@ function App() {
           }}>Swim Workout Generator</Typography>
           <Box sx={{
             display: 'flex',
-            flexDirection: 'row',
-            paddingTop: '40px'
+            flexDirection: 'column',
+            paddingTop: '40px',
+            width: '100%'
           }}>
-            <Box sx={{ flex: '0 1 200px' }}>
-              <FormControl fullWidth>
+            <Box>
+              <FormControl sx={{ minWidth: '50%' }}>
                 <InputLabel id="workoutType">workoutType</InputLabel>
                 <Select
                   labelId="workoutType"
@@ -109,6 +109,7 @@ function App() {
                 type="number"
                 defaultValue={'3000'}
                 onChange={yardageChange}
+                sx={{ minWidth: '50%' }}
                 InputProps={{
                   inputProps: {
                     max: 10000, min: 50, step: 50
@@ -123,11 +124,11 @@ function App() {
                 type="number"
                 onChange={baseIntervalChange}
                 defaultValue={90}
+                sx={{ minWidth: '50%' }}
               />
             </Box>
           </Box>
         </Box>
-        {/* actually hook this up */}
         <Box sx={{
           marginLeft: '40px',
           marginRight: '40px',
@@ -140,13 +141,6 @@ function App() {
 
             }}
             onClick={() => generate()}>Generate</Button>
-        </Box>
-        <Box sx={{
-          marginLeft: '40px',
-          marginRight: '40px',
-          marginTop: '20px'
-        }}>
-          <AnimatedPool />
         </Box>
 
         <Box sx={{
@@ -191,6 +185,10 @@ function App() {
           sx={{ width: '100%', color: '#7d34eb' }}
         >Email Workout</Button>
       </Box>
+      <Box sx={{ marginTop: '20px' }}>
+        <AnimatedPool />
+      </Box>
+
     </Box >
   );
 }
