@@ -92,7 +92,7 @@ function App() {
           }}>
             <Box>
               <FormControl sx={{ minWidth: '100%' }}>
-                <InputLabel id="workoutType">workoutType</InputLabel>
+                <Typography variant="caption">Workout Type </Typography>
                 <Select
                   labelId="workoutType"
                   id="workoutType-select"
@@ -108,7 +108,8 @@ function App() {
                 </Select>
               </FormControl>
             </Box>
-            <Box sx={{ display: 'flex', marginBottom: '10px'}}>
+            <Typography variant="caption">Yardage</Typography>
+            <Box sx={{ display: 'flex', marginBottom: '10px' }}>
               <Button variant="outlined"
                 sx={{
                   color: '#7d34eb',
@@ -121,7 +122,8 @@ function App() {
                   borderRadius: '4px',
                   height: '50px',
                   paddingLeft: '14px',
-                  border: '.5px solid rgba(0, 0, 0, 0.23)'
+                  border: '.5px solid rgba(0, 0, 0, 0.23)',
+                  fontSize: 'inherit'
                 },
               }}>
                 <input
@@ -142,8 +144,8 @@ function App() {
                 onClick={() => increaseYardage()}>+</Button>
             </Box>
             <Box>
+              <Typography variant="caption">Interval (seconds) / 100</Typography>
               <TextField
-                label="Interval (seconds) / 100"
                 variant="outlined"
                 type="number"
                 onChange={baseIntervalChange}
