@@ -31,7 +31,7 @@ const AnimatedPool = () => {
           height: '10px',
           position: 'relative',
           animationName: 'myAnimationFast',
-          animationDuration: '10s',
+          animationDuration: '30s',
           animationTimingFunction: 'linear',
           animationIterationCount: 'infinite',
           '@keyframes myAnimationFast': {
