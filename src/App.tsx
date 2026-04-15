@@ -30,6 +30,14 @@ function App() {
     setInterval(event.target.valueAsNumber)
   };
 
+  const decreaseYardage = () => {
+    setYardage(yardage - 50)
+  }
+
+  const increaseYardage = () => {
+    setYardage(yardage + 50)
+  }
+
   const generate = () => {
     /// we need to send the info on this click
     // ability to re-generate with all the same info
@@ -100,17 +108,19 @@ function App() {
                 </Select>
               </FormControl>
             </Box>
-            <Box sx={{ border: '3px solid green', display: 'flex', marginBottom: '10px', minWidth: '50%' }}>
+            <Box sx={{ display: 'flex', marginBottom: '10px', maxWidth: '50%' }}>
               <Button variant="outlined"
                 sx={{
                   color: '#7d34eb',
                   width: '100%'
 
                 }}
-                onClick={() => console.log('decrease')}>-</Button>
+                onClick={() => decreaseYardage()}>-</Button>
               <Box sx={{
-                border: '1px solid red', '& #yardageInput': {
-                  borderRadius: '4px'
+                '& #yardageInput': {
+                  borderRadius: '4px',
+                  height: '30px',
+                  border: '.5px solid rgba(0, 0, 0, 0.23)'
                 },
               }}>
                 <input
@@ -128,24 +138,8 @@ function App() {
                   width: '100%'
 
                 }}
-                onClick={() => console.log('increase')}>+</Button>
+                onClick={() => increaseYardage()}>+</Button>
             </Box>
-            {/* <Box>
-              <TextField
-                id="outlined-basic"
-                label="Yardage"
-                variant="outlined"
-                type="number"
-                defaultValue={'3000'}
-                onChange={yardageChange}
-                sx={{ minWidth: '50%' }}
-                InputProps={{
-                  inputProps: {
-                    max: 10000, min: 50, step: 50
-                  }
-                }}
-              />
-            </Box> */}
             <Box>
               <TextField
                 label="Interval (seconds) / 100"
