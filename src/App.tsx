@@ -119,7 +119,8 @@ function App() {
               <Box sx={{
                 '& #yardageInput': {
                   borderRadius: '4px',
-                  height: '30px',
+                  height: '50px',
+                  paddingLeft: '14px',
                   border: '.5px solid rgba(0, 0, 0, 0.23)'
                 },
               }}>
