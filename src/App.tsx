@@ -127,9 +127,9 @@ function App() {
                 '& #yardageInput': {
                   borderRadius: '4px',
                   height: '50px',
-                  paddingLeft: '14px',
                   border: '.5px solid rgba(0, 0, 0, 0.23)',
-                  fontSize: 'inherit'
+                  fontSize: 'inherit',
+                  textAlign: 'center'
                 },
               }}>
                 <input
@@ -163,9 +163,9 @@ function App() {
                   '& #intervalInput': {
                     borderRadius: '4px',
                     height: '50px',
-                    paddingLeft: '14px',
                     border: '.5px solid rgba(0, 0, 0, 0.23)',
-                    fontSize: 'inherit'
+                    fontSize: 'inherit',
+                    textAlign: 'center'
                   },
                 }}>
                   <input
