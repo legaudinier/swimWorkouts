@@ -67,7 +67,6 @@ function App() {
           borderRight: '1px solid #7d34eb',
           borderBottom: '1px solid #7d34eb',
           borderRadius: '10px'
-
         }}>
           <Typography sx={{
             textAlign: 'center',
@@ -101,7 +100,37 @@ function App() {
                 </Select>
               </FormControl>
             </Box>
-            <Box>
+            <Box sx={{ border: '3px solid green', display: 'flex', marginBottom: '10px', minWidth: '50%' }}>
+              <Button variant="outlined"
+                sx={{
+                  color: '#7d34eb',
+                  width: '100%'
+
+                }}
+                onClick={() => console.log('decrease')}>-</Button>
+              <Box sx={{
+                border: '1px solid red', '& #yardageInput': {
+                  borderRadius: '4px'
+                },
+              }}>
+                <input
+                  type="number"
+                  id='yardageInput'
+                  className="number-input__field"
+                  value={yardage}
+                  onChange={yardageChange}
+                  inputMode="numeric"
+                />
+              </Box>
+              <Button variant="outlined"
+                sx={{
+                  color: '#7d34eb',
+                  width: '100%'
+
+                }}
+                onClick={() => console.log('increase')}>+</Button>
+            </Box>
+            {/* <Box>
               <TextField
                 id="outlined-basic"
                 label="Yardage"
@@ -116,7 +145,7 @@ function App() {
                   }
                 }}
               />
-            </Box>
+            </Box> */}
             <Box>
               <TextField
                 label="Interval (seconds) / 100"
