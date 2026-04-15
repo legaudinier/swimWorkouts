@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import FormControl from '@mui/material/FormControl';
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import DistanceWorkout from './workouts/distanceWorkout';
 import SprintWorkout from "./workouts/sprintWorkout";
@@ -38,7 +36,7 @@ function App() {
     setYardage(yardage + 50)
   }
 
-    const decreaseInterval = () => {
+  const decreaseInterval = () => {
     setInterval(interval - 1)
   }
 
