@@ -38,6 +38,14 @@ function App() {
     setYardage(yardage + 50)
   }
 
+    const decreaseInterval = () => {
+    setInterval(interval - 1)
+  }
+
+  const increaseInterval = () => {
+    setInterval(interval + 1)
+  }
+
   const generate = () => {
     /// we need to send the info on this click
     // ability to re-generate with all the same info
@@ -145,13 +153,39 @@ function App() {
             </Box>
             <Box>
               <Typography variant="caption">Interval (seconds) / 100</Typography>
-              <TextField
-                variant="outlined"
-                type="number"
-                onChange={baseIntervalChange}
-                defaultValue={90}
-                sx={{ minWidth: '100%' }}
-              />
+              <Box sx={{ display: 'flex', marginBottom: '10px' }}>
+                <Button variant="outlined"
+                  sx={{
+                    color: '#7d34eb',
+                    width: '100%'
+
+                  }}
+                  onClick={() => decreaseInterval()}>-</Button>
+                <Box sx={{
+                  '& #intervalInput': {
+                    borderRadius: '4px',
+                    height: '50px',
+                    paddingLeft: '14px',
+                    border: '.5px solid rgba(0, 0, 0, 0.23)',
+                    fontSize: 'inherit'
+                  },
+                }}>
+                  <input
+                    type="number"
+                    id='intervalInput'
+                    value={interval}
+                    onChange={baseIntervalChange}
+                    inputMode="numeric"
+                  />
+                </Box>
+                <Button variant="outlined"
+                  sx={{
+                    color: '#7d34eb',
+                    width: '100%'
+
+                  }}
+                  onClick={() => increaseInterval()}>+</Button>
+              </Box>
             </Box>
           </Box>
         </Box>
