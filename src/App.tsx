@@ -94,7 +94,7 @@ function App() {
             display: 'flex',
             flexDirection: 'column',
             paddingTop: '40px',
-            width: '100%'
+            width: 'fit-content'
           }}>
             <Box>
               <FormControl sx={{ minWidth: '100%' }}>
