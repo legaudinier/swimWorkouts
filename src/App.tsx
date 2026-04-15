@@ -91,13 +91,13 @@ function App() {
             width: '100%'
           }}>
             <Box>
-              <FormControl sx={{ minWidth: '50%' }}>
+              <FormControl sx={{ minWidth: '100%' }}>
                 <InputLabel id="workoutType">workoutType</InputLabel>
                 <Select
                   labelId="workoutType"
                   id="workoutType-select"
                   value={workoutType}
-                  label="workoutType of Workout"
+                  label="Type of Workout"
                   onChange={workoutTypeChange}
                   variant='outlined'
                 >
@@ -108,7 +108,7 @@ function App() {
                 </Select>
               </FormControl>
             </Box>
-            <Box sx={{ display: 'flex', marginBottom: '10px', maxWidth: '50%' }}>
+            <Box sx={{ display: 'flex', marginBottom: '10px'}}>
               <Button variant="outlined"
                 sx={{
                   color: '#7d34eb',
@@ -147,7 +147,7 @@ function App() {
                 type="number"
                 onChange={baseIntervalChange}
                 defaultValue={90}
-                sx={{ minWidth: '50%' }}
+                sx={{ minWidth: '100%' }}
               />
             </Box>
           </Box>
