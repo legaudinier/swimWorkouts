@@ -93,7 +93,7 @@ function App() {
           <Box sx={{
             display: 'flex',
             flexDirection: 'column',
-            paddingTop: '40px',
+            paddingTop: '20px',
           }}>
             <Box sx={{ flexShrink: 1 }}>
               <FormControl sx={{ minWidth: '100%' }}>
@@ -240,9 +240,9 @@ function App() {
         <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
         >Export to Excel</Button>
-        <Button variant="outlined"
+        {/* <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
-        >Email Workout</Button>
+        >Email Workout</Button> */}
       </Box>
       <Box sx={{ marginTop: '20px' }}>
         <AnimatedPool />
