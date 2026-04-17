@@ -94,9 +94,8 @@ function App() {
             display: 'flex',
             flexDirection: 'column',
             paddingTop: '40px',
-            width: 'fit-content'
           }}>
-            <Box>
+            <Box sx={{ flexShrink: 1 }}>
               <FormControl sx={{ minWidth: '100%' }}>
                 <Typography variant="caption">Workout Type </Typography>
                 <Select
@@ -129,7 +128,8 @@ function App() {
                   height: '50px',
                   border: '.5px solid rgba(0, 0, 0, 0.23)',
                   fontSize: 'inherit',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  width: '150px'
                 },
               }}>
                 <input
@@ -165,7 +165,8 @@ function App() {
                     height: '50px',
                     border: '.5px solid rgba(0, 0, 0, 0.23)',
                     fontSize: 'inherit',
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    width: '150px'
                   },
                 }}>
                   <input
