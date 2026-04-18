@@ -16,13 +16,6 @@ export type ExcelExportType = {
 
 const ExportToExcel = ({ workoutType, interval, totalYardage }: ExcelExportType) => {
   const RunExcelJSExport = () => {
-    let data = [
-      {
-        'salesman-name': "Jim Smith",
-        sales: 12345,
-      }
-    ];
-
 
     let wb = new ExcelJS.Workbook();
     let workbookName = "Swim Workout.xlsx";
@@ -36,19 +29,16 @@ const ExportToExcel = ({ workoutType, interval, totalYardage }: ExcelExportType)
       }
     );
 
-    ws.columns = [
-      {
-        key: "salesman-name",
-        header: "Salesman-Name",
-        width: 20
-      },
-    ];
-
-    ws.addRows(data);
-
     ws.getCell('A1').value = `Workout Type: ${workoutType}`;
     ws.getCell('A2').value = `Total Yardage: ${totalYardage}`;
     ws.getCell('A3').value = `Base Interval: ${interval}`; // convert this to readable time
+
+    
+    ws.getCell('A5').value = `Warm up: ${interval}`; 
+
+    ws.getCell('A7').value = `Main set: ${interval}`;
+
+    ws.getCell('A9').value = `Warm down: ${interval}`; 
 
 
     wb.xlsx.writeBuffer()
