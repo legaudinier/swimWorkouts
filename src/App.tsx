@@ -238,9 +238,6 @@ function App() {
         </Box>
       </Box>
       <Box sx={{ display: 'flex', marginLeft: '40px', marginRight: '40px', marginTop: '20px' }}>
-        <Button variant="outlined"
-          sx={{ width: '100%', color: '#7d34eb' }}
-        >Export to Excel</Button>
         <ExportToExcel />
         {/* <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
