@@ -30,15 +30,16 @@ const ExportToExcel = ({ workoutType, interval, totalYardage }: ExcelExportType)
     );
 
     ws.getCell('A1').value = `Workout Type: ${workoutType}`;
-    ws.getCell('A2').value = `Total Yardage: ${totalYardage}`;
+    ws.getCell('A2').value =
+      `Total Yardage: ${totalYardage.warmUp + totalYardage.mainSetYardage + totalYardage.coolDown}`;
     ws.getCell('A3').value = `Base Interval: ${interval}`; // convert this to readable time
 
-    
-    ws.getCell('A5').value = `Warm up: ${interval}`; 
 
-    ws.getCell('A7').value = `Main set: ${interval}`;
+    ws.getCell('A5').value = `Warm up: ${totalYardage.warmUp}`;
 
-    ws.getCell('A9').value = `Warm down: ${interval}`; 
+    ws.getCell('A7').value = `Main set: ${totalYardage.mainSetYardage}`;
+
+    ws.getCell('A9').value = `Warm down: ${totalYardage.coolDown}`;
 
 
     wb.xlsx.writeBuffer()

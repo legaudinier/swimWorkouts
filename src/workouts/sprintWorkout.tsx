@@ -1,6 +1,6 @@
 
 import { Box, Typography } from "@mui/material";
-import { readableTime, calculateWarmUpCoolDown } from '../utilities'
+import { readableTime } from '../utilities'
 
 export type SprintWorkoutType = {
     yardage: any
@@ -16,7 +16,6 @@ const SprintWorkout = ({
         easyDistance,
         sprintRounds,
         rounds,
-        wcYardage,
         sprintYardagePercentage,
         sprintYardage,
         easyYardage,

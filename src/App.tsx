@@ -261,7 +261,7 @@ function App() {
         </Box>
       </Box>
       <Box sx={{ display: 'flex', marginLeft: '40px', marginRight: '40px', marginTop: '20px' }}>
-        <ExportToExcel workoutType={workoutType} interval={interval} totalYardage={yardage} />
+        <ExportToExcel workoutType={workoutType} interval={interval} totalYardage={warmUpCoolDownTotals} />
         {/* <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
         >Email Workout</Button> */}
