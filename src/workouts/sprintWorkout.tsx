@@ -5,10 +5,11 @@ import { readableTime, calculateWarmUpCoolDown } from '../utilities'
 export type SprintWorkoutType = {
     yardage: any
     interval: any
+    warmUpCoolDownTotals: any // fix this
 }
 
 const SprintWorkout = ({
-    yardage, interval,
+    yardage, interval, warmUpCoolDownTotals
 }: SprintWorkoutType) => {
 
     let sprintDistancePerRoundTotal,
@@ -22,9 +23,7 @@ const SprintWorkout = ({
         sprintDistance,
         errorMessage
 
-    const warmUpCoolDown = Math.floor(yardage * .5 / 100) * 100
-
-    yardage = yardage - warmUpCoolDown
+    yardage = warmUpCoolDownTotals.mainSetYardage
 
     if (yardage !== 0) {
         let count: number = 1
@@ -53,8 +52,6 @@ const SprintWorkout = ({
                 break;
             }
         }
-
-        wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
     }
 
 
@@ -70,7 +67,7 @@ const SprintWorkout = ({
                 paddingBottom: '10px'
             }}>Sprint Work Out</Typography>
             {!errorMessage ? (<Box sx={{ paddingLeft: '20px' }}>
-                <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
+                <Typography>Warm Up: {warmUpCoolDownTotals?.warmUp}</Typography>
                 {/* <Box>Kick set?</Box> */}
                 <Typography sx={{ marginTop: '15px' }}>Main Set: {yardage}</Typography>
                 <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
@@ -86,7 +83,7 @@ const SprintWorkout = ({
                         <Typography>{easyDistance} easy</Typography>
                     </Box>
                 </Box>
-                <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
+                <Typography>Cool Down: {warmUpCoolDownTotals?.coolDown}</Typography>
             </Box>) :
                 <Typography sx={{ paddingLeft: '20px' }}>
                     The math is not working, please adjust your yardage

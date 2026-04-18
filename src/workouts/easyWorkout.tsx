@@ -1,14 +1,15 @@
 
 import { Box, Typography } from "@mui/material";
-import { calculateWarmUpCoolDown, getDrills, getBreathWorkPattern } from '../utilities'
+import {getDrills, getBreathWorkPattern } from '../utilities'
 
 export type EasyWorkoutType = {
     yardage: any
     interval: any
+    warmUpCoolDownTotals: any // fix this
 }
 
 const EasyWorkout = ({
-    yardage,
+    yardage, warmUpCoolDownTotals
 }: EasyWorkoutType) => {
 
     let kickPercentage,
@@ -26,12 +27,9 @@ const EasyWorkout = ({
         breathRounds,
         breathWorkoutPattern,
         breathWorkPatternText,
-        wcYardage,
         errorMessage
 
-    const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
-
-    yardage = yardage - warmUpCoolDown
+    yardage = warmUpCoolDownTotals.mainSetYardage
 
     if (yardage !== 0) {
         let count = 1
@@ -117,8 +115,6 @@ const EasyWorkout = ({
             || drillCount === 650) {
             errorMessage = true
         }
-
-        wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
     }
 
     return (
@@ -134,7 +130,7 @@ const EasyWorkout = ({
             }}>Easy Work Out</Typography>
             {!errorMessage ? (
                 <Box sx={{ paddingLeft: '20px' }}>
-                    <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
+                    <Typography>Warm Up: {warmUpCoolDownTotals?.warmUp}</Typography>
                     <Typography sx={{ marginTop: '15px' }}>Main Set</Typography>
                     <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
                         <Box sx={{ paddingRight: '10px' }}>
@@ -188,7 +184,7 @@ const EasyWorkout = ({
                             breathDistance &&
                             kickDistance + pullDistance + drillDistance + breathDistance}</Typography>
                     </Box>
-                    <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
+                    <Typography>Cool Down: {warmUpCoolDownTotals?.coolDown}</Typography>
                 </Box>) : <Typography sx={{ paddingLeft: '20px' }}>
                 The math is not working, please adjust your yardage
             </Typography>}

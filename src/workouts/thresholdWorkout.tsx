@@ -1,26 +1,24 @@
 
 import { Box, Typography } from "@mui/material";
-import { readableTime, calculateWarmUpCoolDown } from '../utilities'
+import { readableTime } from '../utilities'
 
 export type ThresholdWorkoutType = {
   yardage: any
   interval: any
+  warmUpCoolDownTotals: any // fix this
 }
 
 const ThresholdWorkout = ({
-  yardage, interval,
+  yardage, interval, warmUpCoolDownTotals
 }: ThresholdWorkoutType) => {
 
   let maxDistance,
     rounds,
     random_boolean,
     intervalTime,
-    wcYardage,
     errorMessage
 
-  const warmUpCoolDown = Math.floor(yardage * .5 / 100) * 100
-
-  yardage = yardage - warmUpCoolDown
+  yardage = warmUpCoolDownTotals.mainSetYardage
 
   if (yardage !== 0) {
 
@@ -48,9 +46,6 @@ const ThresholdWorkout = ({
     }
 
     intervalTime = (maxDistance / 100) * (interval)
-
-    wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
-
   }
 
   return (
@@ -65,7 +60,7 @@ const ThresholdWorkout = ({
         paddingBottom: '10px'
       }}>Threshold Work Out</Typography>
       {!errorMessage ? <Box sx={{ paddingLeft: '20px' }}>
-        <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
+        <Typography>Warm Up: {warmUpCoolDownTotals?.warmUp}</Typography>
         {/* <Box>Kick set?</Box> */}
         <Typography sx={{ marginTop: '15px' }}>Main Set: {yardage}</Typography>
         <Box sx={{ display: 'flex', paddingLeft: '40px' }}>
@@ -84,7 +79,7 @@ const ThresholdWorkout = ({
         </Box>
         <Box sx={{ paddingLeft: '40px', marginTop: '15px', marginBottom: '15px' }}>
         </Box>
-        <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
+        <Typography>Cool Down: {warmUpCoolDownTotals?.coolDown}</Typography>
       </Box> : <Typography sx={{ paddingLeft: '20px' }}>
         The math is not working, please adjust your yardage
       </Typography>}

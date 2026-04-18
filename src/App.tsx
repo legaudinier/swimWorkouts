@@ -241,15 +241,19 @@ function App() {
                   <EasyWorkout
                     yardage={yardage}
                     interval={interval}
+                    warmUpCoolDownTotals={warmUpCoolDownTotals}
+
                   />) :
                   workoutType === 'sprint' ?
                     (<SprintWorkout
                       yardage={yardage}
                       interval={interval}
+                      warmUpCoolDownTotals={warmUpCoolDownTotals}
                     />) : workoutType === 'threshold'
                     && (<ThresholdWorkout
                       yardage={yardage}
                       interval={interval}
+                      warmUpCoolDownTotals={warmUpCoolDownTotals}
                     />)
 
             }
