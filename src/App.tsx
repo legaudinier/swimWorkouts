@@ -9,6 +9,7 @@ import ThresholdWorkout from './workouts/thresholdWorkout';
 import EasyWorkout from './workouts/easyWorkout';
 import { Box, Typography } from "@mui/material";
 import AnimatedPool from './animatedPool';
+import ExportToExcel from './exportToExcel'
 
 function App() {
   const [workoutType, setWorkoutType] = useState("distance");
@@ -240,6 +241,7 @@ function App() {
         <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
         >Export to Excel</Button>
+        <ExportToExcel />
         {/* <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
         >Email Workout</Button> */}
