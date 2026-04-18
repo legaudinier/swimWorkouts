@@ -1,14 +1,15 @@
 
 import { Box, Typography } from "@mui/material";
-import { readableTime, calculateWarmUpCoolDown } from '../utilities'
+import { readableTime } from '../utilities'
 
 export type DistanceWorkoutType = {
     yardage: any
     interval: any
+    warmUpCoolDownTotals: any // fix this
 }
 
 const DistanceWorkout = ({
-    yardage, interval,
+    yardage, interval, warmUpCoolDownTotals
 }: DistanceWorkoutType) => {
 
     let maxDistance,
@@ -16,12 +17,9 @@ const DistanceWorkout = ({
         totalDistance,
         random_boolean,
         intervalTime,
-        wcYardage,
         errorMessage
 
-    const warmUpCoolDown = Math.floor(yardage * .35 / 100) * 100
-
-    yardage = yardage - warmUpCoolDown
+    yardage = warmUpCoolDownTotals.mainSetYardage
 
     if (yardage !== 0) {
         let count: number = 1
@@ -49,7 +47,6 @@ const DistanceWorkout = ({
 
         intervalTime = (maxDistance / 100) * (interval)
         totalDistance = maxDistance * rounds
-        wcYardage = calculateWarmUpCoolDown(warmUpCoolDown)
     }
 
     return (
@@ -67,7 +64,7 @@ const DistanceWorkout = ({
             </Typography>
             {!errorMessage ?
                 <Box sx={{ paddingLeft: '20px' }}>
-                    <Typography>Warm Up: {wcYardage?.warmUp}</Typography>
+                    <Typography>Warm Up: {warmUpCoolDownTotals?.warmUp}</Typography>
                     {/* <Box>Kick set?</Box> */}
                     <Typography sx={{ marginTop: '15px' }}>Main Set: {totalDistance} </Typography>
                     <Box sx={{ display: 'flex', paddingLeft: '40px', paddingTop: '10px', paddingBottom: '10px' }}>
@@ -84,7 +81,7 @@ const DistanceWorkout = ({
                             </Typography>
                         </Box>
                     </Box>
-                    <Typography>Cool Down: {wcYardage?.coolDown}</Typography>
+                    <Typography>Cool Down: {warmUpCoolDownTotals?.coolDown}</Typography>
                 </Box> : <Typography sx={{ paddingLeft: '20px' }}>
                     The math is not working, please adjust your yardage
                 </Typography>}

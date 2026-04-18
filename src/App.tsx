@@ -10,12 +10,14 @@ import EasyWorkout from './workouts/easyWorkout';
 import { Box, Typography } from "@mui/material";
 import AnimatedPool from './animatedPool';
 import ExportToExcel from './exportToExcel'
+import { warmUpCoolDownCalculations } from './utilities'
 
 function App() {
   const [workoutType, setWorkoutType] = useState("distance");
   const [yardage, setYardage] = useState(5000);
   const [interval, setInterval] = useState<any>(90);
   const [showWorkout, setShowWorkout] = useState(false)
+  const [warmUpCoolDownTotals, setWarmUpCoolDownTotals] = useState({})
 
   const workoutTypeChange = (event: any) => {
     setWorkoutType(event.target.value);
@@ -54,6 +56,22 @@ function App() {
   useEffect(() => {
     setShowWorkout(false)
   }, [workoutType, yardage, interval])
+
+  // need to move up some of the calculations here
+  // that way we can just filter it down and also use to excel
+
+  useEffect(() => {
+    let percentage
+
+    if (workoutType === 'distance' || workoutType === 'easy') {
+      percentage = .35
+    }
+    else {
+      percentage = .5
+    }
+    setWarmUpCoolDownTotals(warmUpCoolDownCalculations(yardage, percentage))
+
+  }, [workoutType, yardage])
 
   return (
     <Box sx={{
@@ -217,6 +235,7 @@ function App() {
                 <DistanceWorkout
                   yardage={yardage}
                   interval={interval}
+                  warmUpCoolDownTotals={warmUpCoolDownTotals}
                 />) :
                 workoutType === 'easy' ? (
                   <EasyWorkout
@@ -238,7 +257,7 @@ function App() {
         </Box>
       </Box>
       <Box sx={{ display: 'flex', marginLeft: '40px', marginRight: '40px', marginTop: '20px' }}>
-        <ExportToExcel workoutType={workoutType} interval={interval} totalYardage={yardage}/>
+        <ExportToExcel workoutType={workoutType} interval={interval} totalYardage={yardage} />
         {/* <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
         >Email Workout</Button> */}
