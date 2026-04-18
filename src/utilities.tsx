@@ -16,7 +16,6 @@ export const readableTime = (intervalTime: number, text: boolean) => {
 export const calculateWarmUpCoolDown = (warmUpCoolDownYardage: number, yardage: number) => {
 
     const warmUpYards = Math.floor(warmUpCoolDownYardage * .65 / 100) * 100
-    console.log('yardage', yardage)
 
     const warmCool: { mainSetYardage: number, warmUp: number, coolDown: number } = {
         mainSetYardage: yardage - warmUpYards - (warmUpCoolDownYardage - warmUpYards),
