@@ -5,7 +5,8 @@ import {getDrills, getBreathWorkPattern } from '../utilities'
 export type EasyWorkoutType = {
     yardage: any
     interval: any
-    warmUpCoolDownTotals: any // fix this
+    warmUpCoolDownTotals?: any // fix this
+    workoutDetails?: any
 }
 
 const EasyWorkout = ({
