@@ -70,11 +70,18 @@ export const warmUpCoolDownCalculations = (
     const warmUpYardage = Math.floor(warmUpCoolDownYardage * .65 / 100) * 100
     const coolDownYardage = warmUpCoolDownYardage - warmUpYardage
     const mainSetYardage = yardage - warmUpYardage - (warmUpCoolDownYardage - warmUpYardage)
+    let mainSetDetails
 
-    // different type workouts called here
-    // switch to decide which one to call
-    const mainSetDetails = distanceWorkoutDetails(mainSetYardage, interval)
-
+    switch (workoutType) {
+        case 'distance':
+            mainSetDetails = distanceWorkoutDetails(mainSetYardage, interval)
+            break;
+        case 'sprint':
+            mainSetDetails = sprintWorkoutDetails(mainSetYardage)
+            break;
+        default:
+        // Code to execute if no cases match
+    }
     const warmCool: { mainSetYardage: number, warmUp: number, coolDown: number, mainSetDetails: any } = {
         mainSetYardage: mainSetYardage,
         warmUp: warmUpYardage,
@@ -121,9 +128,9 @@ const distanceWorkoutDetails = (mainSetYardage: number, interval: number) => {
         totalDistance = maxDistance * rounds
 
         const mainSetDetails: {
-            rounds: number, 
+            rounds: number,
             mainSetYardage: number,
-            maxDistance: number, 
+            maxDistance: number,
             intervalTime: number,
             errorMessage: boolean,
             totalDistance: number
@@ -139,3 +146,62 @@ const distanceWorkoutDetails = (mainSetYardage: number, interval: number) => {
         return mainSetDetails
     }
 }
+
+const sprintWorkoutDetails = (mainSetYardage: number) => {
+    let sprintDistancePerRoundTotal,
+        easyDistance,
+        sprintRounds,
+        rounds,
+        sprintYardagePercentage,
+        sprintYardage,
+        easyYardage,
+        sprintDistance,
+        errorMessage
+
+    if (mainSetYardage !== 0) {
+        let count: number = 1
+
+        while (true) {
+
+            rounds = ((Math.floor((Math.random() * 10) + 5) * 1))
+            sprintRounds = ((Math.floor((Math.random() * 6) + 1) * 1))
+
+            sprintYardagePercentage = ((Math.floor((Math.random() * 3) + 5) / 10))
+            sprintYardage = mainSetYardage * sprintYardagePercentage
+            easyYardage = mainSetYardage - sprintYardage
+
+            sprintDistancePerRoundTotal = sprintYardage / rounds
+            sprintDistance = sprintDistancePerRoundTotal / sprintRounds
+            easyDistance = easyYardage / rounds
+            count = count + 1
+
+            if ((sprintDistance % 50 === 0 && easyDistance % 50 === 0) || count === 150) {
+                if (count === 150) {
+                    console.log('Something is wrong, fix it on your end.')
+                    errorMessage = true
+                    break;
+                }
+                else { errorMessage = false }
+                break;
+            }
+        }
+
+        const mainSetDetails: {
+            rounds: number,
+            sprintRounds: number,
+            sprintDistance: number,
+            easyDistance: number,
+            errorMessage: boolean,
+        } = {
+            rounds: rounds,
+            sprintRounds: sprintRounds,
+            sprintDistance: sprintDistance,
+            easyDistance: easyDistance,
+            errorMessage: errorMessage,
+        };
+
+        return mainSetDetails
+    }
+}
+
+

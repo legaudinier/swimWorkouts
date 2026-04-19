@@ -245,7 +245,6 @@ function App() {
                   />) :
                   workoutType === 'sprint' ?
                     (<SprintWorkout
-                      yardage={yardage}
                       interval={interval}
                       workoutDetails={workoutDetails}
                     />) : workoutType === 'threshold'
