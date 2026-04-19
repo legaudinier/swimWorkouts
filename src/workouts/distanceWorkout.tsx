@@ -3,51 +3,11 @@ import { Box, Typography } from "@mui/material";
 import { readableTime } from '../utilities'
 
 export type DistanceWorkoutType = {
-    yardage: any
     interval: any
-    workoutDetails: any // fix this
+    workoutDetails: any
 }
 
-const DistanceWorkout = ({
-    yardage, interval, workoutDetails
-}: DistanceWorkoutType) => {
-
-    let maxDistance,
-        rounds,
-        totalDistance,
-        random_boolean,
-        intervalTime,
-        errorMessage
-
-    yardage = workoutDetails.mainSetYardage
-
-    if (yardage !== 0) {
-        let count: number = 1
-
-        while (true) {
-            random_boolean = Math.random() < 0.5; // make some sets have 50s
-            maxDistance = ((Math.floor((Math.random() * 7) + 1) * 100))
-            if (random_boolean) {
-                maxDistance = maxDistance + 50
-            }
-
-            rounds = yardage / maxDistance
-
-            count = count + 1
-            if (rounds % 1 === 0 || count === 150) {
-                if (count === 150) {
-                    console.log('Something is wrong, fix it on your end.')
-                    errorMessage = true
-                    break;
-                }
-                errorMessage = false
-                break;
-            }
-        }
-
-        intervalTime = (maxDistance / 100) * (interval)
-        totalDistance = maxDistance * rounds
-    }
+const DistanceWorkout = ({interval, workoutDetails}: DistanceWorkoutType) => {
 
     return (
         <Box sx={{ paddingBottom: '20px' }}>
@@ -62,19 +22,19 @@ const DistanceWorkout = ({
             }}>
                 Distance Work Out
             </Typography>
-            {!errorMessage ?
+            {!workoutDetails.mainSetDetails.errorMessage ?
                 <Box sx={{ paddingLeft: '20px' }}>
                     <Typography>Warm Up: {workoutDetails?.warmUp}</Typography>
                     {/* <Box>Kick set?</Box> */}
-                    <Typography sx={{ marginTop: '15px' }}>Main Set: {totalDistance} </Typography>
+                    <Typography sx={{ marginTop: '15px' }}>Main Set: {workoutDetails.mainSetDetails.totalDistance} </Typography>
                     <Box sx={{ display: 'flex', paddingLeft: '40px', paddingTop: '10px', paddingBottom: '10px' }}>
                         <Typography sx={{
                             paddingRight: '10px', display: 'flex',
                             alignItems: 'center'
-                        }}>{rounds} x</Typography>
+                        }}>{workoutDetails.mainSetDetails.rounds} x</Typography>
                         <Box sx={{ paddingLeft: '10px', borderLeft: '1px solid' }}>
-                            <Typography>{maxDistance} on the&nbsp;
-                                {intervalTime !== undefined && readableTime(intervalTime, false)
+                            <Typography>{workoutDetails.mainSetDetails.maxDistance} on the&nbsp;
+                                {workoutDetails.mainSetDetails.intervalTime !== undefined && readableTime(workoutDetails.mainSetDetails.intervalTime, false)
                                 }</Typography>
                             <Typography sx={{ fontStyle: 'italic', paddingLeft: '20px' }}>
                                 Pace: {readableTime((interval), false)} per 100

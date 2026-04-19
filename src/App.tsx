@@ -69,7 +69,7 @@ function App() {
     else {
       percentage = .5
     }
-    setWorkoutDetails(warmUpCoolDownCalculations(yardage, percentage))
+    setWorkoutDetails(warmUpCoolDownCalculations(yardage, percentage, workoutType, interval))
 
   }, [workoutType, yardage])
 
@@ -233,7 +233,6 @@ function App() {
             {!showWorkout ? <></> :
               workoutType === 'distance' ? (
                 <DistanceWorkout
-                  yardage={yardage}
                   interval={interval}
                   workoutDetails={workoutDetails}
                 />) :

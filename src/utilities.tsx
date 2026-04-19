@@ -60,18 +60,82 @@ export const calculateTime = (time: string | number, offset: number) => {
     return convertedTime;
 }
 
-export const warmUpCoolDownCalculations = (yardage: number, percentage: number) => {
+export const warmUpCoolDownCalculations = (
+    yardage: number,
+    percentage: number,
+    workoutType: string,
+    interval: number) => {
     const warmUpCoolDownYardage = Math.floor(yardage * percentage / 100) * 100
 
     const warmUpYardage = Math.floor(warmUpCoolDownYardage * .65 / 100) * 100
     const coolDownYardage = warmUpCoolDownYardage - warmUpYardage
     const mainSetYardage = yardage - warmUpYardage - (warmUpCoolDownYardage - warmUpYardage)
 
-    const warmCool: { mainSetYardage: number, warmUp: number, coolDown: number } = {
+    // different type workouts called here
+    // switch to decide which one to call
+    const mainSetDetails = distanceWorkoutDetails(mainSetYardage, interval)
+
+    const warmCool: { mainSetYardage: number, warmUp: number, coolDown: number, mainSetDetails: any } = {
         mainSetYardage: mainSetYardage,
         warmUp: warmUpYardage,
-        coolDown: coolDownYardage
+        coolDown: coolDownYardage,
+        mainSetDetails: mainSetDetails
     };
 
     return warmCool
+}
+
+const distanceWorkoutDetails = (mainSetYardage: number, interval: number) => {
+    let maxDistance,
+        rounds,
+        totalDistance,
+        random_boolean,
+        intervalTime,
+        errorMessage
+
+    if (mainSetYardage !== 0) {
+        let count: number = 1
+
+        while (true) {
+            random_boolean = Math.random() < 0.5; // make some sets have 50s
+            maxDistance = ((Math.floor((Math.random() * 7) + 1) * 100))
+            if (random_boolean) {
+                maxDistance = maxDistance + 50
+            }
+
+            rounds = mainSetYardage / maxDistance
+
+            count = count + 1
+            if (rounds % 1 === 0 || count === 150) {
+                if (count === 150) {
+                    console.log('Something is wrong, fix it on your end.')
+                    errorMessage = true
+                    break;
+                }
+                errorMessage = false
+                break;
+            }
+        }
+
+        intervalTime = (maxDistance / 100) * (interval)
+        totalDistance = maxDistance * rounds
+
+        const mainSetDetails: {
+            rounds: number, 
+            mainSetYardage: number,
+            maxDistance: number, 
+            intervalTime: number,
+            errorMessage: boolean,
+            totalDistance: number
+        } = {
+            rounds: rounds,
+            mainSetYardage: mainSetYardage,
+            maxDistance: maxDistance,
+            intervalTime: intervalTime,
+            errorMessage: errorMessage,
+            totalDistance: totalDistance
+        };
+
+        return mainSetDetails
+    }
 }
