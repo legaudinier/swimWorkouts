@@ -17,7 +17,7 @@ function App() {
   const [yardage, setYardage] = useState(5000);
   const [interval, setInterval] = useState<any>(90);
   const [showWorkout, setShowWorkout] = useState(false)
-  const [warmUpCoolDownTotals, setWarmUpCoolDownTotals] = useState({})
+  const [workoutDetails, setWorkoutDetails] = useState({})
 
   const workoutTypeChange = (event: any) => {
     setWorkoutType(event.target.value);
@@ -69,7 +69,7 @@ function App() {
     else {
       percentage = .5
     }
-    setWarmUpCoolDownTotals(warmUpCoolDownCalculations(yardage, percentage))
+    setWorkoutDetails(warmUpCoolDownCalculations(yardage, percentage))
 
   }, [workoutType, yardage])
 
@@ -235,25 +235,25 @@ function App() {
                 <DistanceWorkout
                   yardage={yardage}
                   interval={interval}
-                  warmUpCoolDownTotals={warmUpCoolDownTotals}
+                  workoutDetails={workoutDetails}
                 />) :
                 workoutType === 'easy' ? (
                   <EasyWorkout
                     yardage={yardage}
                     interval={interval}
-                    warmUpCoolDownTotals={warmUpCoolDownTotals}
+                    workoutDetails={workoutDetails}
 
                   />) :
                   workoutType === 'sprint' ?
                     (<SprintWorkout
                       yardage={yardage}
                       interval={interval}
-                      warmUpCoolDownTotals={warmUpCoolDownTotals}
+                      workoutDetails={workoutDetails}
                     />) : workoutType === 'threshold'
                     && (<ThresholdWorkout
                       yardage={yardage}
                       interval={interval}
-                      warmUpCoolDownTotals={warmUpCoolDownTotals}
+                      workoutDetails={workoutDetails}
                     />)
 
             }
@@ -261,7 +261,7 @@ function App() {
         </Box>
       </Box>
       <Box sx={{ display: 'flex', marginLeft: '40px', marginRight: '40px', marginTop: '20px' }}>
-        <ExportToExcel workoutType={workoutType} interval={interval} totalYardage={warmUpCoolDownTotals} />
+        <ExportToExcel workoutType={workoutType} interval={interval} totalYardage={workoutDetails} />
         {/* <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
         >Email Workout</Button> */}

@@ -5,11 +5,11 @@ import { readableTime } from '../utilities'
 export type DistanceWorkoutType = {
     yardage: any
     interval: any
-    warmUpCoolDownTotals: any // fix this
+    workoutDetails: any // fix this
 }
 
 const DistanceWorkout = ({
-    yardage, interval, warmUpCoolDownTotals
+    yardage, interval, workoutDetails
 }: DistanceWorkoutType) => {
 
     let maxDistance,
@@ -19,7 +19,7 @@ const DistanceWorkout = ({
         intervalTime,
         errorMessage
 
-    yardage = warmUpCoolDownTotals.mainSetYardage
+    yardage = workoutDetails.mainSetYardage
 
     if (yardage !== 0) {
         let count: number = 1
@@ -64,7 +64,7 @@ const DistanceWorkout = ({
             </Typography>
             {!errorMessage ?
                 <Box sx={{ paddingLeft: '20px' }}>
-                    <Typography>Warm Up: {warmUpCoolDownTotals?.warmUp}</Typography>
+                    <Typography>Warm Up: {workoutDetails?.warmUp}</Typography>
                     {/* <Box>Kick set?</Box> */}
                     <Typography sx={{ marginTop: '15px' }}>Main Set: {totalDistance} </Typography>
                     <Box sx={{ display: 'flex', paddingLeft: '40px', paddingTop: '10px', paddingBottom: '10px' }}>
@@ -81,7 +81,7 @@ const DistanceWorkout = ({
                             </Typography>
                         </Box>
                     </Box>
-                    <Typography>Cool Down: {warmUpCoolDownTotals?.coolDown}</Typography>
+                    <Typography>Cool Down: {workoutDetails?.coolDown}</Typography>
                 </Box> : <Typography sx={{ paddingLeft: '20px' }}>
                     The math is not working, please adjust your yardage
                 </Typography>}

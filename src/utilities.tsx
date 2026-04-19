@@ -13,19 +13,6 @@ export const readableTime = (intervalTime: number, text: boolean) => {
         return `${hours !== 0 ? `${hours}:` : ''}${minutes}:${seconds < 10 ? seconds + '0' : seconds}`
 }
 
-export const calculateWarmUpCoolDown = (warmUpCoolDownYardage: number, yardage: number) => {
-
-    const warmUpYards = Math.floor(warmUpCoolDownYardage * .65 / 100) * 100
-
-    const warmCool: { mainSetYardage: number, warmUp: number, coolDown: number } = {
-        mainSetYardage: yardage - warmUpYards - (warmUpCoolDownYardage - warmUpYards),
-        warmUp: warmUpYards,
-        coolDown: warmUpCoolDownYardage - warmUpYards
-    };
-
-    return warmCool;
-}
-
 export const getDrills = (amount: number) => {
     let drills =
         ['Catch Up',
@@ -74,7 +61,17 @@ export const calculateTime = (time: string | number, offset: number) => {
 }
 
 export const warmUpCoolDownCalculations = (yardage: number, percentage: number) => {
-    const warmUpCoolDown = Math.floor(yardage * percentage / 100) * 100
+    const warmUpCoolDownYardage = Math.floor(yardage * percentage / 100) * 100
 
-    return calculateWarmUpCoolDown(warmUpCoolDown, yardage)
+    const warmUpYardage = Math.floor(warmUpCoolDownYardage * .65 / 100) * 100
+    const coolDownYardage = warmUpCoolDownYardage - warmUpYardage
+    const mainSetYardage = yardage - warmUpYardage - (warmUpCoolDownYardage - warmUpYardage)
+
+    const warmCool: { mainSetYardage: number, warmUp: number, coolDown: number } = {
+        mainSetYardage: mainSetYardage,
+        warmUp: warmUpYardage,
+        coolDown: coolDownYardage
+    };
+
+    return warmCool
 }

@@ -21,13 +21,7 @@ const ExportToExcel = ({ workoutType, interval, totalYardage }: ExcelExportType)
     let workbookName = "Swim Workout.xlsx";
     let worksheetName = `${workoutType} Workout - ${new Date().toISOString().slice(0, 10)}`;
 
-    let ws = wb.addWorksheet(worksheetName,
-      {
-        properties: {
-          tabColor: { argb: 'FFFF0000' }
-        }
-      }
-    );
+    let ws = wb.addWorksheet(worksheetName);
 
     ws.getCell('A1').value = `Workout Type: ${workoutType}`;
     ws.getCell('A2').value =
@@ -40,6 +34,8 @@ const ExportToExcel = ({ workoutType, interval, totalYardage }: ExcelExportType)
     ws.getCell('A7').value = `Main set: ${totalYardage.mainSetYardage}`;
 
     ws.getCell('A9').value = `Warm down: ${totalYardage.coolDown}`;
+
+    //  text-transform: capitalize;
 
 
     wb.xlsx.writeBuffer()
