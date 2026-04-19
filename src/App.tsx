@@ -238,10 +238,7 @@ function App() {
                 />) :
                 workoutType === 'easy' ? (
                   <EasyWorkout
-                    yardage={yardage}
-                    interval={interval}
                     workoutDetails={workoutDetails}
-
                   />) :
                   workoutType === 'sprint' ?
                     (<SprintWorkout
