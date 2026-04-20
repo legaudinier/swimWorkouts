@@ -20,12 +20,11 @@ const ExportToExcel = ({ workoutType, interval, workoutDetails }: ExcelExportTyp
 
     let wb = new ExcelJS.Workbook();
     let workbookName = "Swim Workout.xlsx";
-    let worksheetName = `${workoutType} Workout - ${new Date().toISOString().slice(0, 10)}`;
     const capitalizedWorkoutType = workoutType.charAt(0).toUpperCase() + workoutType.slice(1)
 
-    let ws = wb.addWorksheet(worksheetName);
+    let ws = wb.addWorksheet(`${workoutType} Workout - ${new Date().toISOString().slice(0, 10)}`, { views: [{ showGridLines: false }] });
 
-    ws.getCell('A1').value = `Workout Type: ${capitalizedWorkoutType}`;
+    ws.getCell('A1').value = `${capitalizedWorkoutType} Workout`;
     ws.getCell('A3').value =
       `Total Yardage: ${workoutDetails.warmUp + workoutDetails.mainSetYardage + workoutDetails.coolDown}`;
 
@@ -37,10 +36,26 @@ const ExportToExcel = ({ workoutType, interval, workoutDetails }: ExcelExportTyp
         ` ${workoutDetails.mainSetDetails.rounds} x ${workoutDetails.mainSetDetails.maxDistance} on the ${readableTime(workoutDetails.mainSetDetails.intervalTime, false)}`;
       ws.getCell('B9').value = `Pace: ${readableTime((interval), false)} per 100`;
     }
+    else if (workoutType === 'sprint') {
+
+      ws.getCell('A8').value = `${workoutDetails.mainSetDetails.rounds} x `;
+      ws.getCell('C8').value =
+        ` ${workoutDetails.mainSetDetails.sprintRounds} x ${workoutDetails.mainSetDetails.sprintDistance} on the ${readableTime((interval * workoutDetails.mainSetDetails.sprintDistance / 100), false)}`;
+      ws.getCell('C9').value = `${workoutDetails.mainSetDetails.easyDistance} easy`;
+      ws.mergeCells('A8:A9');
+
+      ws.getCell('A8').alignment = {
+        vertical: 'middle', horizontal: 'center'
+      };
+
+      ws.getCell('A8').border = {
+        right: { style: 'thin' }
+      };
+
+    }
 
     ws.getCell('A11').value = `Warm down: ${workoutDetails.coolDown}`;
 
-    //  text-transform: capitalize;
     // STYLING
 
     ws.getCell('A1').fill = {
@@ -49,13 +64,19 @@ const ExportToExcel = ({ workoutType, interval, workoutDetails }: ExcelExportTyp
       fgColor: { argb: '7d34eb' }
     };
 
+    ws.getCell('A1').font = {
+      family: 2,
+      size: 14,
+      bold: true
+    };
+
+    ws.getCell('A1').alignment = {
+      vertical: 'middle', horizontal: 'center'
+    };
+
+
     ws.mergeCells('A1:E1');
-    ws.mergeCells('A3:E3');
-    ws.mergeCells('A5:E5');
-    ws.mergeCells('A7:E7');
-    ws.mergeCells('B8:E8');
-    ws.mergeCells('B9:E9');
-    ws.mergeCells('A11:E11');
+
 
 
     wb.xlsx.writeBuffer()
