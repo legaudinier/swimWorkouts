@@ -1,3 +1,5 @@
+import {getDrills, getBreathWorkPattern} from '../utilities'
+
 export const easyWorkoutDetails = (mainSetYardage: number) => {
     let kickPercentage,
         kickDistance,

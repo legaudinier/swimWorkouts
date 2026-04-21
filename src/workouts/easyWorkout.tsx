@@ -32,7 +32,6 @@ const EasyWorkout = ({
                             {workoutDetails.mainSetDetails.drills?.map(
                                 (drill: string, index: number) => {
                                     return (
-                                        // fix the spacing
                                         <Box sx={{ height: '24px' }} key={`${drill.replace(/ /g, '')}
                                     ${index}`}>&nbsp;</Box>
                                     )
