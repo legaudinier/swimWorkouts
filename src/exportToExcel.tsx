@@ -7,15 +7,10 @@ export type ExcelExportType = {
   workoutType: any
   interval: any
   workoutDetails: any
+  disableButton: boolean
 }
 
-// total yardage
-// interval
-// warm up
-// main set
-// cool down 
-
-const ExportToExcel = ({ workoutType, interval, workoutDetails }: ExcelExportType) => {
+const ExportToExcel = ({ workoutType, interval, workoutDetails, disableButton }: ExcelExportType) => {
   const RunExcelJSExport = () => {
 
     let wb = new ExcelJS.Workbook();
@@ -102,23 +97,9 @@ const ExportToExcel = ({ workoutType, interval, workoutDetails }: ExcelExportTyp
 
       ws.getCell('A14').value = `Warm down: ${workoutDetails.coolDown}`;
 
-
-      // kickDistance: kickDistance,
-      // kickRounds: kickRounds,
-      // pullDistance: pullDistance,
-      // pullRounds: pullRounds,
-      // drillDistance: drillDistance,
-      // drillRounds: drillRounds,
-      // drills: drills,
-      // breathDistance: breathDistance,
-      // breathRounds: breathRounds,
-      // breathWorkoutPattern: breathWorkoutPattern,
-      // breathWorkPatternText: breathWorkPatternText,
-      // errorMessage: errorMessage
-
     }
 
-    // STYLING
+    // General Styling
 
     ws.getCell('A1').fill = {
       type: 'pattern',
@@ -136,10 +117,7 @@ const ExportToExcel = ({ workoutType, interval, workoutDetails }: ExcelExportTyp
       vertical: 'middle', horizontal: 'center'
     };
 
-
     ws.mergeCells('A1:E1');
-
-
 
     wb.xlsx.writeBuffer()
       .then(function (buffer) {
@@ -149,9 +127,10 @@ const ExportToExcel = ({ workoutType, interval, workoutDetails }: ExcelExportTyp
         );
       });
   }
+  console.log('disableButton', disableButton)
 
   return (
-    <Button variant="outlined"
+    <Button variant="outlined" disabled={!disableButton}
       sx={{ width: '100%', color: '#7d34eb' }} onClick={() => RunExcelJSExport()}>
       Export To Excel</Button>
   );

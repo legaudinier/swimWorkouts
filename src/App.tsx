@@ -14,10 +14,11 @@ import { warmUpCoolDownCalculations } from './utilities'
 
 function App() {
   const [workoutType, setWorkoutType] = useState("distance");
-  const [yardage, setYardage] = useState(5000);
+  const [yardage, setYardage] = useState(4000);
   const [interval, setInterval] = useState<any>(90);
   const [showWorkout, setShowWorkout] = useState(false)
   const [workoutDetails, setWorkoutDetails] = useState({})
+  const [generateText, setGenerateText] = useState('Generate')
 
   const workoutTypeChange = (event: any) => {
     setWorkoutType(event.target.value);
@@ -48,17 +49,16 @@ function App() {
   }
 
   const generate = () => {
-    /// we need to send the info on this click
-    // ability to re-generate with all the same info
+    // Re-generate with all the same info
+
+    setGenerateText('Re-Generate')
     setShowWorkout(true)
   }
 
   useEffect(() => {
     setShowWorkout(false)
+    setGenerateText('Generate')
   }, [workoutType, yardage, interval])
-
-  // need to move up some of the calculations here
-  // that way we can just filter it down and also use to excel
 
   useEffect(() => {
     let percentage
@@ -218,7 +218,7 @@ function App() {
               width: '100%'
 
             }}
-            onClick={() => generate()}>Generate</Button>
+            onClick={() => generate()}>{generateText}</Button>
         </Box>
 
         <Box sx={{
@@ -256,7 +256,7 @@ function App() {
         </Box>
       </Box>
       <Box sx={{ display: 'flex', marginLeft: '40px', marginRight: '40px', marginTop: '20px' }}>
-        <ExportToExcel workoutType={workoutType} interval={interval} workoutDetails={workoutDetails} />
+        <ExportToExcel workoutType={workoutType} interval={interval} workoutDetails={workoutDetails} disableButton={showWorkout}/>
         {/* <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
         >Email Workout</Button> */}

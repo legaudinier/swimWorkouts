@@ -8,6 +8,7 @@ export type DistanceWorkoutType = {
 }
 
 const DistanceWorkout = ({interval, workoutDetails}: DistanceWorkoutType) => {
+    console.log('helloo')
 
     return (
         <Box sx={{ paddingBottom: '20px' }}>

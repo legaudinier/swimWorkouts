@@ -9,10 +9,9 @@
 
 ## Future Work
 - Ability to re-generate with all the same input
-- Export to excel so you can print out your workout and take it with you
 - Kicks and drills in warm up
 - Time workout vs distance, like you have an hour, let's give you a workout based on intervals
-- Testing
+- Testing - jest?
 - Save favorite workouts
 - More complicated workouts (IM/stroke, more varied sets)
 - Pool length (scy, scm, lcm)
