@@ -127,7 +127,6 @@ const ExportToExcel = ({ workoutType, interval, workoutDetails, disableButton }:
         );
       });
   }
-  console.log('disableButton', disableButton)
 
   return (
     <Button variant="outlined" disabled={!disableButton}
