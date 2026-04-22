@@ -19,6 +19,7 @@ function App() {
   const [showWorkout, setShowWorkout] = useState(false)
   const [workoutDetails, setWorkoutDetails] = useState({})
   const [generateText, setGenerateText] = useState('Generate')
+  const [regenerate, setRegenerate] = useState(false)
 
   const workoutTypeChange = (event: any) => {
     setWorkoutType(event.target.value);
@@ -52,12 +53,14 @@ function App() {
     // Re-generate with all the same info
 
     setGenerateText('Re-Generate')
+    setRegenerate(!regenerate)
     setShowWorkout(true)
   }
 
   useEffect(() => {
     setShowWorkout(false)
     setGenerateText('Generate')
+    setRegenerate(!regenerate)
   }, [workoutType, yardage, interval])
 
   useEffect(() => {
@@ -71,7 +74,7 @@ function App() {
     }
     setWorkoutDetails(warmUpCoolDownCalculations(yardage, percentage, workoutType, interval))
 
-  }, [workoutType, yardage])
+  }, [workoutType, yardage, regenerate])
 
   return (
     <Box sx={{

@@ -8,7 +8,6 @@
 - Threshold
 
 ## Future Work
-- Ability to re-generate with all the same input
 - Kicks and drills in warm up
 - Time workout vs distance, like you have an hour, let's give you a workout based on intervals
 - Testing - jest?
