@@ -11,7 +11,7 @@ export const distanceWorkoutDetails = (mainSetYardage: number, interval: number)
 
         while (true) {
             random_boolean = Math.random() < 0.5; // make some sets have 50s
-            maxDistance = ((Math.floor((Math.random() * 7) + 1) * 100))
+            maxDistance = ((Math.floor((Math.random() * 8) + 1) * 100))
             if (random_boolean) {
                 maxDistance = maxDistance + 50
             }
