@@ -21,6 +21,35 @@ function App() {
   const [generateText, setGenerateText] = useState('Generate')
   const [regenerate, setRegenerate] = useState(false)
 
+  // const addItem = async (e: any) => {
+  //   e.preventDefault()
+  //   try {
+  //     await fetch(`/api/${encodeURIComponent('Swim')}`, {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({})
+  //     })
+  //   } catch (err) {
+  //     console.error('Failed to add item:', err)
+  //   }
+  // }
+
+  const addItem = async (e: any) => {
+    e.preventDefault()
+    try {
+      await fetch(`/api/items/${encodeURIComponent('Swim')}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({})
+      })
+      // setNewText('')
+      // setNewNotes('')
+      // fetchItems()
+    } catch (err) {
+      console.error('Failed to add item:', err)
+    }
+  }
+
   const workoutTypeChange = (event: any) => {
     setWorkoutType(event.target.value);
   };
@@ -260,9 +289,10 @@ function App() {
       </Box>
       <Box sx={{ display: 'flex', marginLeft: '40px', marginRight: '40px', marginTop: '20px' }}>
         <ExportToExcel workoutType={workoutType} interval={interval} workoutDetails={workoutDetails} disableButton={showWorkout} />
-        {/* <Button variant="outlined"
+        <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
-        >Email Workout</Button> */}
+          onClick={addItem}
+        >Save Workout</Button>
       </Box>
       <Box sx={{ marginTop: '20px' }}>
         <AnimatedPool />
