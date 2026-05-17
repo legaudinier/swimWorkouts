@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import FormControl from '@mui/material/FormControl';
@@ -20,35 +20,18 @@ function App() {
   const [workoutDetails, setWorkoutDetails] = useState({})
   const [generateText, setGenerateText] = useState('Generate')
   const [regenerate, setRegenerate] = useState(false)
+  const [activeTab, setActiveTab] = useState('To Do')
+  const [loading, setLoading] = useState(false)
+  const [items, setItems] = useState([])
+  const [message, setMessage] = useState("");
 
-  // const addItem = async (e: any) => {
-  //   e.preventDefault()
-  //   try {
-  //     await fetch(`/api/${encodeURIComponent('Swim')}`, {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({})
-  //     })
-  //   } catch (err) {
-  //     console.error('Failed to add item:', err)
-  //   }
-  // }
 
-  const addItem = async (e: any) => {
-    e.preventDefault()
-    try {
-      await fetch(`/api/items/${encodeURIComponent('Swim')}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({})
-      })
-      // setNewText('')
-      // setNewNotes('')
-      // fetchItems()
-    } catch (err) {
-      console.error('Failed to add item:', err)
-    }
-  }
+   useEffect(() => {
+    fetch("http://localhost:5000/api")
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message));
+  }, []);
+
 
   const workoutTypeChange = (event: any) => {
     setWorkoutType(event.target.value);
@@ -141,6 +124,7 @@ function App() {
             paddingTop: '10px',
             paddingBottom: '10px',
           }}>Swim Workout Generator</Typography>
+          <p>{message}</p>
           <Box sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -291,7 +275,7 @@ function App() {
         <ExportToExcel workoutType={workoutType} interval={interval} workoutDetails={workoutDetails} disableButton={showWorkout} />
         <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
-          onClick={addItem}
+          // onClick={addItem}
         >Save Workout</Button>
       </Box>
       <Box sx={{ marginTop: '20px' }}>
