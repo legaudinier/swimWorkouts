@@ -12,6 +12,8 @@ import AnimatedPool from './animatedPool';
 import ExportToExcel from './exportToExcel'
 import { warmUpCoolDownCalculations } from './utilities'
 
+const API_URL = 'http://localhost:3001/api/todos'
+
 function App() {
   const [workoutType, setWorkoutType] = useState("distance");
   const [yardage, setYardage] = useState(4000);
@@ -26,11 +28,32 @@ function App() {
   const [message, setMessage] = useState("");
 
 
-   useEffect(() => {
-    fetch("http://localhost:5000/api")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:3001/api")
+  //     .then((res) => res.json())
+  //     .then((data) => setMessage(data.message));
+  // }, []);
+
+  const fetchTodos = useCallback(async () => {
+    try {
+      const res = await fetch(API_URL)
+      if (res.ok) {
+        console.log('res', res)
+
+        const data = await res.json()
+
+        setItems(data)
+      }
+    } catch {
+      console.error('Could not reach todo server')
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchTodos()
+  }, [fetchTodos])
 
 
   const workoutTypeChange = (event: any) => {
@@ -87,6 +110,8 @@ function App() {
     setWorkoutDetails(warmUpCoolDownCalculations(yardage, percentage, workoutType, interval))
 
   }, [workoutType, yardage, regenerate])
+
+  console.log('items', items)
 
   return (
     <Box sx={{
@@ -275,7 +300,7 @@ function App() {
         <ExportToExcel workoutType={workoutType} interval={interval} workoutDetails={workoutDetails} disableButton={showWorkout} />
         <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
-          // onClick={addItem}
+        // onClick={addItem}
         >Save Workout</Button>
       </Box>
       <Box sx={{ marginTop: '20px' }}>
