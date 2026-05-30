@@ -12,6 +12,8 @@ import AnimatedPool from './animatedPool';
 import ExportToExcel from './exportToExcel'
 import { warmUpCoolDownCalculations } from './utilities'
 
+const API_URL = 'http://localhost:3001/api/todos'
+
 function App() {
   const [workoutType, setWorkoutType] = useState("distance");
   const [yardage, setYardage] = useState(4000);
@@ -27,10 +29,32 @@ function App() {
 
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/getWorkouts")
+    fetch("http://localhost:3001/api/lindsaydumbtest")
       .then((res) => res.json())
       .then((data) => setMessage(data));
   }, []);
+
+  const fetchTodos = useCallback(async () => {
+    try {
+      const res = await fetch(API_URL)
+      if (res.ok) {
+        console.log('res', res)
+
+        const data = await res.json()
+
+        setItems(data)
+      }
+    } catch {
+      console.error('Could not reach todo server')
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchTodos()
+  }, [fetchTodos])
+
 
   const workoutTypeChange = (event: any) => {
     setWorkoutType(event.target.value);
