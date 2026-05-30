@@ -19,24 +19,29 @@ app.get("/api", (req, res) => {
 // needs to read the spreadsheet
 // return the spreadsheet
 app.get("/api/workouts", (req, res) => {
+  if (!existsSync(FILE_PATH)) {
+    app.listen(console.log(`exist sync got fired`));
+    return []
+  }
+
+
+
   res.json({ message: "Hello from Express backend! DUMB TEST" });
 });
 
 function readTodos() {
   if (!existsSync(FILE_PATH)) {
-    app.listen(console.log(`exist sync got fired`));
-
+    app.listen(console.log(`exist sync got fired`))
     return []
   }
   const workbook = XLSX.readFile(FILE_PATH)
   const sheet = workbook.Sheets[workbook.SheetNames[0]]
-  if (!sheet) return []
-  const rows = XLSX.utils.sheet_to_json(sheet)
-  return rows.map((row) => ({
-    id: row.id,
-    label: row.label,
-    done: row.done === true || row.done === 'true',
-  }))
+  return workbook
+  // if (!sheet) return []
+  // const rows = XLSX.utils.sheet_to_json(sheet)
+  // return rows.map((row) => ({
+  //   id: row.id
+  // }))
 }
 
 function writeTodos(todos) {
@@ -49,8 +54,9 @@ function writeTodos(todos) {
 // GET all todos
 app.get('/api/todos', (_req, res) => {
   const todos = readTodos()
-  app.listen(PORT, () => console.log(`In the get`));
-  res.json(todos)
+  // res.json(todos)
+  res.json({ message: "Hello from Express backend! To dos again" });
+
 })
 
 // POST a new todo

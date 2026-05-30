@@ -12,7 +12,7 @@ import AnimatedPool from './animatedPool';
 import ExportToExcel from './exportToExcel'
 import { warmUpCoolDownCalculations } from './utilities'
 
-const API_URL = 'http://localhost:3001/api/todos'
+const API_URL = 'http://localhost:3001/api/workouts'
 
 function App() {
   const [workoutType, setWorkoutType] = useState("distance");
@@ -29,7 +29,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/lindsaydumbtest")
+    fetch("http://localhost:3001/api/workouts")
       .then((res) => res.json())
       .then((data) => setMessage(data));
   }, []);
