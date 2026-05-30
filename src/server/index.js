@@ -29,7 +29,11 @@ app.get("/api/workouts", (req, res) => {
 
   const rows = XLSX.utils.sheet_to_json(sheet)
   const rowsData = rows.map((row) => ({
-    id: row.id
+    id: row.id,
+    totalYardage: row.totalYardage,
+    warmUp: row.warmUp,
+    mainSet: row.mainSet,
+    coolDown: row.coolDown
   }))
 
 
@@ -44,11 +48,11 @@ function readTodos() {
   const workbook = XLSX.readFile(FILE_PATH)
   const sheet = workbook.Sheets[workbook.SheetNames[0]]
   return workbook
-  // if (!sheet) return []
-  // const rows = XLSX.utils.sheet_to_json(sheet)
-  // return rows.map((row) => ({
-  //   id: row.id
-  // }))
+  if (!sheet) return []
+  const rows = XLSX.utils.sheet_to_json(sheet)
+  return rows.map((row) => ({
+    id: row.id
+  }))
 }
 
 function writeTodos(todos) {
