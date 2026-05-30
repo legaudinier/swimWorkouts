@@ -23,10 +23,17 @@ app.get("/api/workouts", (req, res) => {
     app.listen(console.log(`exist sync got fired`));
     return []
   }
+  const workbook = XLSX.readFile(FILE_PATH)
+  const sheet = workbook.Sheets[workbook.SheetNames[0]]
+  if (!sheet) return []
+
+  const rows = XLSX.utils.sheet_to_json(sheet)
+  const rowsData = rows.map((row) => ({
+    id: row.id
+  }))
 
 
-
-  res.json({ message: "Hello from Express backend! DUMB TEST" });
+  res.json({ message: rowsData });
 });
 
 function readTodos() {
@@ -66,7 +73,7 @@ app.post('/api/todos', (req, res) => {
     return res.status(400).json({ error: 'label is required' })
   }
   const todos = readTodos()
-  const newTodo = { id: Date.now(), label: label.trim(), done: false }
+  const newTodo = { id: Date.now() }
   todos.push(newTodo)
   writeTodos(todos)
   res.status(201).json(newTodo)
