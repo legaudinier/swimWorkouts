@@ -71,11 +71,9 @@ app.get('/api/todos', (_req, res) => {
 })
 
 // POST a new todo
-app.post('/api/todos', (req, res) => {
+app.post('/api/addWorkout', (req, res) => {
   const { label } = req.body
-  if (!label || typeof label !== 'string' || !label.trim()) {
-    return res.status(400).json({ error: 'label is required' })
-  }
+  app.listen(PORT, () => console.log('this worked and hit the post'));
   const todos = readTodos()
   const newTodo = { id: Date.now() }
   todos.push(newTodo)

@@ -34,27 +34,18 @@ function App() {
       .then((data) => setMessage(data));
   }, []);
 
-  const fetchTodos = useCallback(async () => {
+  const addItem = async (e: any) => {
+    e.preventDefault()
     try {
-      const res = await fetch(API_URL)
-      if (res.ok) {
-        console.log('res', res)
-
-        const data = await res.json()
-
-        setItems(data)
-      }
-    } catch {
-      console.error('Could not reach todo server')
-    } finally {
-      setLoading(false)
+      await fetch(`http://localhost:3001/api/addWorkouts`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({id: Date.now() })
+      })
+    } catch (err) {
+      console.error('Failed to add item:', err)
     }
-  }, [])
-
-  useEffect(() => {
-    fetchTodos()
-  }, [fetchTodos])
-
+  }
 
   const workoutTypeChange = (event: any) => {
     setWorkoutType(event.target.value);
@@ -110,8 +101,6 @@ function App() {
     setWorkoutDetails(warmUpCoolDownCalculations(yardage, percentage, workoutType, interval))
 
   }, [workoutType, yardage, regenerate])
-
-  console.log('items', items)
 
   return (
     <Box sx={{
@@ -299,7 +288,7 @@ function App() {
         <ExportToExcel workoutType={workoutType} interval={interval} workoutDetails={workoutDetails} disableButton={showWorkout} />
         <Button variant="outlined"
           sx={{ width: '100%', color: '#7d34eb' }}
-        // onClick={addItem}
+          onClick={addItem}
         >Save Workout</Button>
       </Box>
       <Box sx={{ marginTop: '20px' }}>
