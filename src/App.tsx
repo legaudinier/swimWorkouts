@@ -12,8 +12,6 @@ import AnimatedPool from './animatedPool';
 import ExportToExcel from './exportToExcel'
 import { warmUpCoolDownCalculations } from './utilities'
 
-const API_URL = 'http://localhost:3001/api/workouts'
-
 function App() {
   const [workoutType, setWorkoutType] = useState("distance");
   const [yardage, setYardage] = useState(4000);
@@ -34,16 +32,36 @@ function App() {
       .then((data) => setMessage(data));
   }, []);
 
-  const addItem = async (e: any) => {
-    e.preventDefault()
+  // const addItem = async (e: any) => {
+  //   e.preventDefault()
+  //   try {
+  //     await fetch("http://localhost:3001/api/addWorkouts", {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({id: Date.now() })
+  //     })
+  //   } catch (err) {
+  //     console.error('Failed to add item:', err)
+  //   }
+  // }
+
+  const addItem = async () => {
+    const name = 'hello'
+    if (!name) return
     try {
-      await fetch(`http://localhost:3001/api/addWorkouts`, {
+      const res = await fetch('/api/tabs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({id: Date.now() })
+        body: JSON.stringify({ name })
       })
+      if (res.ok) {
+        console.log('hello')
+      } else {
+        const data = await res.json()
+        alert(data.error || 'Failed to create tab')
+      }
     } catch (err) {
-      console.error('Failed to add item:', err)
+      console.error('Failed to add tab:', err)
     }
   }
 

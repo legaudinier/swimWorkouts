@@ -55,30 +55,75 @@ function readTodos() {
   }))
 }
 
-function writeTodos(todos) {
-  const worksheet = XLSX.utils.json_to_sheet(todos)
-  const workbook = XLSX.utils.book_new()
-  XLSX.utils.book_append_sheet(workbook, worksheet, 'Todos')
-  XLSX.writeFile(workbook, FILE_PATH)
-}
-
-// GET all todos
-app.get('/api/todos', (_req, res) => {
-  const todos = readTodos()
-  // res.json(todos)
-  res.json({ message: "Hello from Express backend! To dos again" });
-
-})
-
 // POST a new todo
-app.post('/api/addWorkout', (req, res) => {
-  const { label } = req.body
-  app.listen(PORT, () => console.log('this worked and hit the post'));
-  const todos = readTodos()
-  const newTodo = { id: Date.now() }
-  todos.push(newTodo)
-  writeTodos(todos)
-  res.status(201).json(newTodo)
-})
+// app.post("/api/addWorkout", (req, res) => {
+//   res.status(201).json('newTodo')
+
+//   const { label } = req.body
+//   app.listen(PORT, () => console.log(label));
+//   const todos = readTodos()
+//   const newTodo = { id: Date.now() }
+//   todos.push(newTodo)
+
+//   const worksheet = XLSX.utils.json_to_sheet(todos)
+//   const workbook = XLSX.utils.book_new()
+//   XLSX.utils.book_append_sheet(workbook, worksheet, 'Todos')
+//   XLSX.writeFile(workbook, FILE_PATH)
+
+//   res.status(201).json(newTodo)
+// })
+
+app.post('/api/tabs', (req, res) => {
+  const name = String(req.body.name || '').trim().substring(0, 31);
+  if (!name) {
+    return res.status(400).json({ error: 'Tab name is required' });
+  }
+  try {
+     const todos = readTodos()
+
+    // const wb = XLSX.readFile(EXCEL_PATH);
+    // if (wb.SheetNames.includes(name)) {
+    //   return res.status(400).json({ error: 'A tab with this name already exists' });
+    // }
+    // const ws = XLSX.utils.aoa_to_sheet([['ID', 'Text', 'Notes', 'Completed', 'CreatedAt', 'CompletedAt', 'Order', 'Type']]);
+    // XLSX.utils.book_append_sheet(wb, ws, name);
+    // XLSX.writeFile(wb, EXCEL_PATH);
+    res.json({ success: true, todos });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST add item to a sheet
+// app.post('/api/items/:sheet', (req, res) => {
+//   const sheetName = decodeURIComponent(req.params.sheet);
+//   const sheets = getSheetNames();
+//   if (!sheets.includes(sheetName)) {
+//     return res.status(400).json({ error: 'Invalid sheet name' });
+//   }
+//   try {
+//     const items = readSheet(sheetName);
+//     const now = new Date();
+//     const createdAt = now.toLocaleString('en-US', {
+//       month: '2-digit', day: '2-digit', year: 'numeric',
+//       hour: '2-digit', minute: '2-digit', hour12: true
+//     });
+//     const newItem = {
+//       id: Date.now().toString(),
+//       text: String(req.body.text || '').substring(0, 1000),
+//       notes: String(req.body.notes || '').substring(0, 5000),
+//       completed: false,
+//       createdAt,
+//       completedAt: '',
+//       type: String(req.body.type || ''),
+//       format: String(req.body.format || 'todo')
+//     };
+//     items.push(newItem);
+//     writeSheet(sheetName, items);
+//     res.json(newItem);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
