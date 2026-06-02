@@ -73,13 +73,23 @@ function readTodos() {
 //   res.status(201).json(newTodo)
 // })
 
-app.post('/api/tabs', (req, res) => {
+app.post('/api/addWorkout', (req, res) => {
   const name = String(req.body.name || '').trim().substring(0, 31);
   if (!name) {
     return res.status(400).json({ error: 'Tab name is required' });
   }
   try {
-     const todos = readTodos()
+    const todos = readTodos()
+    const newTodo = { id: Date.now() }
+    todos.push(newTodo)
+
+    const worksheet = XLSX.utils.json_to_sheet(todos)
+    const workbook = XLSX.utils.book_new()
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Todos')
+    XLSX.writeFile(workbook, FILE_PATH)
+
+    res.status(201).json(newTodo)
 
     // const wb = XLSX.readFile(EXCEL_PATH);
     // if (wb.SheetNames.includes(name)) {

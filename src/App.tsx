@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import FormControl from '@mui/material/FormControl';
@@ -20,10 +20,7 @@ function App() {
   const [workoutDetails, setWorkoutDetails] = useState({})
   const [generateText, setGenerateText] = useState('Generate')
   const [regenerate, setRegenerate] = useState(false)
-  const [activeTab, setActiveTab] = useState('To Do')
-  const [loading, setLoading] = useState(false)
-  const [items, setItems] = useState([])
-  const [message, setMessage] = useState("");
+  const [, setMessage] = useState("");
 
 
   useEffect(() => {
@@ -49,7 +46,7 @@ function App() {
     const name = 'hello'
     if (!name) return
     try {
-      const res = await fetch('/api/tabs', {
+      const res = await fetch('/api/addWorkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name })
