@@ -43,16 +43,14 @@ function App() {
   // }
 
   const addItem = async () => {
-    const name = 'hello'
-    if (!name) return
     try {
       const res = await fetch('/api/addWorkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name })
+        body: JSON.stringify({})
       })
       if (res.ok) {
-        console.log('hello')
+        console.log('this worked')
       } else {
         const data = await res.json()
         alert(data.error || 'Failed to create tab')

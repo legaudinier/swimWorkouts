@@ -15,9 +15,6 @@ app.get("/api", (req, res) => {
   res.json({ message: "Hello from Express backend!" });
 });
 
-// make your own get
-// needs to read the spreadsheet
-// return the spreadsheet
 app.get("/api/workouts", (req, res) => {
   if (!existsSync(FILE_PATH)) {
     app.listen(console.log(`exist sync got fired`));
@@ -30,12 +27,12 @@ app.get("/api/workouts", (req, res) => {
   const rows = XLSX.utils.sheet_to_json(sheet)
   const rowsData = rows.map((row) => ({
     id: row.id,
-    totalYardage: row.totalYardage,
-    warmUp: row.warmUp,
-    mainSet: row.mainSet,
-    coolDown: row.coolDown
+    type: row.type,
+    yardage: row.yardage,
+    interval: row.interval,
+    workoutDetails: row.workoutDetails,
+    createdAt: row.createdAt
   }))
-
 
   res.json({ message: rowsData });
 });
@@ -47,49 +44,33 @@ function readTodos() {
   }
   const workbook = XLSX.readFile(FILE_PATH)
   const sheet = workbook.Sheets[workbook.SheetNames[0]]
-  return workbook
   if (!sheet) return []
   const rows = XLSX.utils.sheet_to_json(sheet)
   return rows.map((row) => ({
-    id: row.id
+    id: row.id,
+    type: row.type,
+    yardage: row.yardage,
+    interval: row.interval,
+    workoutDetails: row.workoutDetails
   }))
 }
 
-// POST a new todo
-// app.post("/api/addWorkout", (req, res) => {
-//   res.status(201).json('newTodo')
-
-//   const { label } = req.body
-//   app.listen(PORT, () => console.log(label));
-//   const todos = readTodos()
-//   const newTodo = { id: Date.now() }
-//   todos.push(newTodo)
-
-//   const worksheet = XLSX.utils.json_to_sheet(todos)
-//   const workbook = XLSX.utils.book_new()
-//   XLSX.utils.book_append_sheet(workbook, worksheet, 'Todos')
-//   XLSX.writeFile(workbook, FILE_PATH)
-
-//   res.status(201).json(newTodo)
-// })
-
 app.post('/api/addWorkout', (req, res) => {
-  const name = String(req.body.name || '').trim().substring(0, 31);
-  if (!name) {
-    return res.status(400).json({ error: 'Tab name is required' });
-  }
   try {
-    const todos = readTodos()
+    const todosArray = readTodos()
+    // const todosArray = [].concat(todos)
     const newTodo = { id: Date.now() }
-    todos.push(newTodo)
 
-    const worksheet = XLSX.utils.json_to_sheet(todos)
+    todosArray.push(newTodo)
+      app.listen(console.log(todosArray));
+
+    // res.status(201).json(todosArray)
+
+    const worksheet = XLSX.utils.json_to_sheet(todosArray)
     const workbook = XLSX.utils.book_new()
 
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Todos')
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'todos')
     XLSX.writeFile(workbook, FILE_PATH)
-
-    res.status(201).json(newTodo)
 
     // const wb = XLSX.readFile(EXCEL_PATH);
     // if (wb.SheetNames.includes(name)) {
@@ -98,7 +79,7 @@ app.post('/api/addWorkout', (req, res) => {
     // const ws = XLSX.utils.aoa_to_sheet([['ID', 'Text', 'Notes', 'Completed', 'CreatedAt', 'CompletedAt', 'Order', 'Type']]);
     // XLSX.utils.book_append_sheet(wb, ws, name);
     // XLSX.writeFile(wb, EXCEL_PATH);
-    res.json({ success: true, todos });
+    res.json({ success: true, todosArray, workbook, FILE_PATH });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -125,7 +106,7 @@ app.post('/api/addWorkout', (req, res) => {
 //       completed: false,
 //       createdAt,
 //       completedAt: '',
-//       type: String(req.body.type || ''),
+//       type: String(req.body.type || ''),cl
 //       format: String(req.body.format || 'todo')
 //     };
 //     items.push(newItem);
