@@ -29,25 +29,12 @@ function App() {
       .then((data) => setMessage(data));
   }, []);
 
-  // const addItem = async (e: any) => {
-  //   e.preventDefault()
-  //   try {
-  //     await fetch("http://localhost:3001/api/addWorkouts", {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({id: Date.now() })
-  //     })
-  //   } catch (err) {
-  //     console.error('Failed to add item:', err)
-  //   }
-  // }
-
   const addItem = async () => {
     try {
       const res = await fetch('/api/addWorkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({})
+        body: JSON.stringify({ workoutType, yardage, interval, workoutDetails })
       })
       if (res.ok) {
         console.log('this worked')

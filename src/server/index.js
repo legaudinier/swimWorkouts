@@ -56,13 +56,18 @@ function readTodos() {
 }
 
 app.post('/api/addWorkout', (req, res) => {
+  const workoutType = req.body.workoutType;
+  const yardage = req.body.yardage;
+
+  app.listen(console.log(req.body));
+
   try {
     const todosArray = readTodos()
     // const todosArray = [].concat(todos)
-    const newTodo = { id: Date.now() }
+    const newTodo = { id: Date.now(), type: workoutType, yardage: yardage }
 
     todosArray.push(newTodo)
-      app.listen(console.log(todosArray));
+    // app.listen(console.log(todosArray));
 
     // res.status(201).json(todosArray)
 
