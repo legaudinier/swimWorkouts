@@ -90,36 +90,5 @@ app.post('/api/addWorkout', (req, res) => {
   }
 });
 
-// POST add item to a sheet
-// app.post('/api/items/:sheet', (req, res) => {
-//   const sheetName = decodeURIComponent(req.params.sheet);
-//   const sheets = getSheetNames();
-//   if (!sheets.includes(sheetName)) {
-//     return res.status(400).json({ error: 'Invalid sheet name' });
-//   }
-//   try {
-//     const items = readSheet(sheetName);
-//     const now = new Date();
-//     const createdAt = now.toLocaleString('en-US', {
-//       month: '2-digit', day: '2-digit', year: 'numeric',
-//       hour: '2-digit', minute: '2-digit', hour12: true
-//     });
-//     const newItem = {
-//       id: Date.now().toString(),
-//       text: String(req.body.text || '').substring(0, 1000),
-//       notes: String(req.body.notes || '').substring(0, 5000),
-//       completed: false,
-//       createdAt,
-//       completedAt: '',
-//       type: String(req.body.type || ''),cl
-//       format: String(req.body.format || 'todo')
-//     };
-//     items.push(newItem);
-//     writeSheet(sheetName, items);
-//     res.json(newItem);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
