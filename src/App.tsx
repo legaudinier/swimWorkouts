@@ -13,6 +13,7 @@ import ExportToExcel from './exportToExcel'
 import { warmUpCoolDownCalculations } from './utilities'
 
 function App() {
+  const [activeTab, setActiveTab] = useState('generate')
   const [workoutType, setWorkoutType] = useState("distance");
   const [yardage, setYardage] = useState(4000);
   const [interval, setInterval] = useState<any>(90);
@@ -113,188 +114,276 @@ function App() {
         marginBottom: '20px'
       }
     }}>
-      <Box sx={{
-        textAlign: 'center',
-        marginTop: '20px',
-        marginBottom: '20px'
-      }}>
-      </Box>
-      <Box>
-        <Box sx={{
-          marginLeft: '40px',
-          marginRight: '40px',
-          paddingBottom: '20px',
-          borderTop: '1px solid #7d34eb',
-          borderLeft: '1px solid #7d34eb',
-          borderRight: '1px solid #7d34eb',
-          borderBottom: '1px solid #7d34eb',
-          borderRadius: '10px'
-        }}>
-          <Typography sx={{
-            textAlign: 'center',
-            backgroundColor: '#7d34eb',
-            color: 'white',
-            borderRadius: '10px 10px 0 0',
-            paddingTop: '10px',
-            paddingBottom: '10px',
-          }}>Swim Workout Generator</Typography>
+      {activeTab === 'generate' ? (
+        <Box>
           <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            paddingTop: '20px',
+            textAlign: 'center',
+            marginTop: '20px',
+            marginBottom: '20px'
           }}>
-            <Box sx={{ flexShrink: 1 }}>
-              <FormControl sx={{ minWidth: '100%' }}>
-                <Typography variant="caption">Workout Type </Typography>
-                <Select
-                  labelId="workoutType"
-                  id="workoutType-select"
-                  value={workoutType}
-                  label="Type of Workout"
-                  onChange={workoutTypeChange}
-                  variant='outlined'
-                >
-                  <MenuItem value="distance">Distance</MenuItem>
-                  <MenuItem value="sprint">Sprint</MenuItem>
-                  <MenuItem value="threshold">Threshold/Pace</MenuItem>
-                  <MenuItem value="easy">Easy</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-            <Typography variant="caption">Yardage</Typography>
-            <Box sx={{ display: 'flex', marginBottom: '10px' }}>
-              <Button variant="outlined"
-                sx={{
-                  color: '#7d34eb',
-                  width: '100%'
-
-                }}
-                onClick={() => decreaseYardage()}>-</Button>
+          </Box>
+          <Box>
+            <Box sx={{
+              marginLeft: '40px',
+              marginRight: '40px',
+              paddingBottom: '20px',
+              borderTop: '1px solid #7d34eb',
+              borderLeft: '1px solid #7d34eb',
+              borderRight: '1px solid #7d34eb',
+              borderBottom: '1px solid #7d34eb',
+              borderRadius: '10px',
+            }}>
               <Box sx={{
-                '& #yardageInput': {
-                  borderRadius: '4px',
-                  height: '50px',
-                  border: '.5px solid rgba(0, 0, 0, 0.23)',
-                  fontSize: 'inherit',
-                  textAlign: 'center',
-                  width: '150px'
-                },
+                textAlign: 'center',
+                backgroundColor: '#7d34eb',
+                color: 'white',
+                borderRadius: '10px 10px 0 0',
+                paddingTop: '10px',
+                paddingBottom: '10px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                paddingLeft: '10px',
+                paddingRight: '10px'
               }}>
-                <input
-                  type="number"
-                  id='yardageInput'
-                  className="number-input__field"
-                  value={yardage}
-                  onChange={yardageChange}
-                  inputMode="numeric"
-                />
+                <Typography>Swim Workout Generator
+                </Typography>
+                <Button variant="outlined"
+                  sx={{
+                    backgroundColor: 'white',
+                    color: '#7d34eb',
+                    width: '200px',
+                    fontSize: '12px'
+                  }}
+                  onClick={() => setActiveTab('workouts')}>
+                  Saved Workouts</Button>
               </Box>
+              <Box sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                paddingTop: '20px',
+              }}>
+                <Box sx={{ flexShrink: 1 }}>
+                  <FormControl sx={{ minWidth: '100%' }}>
+                    <Typography variant="caption">Workout Type </Typography>
+                    <Select
+                      labelId="workoutType"
+                      id="workoutType-select"
+                      value={workoutType}
+                      label="Type of Workout"
+                      onChange={workoutTypeChange}
+                      variant='outlined'
+                    >
+                      <MenuItem value="distance">Distance</MenuItem>
+                      <MenuItem value="sprint">Sprint</MenuItem>
+                      <MenuItem value="threshold">Threshold/Pace</MenuItem>
+                      <MenuItem value="easy">Easy</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+                <Typography variant="caption">Yardage</Typography>
+                <Box sx={{ display: 'flex', marginBottom: '10px' }}>
+                  <Button variant="outlined"
+                    sx={{
+                      color: '#7d34eb',
+                      width: '100%'
+
+                    }}
+                    onClick={() => decreaseYardage()}>-</Button>
+                  <Box sx={{
+                    '& #yardageInput': {
+                      borderRadius: '4px',
+                      height: '50px',
+                      border: '.5px solid rgba(0, 0, 0, 0.23)',
+                      fontSize: 'inherit',
+                      textAlign: 'center',
+                      width: '150px'
+                    },
+                  }}>
+                    <input
+                      type="number"
+                      id='yardageInput'
+                      className="number-input__field"
+                      value={yardage}
+                      onChange={yardageChange}
+                      inputMode="numeric"
+                    />
+                  </Box>
+                  <Button variant="outlined"
+                    sx={{
+                      color: '#7d34eb',
+                      width: '100%'
+
+                    }}
+                    onClick={() => increaseYardage()}>+</Button>
+                </Box>
+                <Box>
+                  <Typography variant="caption">Interval (seconds) / 100</Typography>
+                  <Box sx={{ display: 'flex', marginBottom: '10px' }}>
+                    <Button variant="outlined"
+                      sx={{
+                        color: '#7d34eb',
+                        width: '100%'
+
+                      }}
+                      onClick={() => decreaseInterval()}>-</Button>
+                    <Box sx={{
+                      '& #intervalInput': {
+                        borderRadius: '4px',
+                        height: '50px',
+                        border: '.5px solid rgba(0, 0, 0, 0.23)',
+                        fontSize: 'inherit',
+                        textAlign: 'center',
+                        width: '150px'
+                      },
+                    }}>
+                      <input
+                        type="number"
+                        id='intervalInput'
+                        value={interval}
+                        onChange={baseIntervalChange}
+                        inputMode="numeric"
+                      />
+                    </Box>
+                    <Button variant="outlined"
+                      sx={{
+                        color: '#7d34eb',
+                        width: '100%'
+
+                      }}
+                      onClick={() => increaseInterval()}>+</Button>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+            <Box sx={{
+              marginLeft: '40px',
+              marginRight: '40px',
+              marginTop: '20px'
+            }}>
               <Button variant="outlined"
                 sx={{
                   color: '#7d34eb',
                   width: '100%'
 
                 }}
-                onClick={() => increaseYardage()}>+</Button>
+                onClick={() => generate()}>{generateText}</Button>
             </Box>
-            <Box>
-              <Typography variant="caption">Interval (seconds) / 100</Typography>
-              <Box sx={{ display: 'flex', marginBottom: '10px' }}>
-                <Button variant="outlined"
-                  sx={{
-                    color: '#7d34eb',
-                    width: '100%'
 
-                  }}
-                  onClick={() => decreaseInterval()}>-</Button>
-                <Box sx={{
-                  '& #intervalInput': {
-                    borderRadius: '4px',
-                    height: '50px',
-                    border: '.5px solid rgba(0, 0, 0, 0.23)',
-                    fontSize: 'inherit',
-                    textAlign: 'center',
-                    width: '150px'
-                  },
-                }}>
-                  <input
-                    type="number"
-                    id='intervalInput'
-                    value={interval}
-                    onChange={baseIntervalChange}
-                    inputMode="numeric"
-                  />
-                </Box>
-                <Button variant="outlined"
-                  sx={{
-                    color: '#7d34eb',
-                    width: '100%'
+            <Box sx={{
+              marginLeft: '40px',
+              marginRight: '40px',
+              marginTop: '20px',
+              border: '1px solid #7d34eb',
+              borderRadius: '10px',
+              minHeight: '200px'
+            }}>
+              <div>
+                {!showWorkout ? <></> :
+                  workoutType === 'distance' ? (
+                    <DistanceWorkout
+                      interval={interval}
+                      workoutDetails={workoutDetails}
+                    />) :
+                    workoutType === 'easy' ? (
+                      <EasyWorkout
+                        workoutDetails={workoutDetails}
+                      />) :
+                      workoutType === 'sprint' ?
+                        (<SprintWorkout
+                          interval={interval}
+                          workoutDetails={workoutDetails}
+                        />) : workoutType === 'threshold'
+                        && (<ThresholdWorkout
+                          yardage={yardage}
+                          interval={interval}
+                          workoutDetails={workoutDetails}
+                        />)
 
-                  }}
-                  onClick={() => increaseInterval()}>+</Button>
-              </Box>
+                }
+              </div>
             </Box>
           </Box>
-        </Box>
-        <Box sx={{
-          marginLeft: '40px',
-          marginRight: '40px',
-          marginTop: '20px'
-        }}>
-          <Button variant="outlined"
-            sx={{
-              color: '#7d34eb',
-              width: '100%'
+          <Box sx={{ display: 'flex', marginLeft: '40px', marginRight: '40px', marginTop: '20px' }}>
+            <ExportToExcel workoutType={workoutType} interval={interval} workoutDetails={workoutDetails} disableButton={showWorkout} />
+            <Button variant="outlined"
+              sx={{ width: '100%', color: '#7d34eb' }}
+              onClick={addItem}
+            >Save Workout</Button>
+          </Box>
+        </Box>) : (
+        <Box>
+          <Box sx={{
+            textAlign: 'center',
+            marginTop: '20px',
+            marginBottom: '20px'
+          }}>
+          </Box>
+          <Box>
+            <Box sx={{
+              marginLeft: '40px',
+              marginRight: '40px',
+              paddingBottom: '20px',
+              borderTop: '1px solid #7d34eb',
+              borderLeft: '1px solid #7d34eb',
+              borderRight: '1px solid #7d34eb',
+              borderBottom: '1px solid #7d34eb',
+              borderRadius: '10px'
+            }}>
+                <Box sx={{
+                textAlign: 'center',
+                backgroundColor: '#7d34eb',
+                color: 'white',
+                borderRadius: '10px 10px 0 0',
+                paddingTop: '10px',
+                paddingBottom: '10px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                paddingLeft: '10px',
+                paddingRight: '10px'
+              }}>
+                <Typography>Swim Workout Generator
+                </Typography>
+                <Button variant="outlined"
+                  sx={{
+                    backgroundColor: 'white',
+                    color: '#7d34eb',
+                    width: '200px',
+                    fontSize: '12px'
+                  }}
+                  onClick={() => setActiveTab('generate')}>
+                  Generate Workout</Button>
+              </Box>
+              <Box sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                paddingTop: '20px',
+              }}>
+              </Box>
+            </Box>
+            <Box sx={{
+              marginLeft: '40px',
+              marginRight: '40px',
+              marginTop: '20px'
+            }}>
+            </Box>
+            <Box sx={{
+              marginLeft: '40px',
+              marginRight: '40px',
+              marginTop: '20px',
+              border: '1px solid #7d34eb',
+              borderRadius: '10px',
+              minHeight: '200px'
+            }}>
+            </Box>
+          </Box>
+        </Box>)}
 
-            }}
-            onClick={() => generate()}>{generateText}</Button>
-        </Box>
 
-        <Box sx={{
-          marginLeft: '40px',
-          marginRight: '40px',
-          marginTop: '20px',
-          border: '1px solid #7d34eb',
-          borderRadius: '10px',
-          minHeight: '200px'
-        }}>
-          <div>
-            {!showWorkout ? <></> :
-              workoutType === 'distance' ? (
-                <DistanceWorkout
-                  interval={interval}
-                  workoutDetails={workoutDetails}
-                />) :
-                workoutType === 'easy' ? (
-                  <EasyWorkout
-                    workoutDetails={workoutDetails}
-                  />) :
-                  workoutType === 'sprint' ?
-                    (<SprintWorkout
-                      interval={interval}
-                      workoutDetails={workoutDetails}
-                    />) : workoutType === 'threshold'
-                    && (<ThresholdWorkout
-                      yardage={yardage}
-                      interval={interval}
-                      workoutDetails={workoutDetails}
-                    />)
-
-            }
-          </div>
-        </Box>
-      </Box>
-      <Box sx={{ display: 'flex', marginLeft: '40px', marginRight: '40px', marginTop: '20px' }}>
-        <ExportToExcel workoutType={workoutType} interval={interval} workoutDetails={workoutDetails} disableButton={showWorkout} />
-        <Button variant="outlined"
-          sx={{ width: '100%', color: '#7d34eb' }}
-          onClick={addItem}
-        >Save Workout</Button>
-      </Box>
       <Box sx={{ marginTop: '20px' }}>
         <AnimatedPool />
       </Box>
-
     </Box >
   );
 }
