@@ -328,9 +328,10 @@ function App() {
               borderLeft: '1px solid #7d34eb',
               borderRight: '1px solid #7d34eb',
               borderBottom: '1px solid #7d34eb',
-              borderRadius: '10px'
+              borderRadius: '10px',
+              height: '600px'
             }}>
-                <Box sx={{
+              <Box sx={{
                 textAlign: 'center',
                 backgroundColor: '#7d34eb',
                 color: 'white',
@@ -361,21 +362,6 @@ function App() {
                 paddingTop: '20px',
               }}>
               </Box>
-            </Box>
-            <Box sx={{
-              marginLeft: '40px',
-              marginRight: '40px',
-              marginTop: '20px'
-            }}>
-            </Box>
-            <Box sx={{
-              marginLeft: '40px',
-              marginRight: '40px',
-              marginTop: '20px',
-              border: '1px solid #7d34eb',
-              borderRadius: '10px',
-              minHeight: '200px'
-            }}>
             </Box>
           </Box>
         </Box>)}
