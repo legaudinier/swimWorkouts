@@ -59,7 +59,7 @@ const AnimatedPool = () => {
             }
           }
         }}>
-          <Box
+          {/* <Box
             component="img"
             sx={{
               width: 32.4,
@@ -69,7 +69,7 @@ const AnimatedPool = () => {
             }}
             alt="Freestyle swimmer"
             src={Swimmer2}
-          />
+          /> */}
         </Box>
         <Box sx={{
           '&::before': {
