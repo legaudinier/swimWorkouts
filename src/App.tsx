@@ -103,6 +103,7 @@ function App() {
 
   }, [workoutType, yardage, regenerate])
 
+  console.log('savedWorkouts', savedWorkouts)
 
   return (
     <Box sx={{
@@ -363,7 +364,7 @@ function App() {
                 flexDirection: 'column',
                 paddingTop: '20px',
               }}>
-                {savedWorkouts.message[0].yardage}
+                {/* {savedWorkouts.savedSwims[0].yardage} */}
 
               </Box>
             </Box>
