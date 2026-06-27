@@ -18,16 +18,16 @@ function App() {
   const [yardage, setYardage] = useState(4000);
   const [interval, setInterval] = useState<any>(90);
   const [showWorkout, setShowWorkout] = useState(false)
-  const [workoutDetails, setWorkoutDetails] = useState({})
+  const [workoutDetails, setWorkoutDetails] = useState({}) // CREATE TYPES HERE
   const [generateText, setGenerateText] = useState('Generate')
   const [regenerate, setRegenerate] = useState(false)
-  const [, setMessage] = useState("");
+  const [savedWorkouts, setSavedWorkouts] = useState<any>(); // THIS NEEDS A TYPE
 
 
   useEffect(() => {
     fetch("http://localhost:3001/api/workouts")
       .then((res) => res.json())
-      .then((data) => setMessage(data));
+      .then((data) => setSavedWorkouts(data));
   }, []);
 
   const addItem = async () => {
@@ -102,6 +102,7 @@ function App() {
     setWorkoutDetails(warmUpCoolDownCalculations(yardage, percentage, workoutType, interval))
 
   }, [workoutType, yardage, regenerate])
+
 
   return (
     <Box sx={{
@@ -356,11 +357,14 @@ function App() {
                   onClick={() => setActiveTab('generate')}>
                   Generate Workout</Button>
               </Box>
+              {/* Saved workouts */}
               <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 paddingTop: '20px',
               }}>
+                {savedWorkouts.message[0].yardage}
+
               </Box>
             </Box>
           </Box>

@@ -6,7 +6,7 @@ import XLSX from 'xlsx'
 const app = express();
 const PORT = 3001;
 
-const FILE_PATH = './todos.xlsx'
+const FILE_PATH = './savedSwims.xlsx'
 
 app.use(cors());
 app.use(express.json());
@@ -34,7 +34,7 @@ app.get("/api/workouts", (req, res) => {
     createdAt: row.createdAt
   }))
 
-  res.json({ message: rowsData });
+  res.json({ savedSwims: rowsData });
 });
 
 function readTodos() {
@@ -89,6 +89,7 @@ app.post('/api/addWorkout', (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
