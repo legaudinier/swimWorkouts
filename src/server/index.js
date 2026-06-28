@@ -30,6 +30,13 @@ app.get("/api/workouts", (req, res) => {
     type: row.type,
     yardage: row.yardage,
     interval: row.interval,
+    mainSetYardage: row.mainSetYardage,
+    warmUp: row.warmUp,
+    coolDown: row.coolDown,
+    rounds: row.rounds,
+    maxDistance: row.maxDistance,
+    intervalTime: row.intervalTime,
+    totalDistance: row.totalDistance,
     workoutDetails: row.workoutDetails,
     createdAt: row.createdAt
   }))
@@ -51,20 +58,49 @@ function readTodos() {
     type: row.type,
     yardage: row.yardage,
     interval: row.interval,
-    workoutDetails: row.workoutDetails
+    mainSetYardage: row.mainSetYardage,
+    warmUp: row.warmUp,
+    coolDown: row.coolDown,
+    rounds: row.rounds,
+    maxDistance: row.maxDistance,
+    intervalTime: row.intervalTime,
+    totalDistance: row.totalDistance,
+    workoutDetails: row.workoutDetails,
+    createdAt: row.createdAt
   }))
 }
 
 app.post('/api/addWorkout', (req, res) => {
   const workoutType = req.body.workoutType;
   const yardage = req.body.yardage;
+  const interval = req.body.interval;
+  const mainSetYardage = req.body.workoutDetails.mainSetYardage;
+  const warmUp = req.body.workoutDetails.warmUp;
+  const coolDown = req.body.workoutDetails.coolDown;
+  const rounds = req.body.workoutDetails.mainSetDetails.rounds;
+
+  const maxDistance = req.body.workoutDetails.mainSetDetails.maxDistance;
+  const intervalTime = req.body.workoutDetails.mainSetDetails.intervalTime;
+  const totalDistance = req.body.workoutDetails.mainSetDetails.totalDistance;
 
   app.listen(console.log(req.body));
 
   try {
     const todosArray = readTodos()
     // const todosArray = [].concat(todos)
-    const newTodo = { id: Date.now(), type: workoutType, yardage: yardage }
+    const newTodo = {
+      id: Date.now(),
+      type: workoutType,
+      yardage: yardage,
+      interval: interval,
+      mainSetYardage: mainSetYardage,
+      warmUp: warmUp,
+      coolDown: coolDown,
+      rounds: rounds,
+      maxDistance: maxDistance,
+      intervalTime: intervalTime,
+      totalDistance: totalDistance
+    }
 
     todosArray.push(newTodo)
     // app.listen(console.log(todosArray));
@@ -84,7 +120,7 @@ app.post('/api/addWorkout', (req, res) => {
     // const ws = XLSX.utils.aoa_to_sheet([['ID', 'Text', 'Notes', 'Completed', 'CreatedAt', 'CompletedAt', 'Order', 'Type']]);
     // XLSX.utils.book_append_sheet(wb, ws, name);
     // XLSX.writeFile(wb, EXCEL_PATH);
-    res.json({ success: true, todosArray, workbook, FILE_PATH });
+    res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
