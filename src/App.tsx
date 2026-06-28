@@ -22,7 +22,7 @@ function App() {
   const [generateText, setGenerateText] = useState('Generate')
   const [regenerate, setRegenerate] = useState(false)
   const [savedWorkouts, setSavedWorkouts] = useState<any>(); // THIS NEEDS A TYPE
-
+  const [currentSavedSwim, setCurrentSavedSwim] = useState<number>(0)
 
   useEffect(() => {
     fetch("http://localhost:3001/api/workouts")
@@ -360,11 +360,44 @@ function App() {
               </Box>
               {/* Saved workouts */}
               <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
                 paddingTop: '20px',
               }}>
-                {/* {savedWorkouts.savedSwims[0].yardage} */}
+                {/* need to feed it into whatever workout type it is, 
+                also need an arrow to search through the workouts one by one*/}
+                <Box sx={{ height: '490px' }}>
+                  CURRENT SWIM:  {currentSavedSwim}
+                  Workout Type: {savedWorkouts.savedSwims[currentSavedSwim].type}
+
+                  Yardage: {savedWorkouts.savedSwims[currentSavedSwim].yardage}
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Button variant="outlined"
+                    sx={{
+                      backgroundColor: 'white',
+                      color: '#7d34eb',
+                      width: '200px',
+                      fontSize: '12px'
+                    }}
+                    onClick={() => setCurrentSavedSwim(
+                      currentSavedSwim === 0 ?
+                        currentSavedSwim - 1 : savedWorkouts.savedSwims.length - 1
+                    )}>
+                    Past</Button>
+                  <Button variant="outlined"
+                    sx={{
+                      backgroundColor: 'white',
+                      color: '#7d34eb',
+                      width: '200px',
+                      fontSize: '12px'
+                    }}
+                    onClick={() => setCurrentSavedSwim(
+                      savedWorkouts.savedSwims.length - 1 !== currentSavedSwim ?
+                        currentSavedSwim + 1 : 0
+                    )}>
+                    {/* this will cycle through the saved workouts and 
+                    reset to the first once it goes through them all */}
+                    Next</Button>
+                </Box>
 
               </Box>
             </Box>
