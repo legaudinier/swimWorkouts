@@ -369,6 +369,28 @@ function App() {
                   Workout Type: {savedWorkouts.savedSwims[currentSavedSwim].type}
 
                   Yardage: {savedWorkouts.savedSwims[currentSavedSwim].yardage}
+                  {/* {
+                    savedWorkouts.savedSwims[currentSavedSwim].type === 'distance' ? (
+                      <DistanceWorkout
+                        interval={interval}
+                        workoutDetails={workoutDetails}
+                      />) :
+                      savedWorkouts.savedSwims[currentSavedSwim].type === 'easy' ? (
+                        <EasyWorkout
+                          workoutDetails={workoutDetails}
+                        />) :
+                        savedWorkouts.savedSwims[currentSavedSwim].type === 'sprint' ?
+                          (<SprintWorkout
+                            interval={interval}
+                            workoutDetails={workoutDetails}
+                          />) : savedWorkouts.savedSwims[currentSavedSwim].type === 'threshold'
+                          && (<ThresholdWorkout
+                            yardage={yardage}
+                            interval={interval}
+                            workoutDetails={workoutDetails}
+                          />)
+
+                  } */}
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Button variant="outlined"
@@ -379,7 +401,7 @@ function App() {
                       fontSize: '12px'
                     }}
                     onClick={() => setCurrentSavedSwim(
-                      currentSavedSwim === 0 ?
+                      currentSavedSwim !== 0 ?
                         currentSavedSwim - 1 : savedWorkouts.savedSwims.length - 1
                     )}>
                     Past</Button>
