@@ -416,8 +416,6 @@ function App() {
                       savedWorkouts.savedSwims.length - 1 !== currentSavedSwim ?
                         currentSavedSwim + 1 : 0
                     )}>
-                    {/* this will cycle through the saved workouts and 
-                    reset to the first once it goes through them all */}
                     Next</Button>
                 </Box>
 

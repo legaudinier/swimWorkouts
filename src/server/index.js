@@ -30,13 +30,16 @@ app.get("/api/workouts", (req, res) => {
     type: row.type,
     yardage: row.yardage,
     interval: row.interval,
-    mainSetYardage: row.mainSetYardage,
     warmUp: row.warmUp,
     coolDown: row.coolDown,
-    rounds: row.rounds,
-    maxDistance: row.maxDistance,
-    intervalTime: row.intervalTime,
-    totalDistance: row.totalDistance,
+    mainSetDetails: {
+      rounds: row.rounds,
+      mainSetYardage: row.mainSetYardage,
+      maxDistance: row.maxDistance,
+      intervalTime: row.intervalTime,
+      errorMessage: false,
+      totalDistance: row.totalDistance
+    },
     workoutDetails: row.workoutDetails,
     createdAt: row.createdAt
   }))
@@ -44,7 +47,7 @@ app.get("/api/workouts", (req, res) => {
   res.json({ savedSwims: rowsData });
 });
 
-function readTodos() {
+function readSwims() {
   if (!existsSync(FILE_PATH)) {
     app.listen(console.log(`exist sync got fired`))
     return []
@@ -86,7 +89,7 @@ app.post('/api/addWorkout', (req, res) => {
   app.listen(console.log(req.body));
 
   try {
-    const swimArray = readTodos()
+    const swimArray = readSwims()
 
     const newSwim = {
       id: Date.now(),
