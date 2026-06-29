@@ -365,32 +365,30 @@ function App() {
                 {/* need to feed it into whatever workout type it is, 
                 also need an arrow to search through the workouts one by one*/}
                 <Box sx={{ height: '490px' }}>
-                  CURRENT SWIM:  {currentSavedSwim}
-                  Workout Type: {savedWorkouts.savedSwims[currentSavedSwim].type}
-
-                  Yardage: {savedWorkouts.savedSwims[currentSavedSwim].yardage}
-                  {/* {
-                    savedWorkouts.savedSwims[currentSavedSwim].type === 'distance' ? (
+                  {
+                    savedWorkouts.savedSwims[currentSavedSwim].type === 'distance' && (
                       <DistanceWorkout
-                        interval={interval}
-                        workoutDetails={workoutDetails}
-                      />) :
-                      savedWorkouts.savedSwims[currentSavedSwim].type === 'easy' ? (
-                        <EasyWorkout
-                          workoutDetails={workoutDetails}
-                        />) :
-                        savedWorkouts.savedSwims[currentSavedSwim].type === 'sprint' ?
-                          (<SprintWorkout
-                            interval={interval}
-                            workoutDetails={workoutDetails}
-                          />) : savedWorkouts.savedSwims[currentSavedSwim].type === 'threshold'
-                          && (<ThresholdWorkout
-                            yardage={yardage}
-                            interval={interval}
-                            workoutDetails={workoutDetails}
-                          />)
+                        interval={savedWorkouts.savedSwims[currentSavedSwim].interval}
+                        workoutDetails={savedWorkouts.savedSwims[currentSavedSwim]}
+                        savedSwim={true}
+                      />)
+                    // :
+                    // savedWorkouts.savedSwims[currentSavedSwim].type === 'easy' ? (
+                    //   <EasyWorkout
+                    //     workoutDetails={workoutDetails}
+                    //   />) :
+                    //   savedWorkouts.savedSwims[currentSavedSwim].type === 'sprint' ?
+                    //     (<SprintWorkout
+                    //       interval={interval}
+                    //       workoutDetails={workoutDetails}
+                    //     />) : savedWorkouts.savedSwims[currentSavedSwim].type === 'threshold'
+                    //     && (<ThresholdWorkout
+                    //       yardage={yardage}
+                    //       interval={interval}
+                    //       workoutDetails={workoutDetails}
+                    //     />)
 
-                  } */}
+                  }
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Button variant="outlined"
