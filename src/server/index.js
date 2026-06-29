@@ -86,9 +86,9 @@ app.post('/api/addWorkout', (req, res) => {
   app.listen(console.log(req.body));
 
   try {
-    const todosArray = readTodos()
-    // const todosArray = [].concat(todos)
-    const newTodo = {
+    const swimArray = readTodos()
+
+    const newSwim = {
       id: Date.now(),
       type: workoutType,
       yardage: yardage,
@@ -102,24 +102,14 @@ app.post('/api/addWorkout', (req, res) => {
       totalDistance: totalDistance
     }
 
-    todosArray.push(newTodo)
-    // app.listen(console.log(todosArray));
+    swimArray.push(newSwim)
 
-    // res.status(201).json(todosArray)
-
-    const worksheet = XLSX.utils.json_to_sheet(todosArray)
+    const worksheet = XLSX.utils.json_to_sheet(swimArray)
     const workbook = XLSX.utils.book_new()
 
     XLSX.utils.book_append_sheet(workbook, worksheet, 'todos')
     XLSX.writeFile(workbook, FILE_PATH)
 
-    // const wb = XLSX.readFile(EXCEL_PATH);
-    // if (wb.SheetNames.includes(name)) {
-    //   return res.status(400).json({ error: 'A tab with this name already exists' });
-    // }
-    // const ws = XLSX.utils.aoa_to_sheet([['ID', 'Text', 'Notes', 'Completed', 'CreatedAt', 'CompletedAt', 'Order', 'Type']]);
-    // XLSX.utils.book_append_sheet(wb, ws, name);
-    // XLSX.writeFile(wb, EXCEL_PATH);
     res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: err.message });

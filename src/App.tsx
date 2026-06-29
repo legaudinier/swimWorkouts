@@ -21,7 +21,7 @@ function App() {
   const [workoutDetails, setWorkoutDetails] = useState({}) // CREATE TYPES HERE
   const [generateText, setGenerateText] = useState('Generate')
   const [regenerate, setRegenerate] = useState(false)
-  const [savedWorkouts, setSavedWorkouts] = useState<any>(); // THIS NEEDS A TYPE
+  const [savedWorkouts, setSavedWorkouts] = useState<any>({}); // THIS NEEDS A TYPE
   const [currentSavedSwim, setCurrentSavedSwim] = useState<number>(0)
 
   useEffect(() => {
