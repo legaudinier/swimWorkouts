@@ -5,23 +5,36 @@ import { readableTime } from '../utilities'
 export type SprintWorkoutType = {
     interval: any
     workoutDetails: any
+    savedSwim?: boolean
 }
 
 const SprintWorkout = ({
-    interval, workoutDetails
+    interval, workoutDetails, savedSwim
 }: SprintWorkoutType) => {
 
     return (
         <Box sx={{ paddingBottom: '20px' }}>
-            <Typography sx={{
-                marginBottom: '20px',
-                textAlign: 'center',
-                backgroundColor: '#7d34eb',
-                color: 'white',
-                borderRadius: '10px 10px 0 0',
-                paddingTop: '10px',
-                paddingBottom: '10px'
-            }}>Sprint Work Out</Typography>
+               {!savedSwim ?
+                <Typography sx={{
+                    marginBottom: '20px',
+                    textAlign: 'center',
+                    backgroundColor: '#7d34eb',
+                    color: 'white',
+                    borderRadius: '10px 10px 0 0',
+                    paddingTop: '10px',
+                    paddingBottom: '10px',
+                }}>
+                    Sprint Work Out
+                </Typography> :
+
+                <Typography sx={{
+                    marginBottom: '20px',
+                    textAlign: 'center',
+                    paddingTop: '10px',
+                    paddingBottom: '10px',
+                }}>
+                    Sprint Work Out
+                </Typography>}
             {!workoutDetails.mainSetDetails.errorMessage ? (<Box sx={{ paddingLeft: '20px' }}>
                 <Typography>Warm Up: {workoutDetails?.warmUp}</Typography>
                 {/* <Box>Kick set?</Box> */}

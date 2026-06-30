@@ -38,7 +38,21 @@ app.get("/api/workouts", (req, res) => {
       maxDistance: row.maxDistance,
       intervalTime: row.intervalTime,
       errorMessage: false,
-      totalDistance: row.totalDistance
+      totalDistance: row.totalDistance,
+      sprintRounds: row.sprintRounds,
+      sprintDistance: row.sprintDistance,
+      easyDistance: row.easyDistance,
+      kickDistance: row.kickDistance,
+      kickRounds: row.kickRounds,
+      pullDistance: row.pullDistance,
+      pullRounds: row.pullRounds,
+      drillDistance: row.drillDistance,
+      drillRounds: row.drillRounds,
+      drills: row.drills,
+      breathDistance: row.breathDistance,
+      breathRounds: row.breathRounds,
+      breathWorkoutPattern: row.breathWorkoutPattern,
+      breathWorkPatternText: row.breathWorkPatternText
     },
     workoutDetails: row.workoutDetails,
     createdAt: row.createdAt
@@ -69,6 +83,20 @@ function readSwims() {
     intervalTime: row.intervalTime,
     totalDistance: row.totalDistance,
     workoutDetails: row.workoutDetails,
+    sprintRounds: row.sprintRounds,
+    sprintDistance: row.sprintDistance,
+    easyDistance: row.easyDistance,
+    kickDistance: row.kickDistance,
+    kickRounds: row.kickRounds,
+    pullDistance: row.pullDistance,
+    pullRounds: row.pullRounds,
+    drillDistance: row.drillDistance,
+    drillRounds: row.drillRounds,
+    drills: row.drills,
+    breathDistance: row.breathDistance,
+    breathRounds: row.breathRounds,
+    breathWorkoutPattern: row.breathWorkoutPattern,
+    breathWorkPatternText: row.breathWorkPatternText,
     createdAt: row.createdAt
   }))
 }
@@ -86,6 +114,21 @@ app.post('/api/addWorkout', (req, res) => {
   const intervalTime = req.body.workoutDetails.mainSetDetails.intervalTime;
   const totalDistance = req.body.workoutDetails.mainSetDetails.totalDistance;
 
+  const sprintRounds = req.body.workoutDetails.mainSetDetails.sprintRounds;
+  const sprintDistance = req.body.workoutDetails.mainSetDetails.sprintDistance;
+  const easyDistance = req.body.workoutDetails.mainSetDetails.easyDistance;
+  const kickDistance =  req.body.workoutDetails.mainSetDetails.kickDistance;
+  const kickRounds = req.body.workoutDetails.mainSetDetails.kickRounds;
+  const pullDistance =  req.body.workoutDetails.mainSetDetails.pullDistance;
+  const pullRounds = req.body.workoutDetails.mainSetDetails.pullRounds;
+  const drillDistance = req.body.workoutDetails.mainSetDetails.drillDistance;
+  const drillRounds = req.body.workoutDetails.mainSetDetails.drillRounds;
+  const drills = req.body.workoutDetails.mainSetDetails.drills;
+  const breathDistance = req.body.workoutDetails.mainSetDetails.breathDistance;
+  const breathRounds = req.body.workoutDetails.mainSetDetails.breathRounds;
+  const breathWorkoutPattern = req.body.workoutDetails.mainSetDetails.breathWorkoutPattern;
+  const breathWorkPatternText = req.body.workoutDetails.mainSetDetails.breathWorkPatternText;
+
   app.listen(console.log(req.body));
 
   try {
@@ -102,7 +145,21 @@ app.post('/api/addWorkout', (req, res) => {
       rounds: rounds,
       maxDistance: maxDistance,
       intervalTime: intervalTime,
-      totalDistance: totalDistance
+      totalDistance: totalDistance,
+      sprintRounds: sprintRounds,
+      sprintDistance: sprintDistance,
+      easyDistance: easyDistance,
+      kickDistance: kickDistance,
+      kickRounds: kickRounds,
+      pullDistance: pullDistance,
+      pullRounds: pullRounds,
+      drillDistance: drillDistance,
+      drillRounds: drillRounds,
+      drills: drills,
+      breathDistance: breathDistance,
+      breathRounds: breathRounds,
+      breathWorkoutPattern: breathWorkoutPattern,
+      breathWorkPatternText: breathWorkPatternText
     }
 
     swimArray.push(newSwim)
