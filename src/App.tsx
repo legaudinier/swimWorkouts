@@ -7,6 +7,7 @@ import DistanceWorkout from './workouts/distanceWorkout';
 import SprintWorkout from "./workouts/sprintWorkout";
 import ThresholdWorkout from './workouts/thresholdWorkout';
 import EasyWorkout from './workouts/easyWorkout';
+import SavedWorkout from './savedWorkouts';
 import { Box, Typography } from "@mui/material";
 import AnimatedPool from './animatedPool';
 import ExportToExcel from './exportToExcel'
@@ -22,13 +23,6 @@ function App() {
   const [generateText, setGenerateText] = useState('Generate')
   const [regenerate, setRegenerate] = useState(false)
   const [savedWorkouts, setSavedWorkouts] = useState<any>({}); // THIS NEEDS A TYPE
-  const [currentSavedSwim, setCurrentSavedSwim] = useState<number>(0)
-
-  useEffect(() => {
-    fetch("http://localhost:3001/api/workouts")
-      .then((res) => res.json())
-      .then((data) => setSavedWorkouts(data));
-  }, []);
 
   const addItem = async () => {
     try {
@@ -359,12 +353,13 @@ function App() {
                   Generate Workout</Button>
               </Box>
               {/* Saved workouts */}
-              <Box sx={{
+              <SavedWorkout />
+              {/* <Box sx={{
                 paddingTop: '20px',
               }}>
                 {/* need to feed it into whatever workout type it is, 
                 also need an arrow to search through the workouts one by one*/}
-                <Box sx={{ height: '490px' }}>
+              {/* <Box sx={{ height: '490px' }}>
                   {
                     savedWorkouts.savedSwims[currentSavedSwim].type === 'distance' ? (
                       <DistanceWorkout
@@ -423,7 +418,7 @@ function App() {
                     Next</Button>
                 </Box>
 
-              </Box>
+              </Box> */}
             </Box>
           </Box>
         </Box>)}

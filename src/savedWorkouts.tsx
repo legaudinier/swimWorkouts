@@ -12,29 +12,23 @@ type SavedWorkoutType = {
 
 const SavedWorkout = ({ }: SavedWorkoutType) => {
   const [activeTab, setActiveTab] = useState('generate')
-  const [workoutType, setWorkoutType] = useState("distance");
-  const [yardage, setYardage] = useState(4000);
-  const [interval, setInterval] = useState<any>(90);
-  const [showWorkout, setShowWorkout] = useState(false)
-  const [generateText, setGenerateText] = useState('Generate')
-  const [regenerate, setRegenerate] = useState(false)
   const [savedWorkouts, setSavedWorkouts] = useState<any>({}); // THIS NEEDS A TYPE
   const [currentSavedSwim, setCurrentSavedSwim] = useState<number>(0)
+  const [loading, setLoading] = useState(false)
 
+  // clean this up
   useEffect(() => {
     fetch("http://localhost:3001/api/workouts")
       .then((res) => res.json())
-      .then((data) => setSavedWorkouts(data));
+      .then((data) => setSavedWorkouts(data))
   }, []);
 
   useEffect(() => {
-    setShowWorkout(false)
-    setGenerateText('Generate')
-    setRegenerate(!regenerate)
-  }, [workoutType, yardage, interval])
+    setLoading(true);
+    console.log('this totally not working hahahah so fried right now', savedWorkouts)
+  }, [savedWorkouts]);
 
-
-  return (
+  return (loading && savedWorkouts.length > 0 &&
     <Box sx={{
       '& .MuiOutlinedInput-root': {
         marginBottom: '10px'
@@ -89,36 +83,35 @@ const SavedWorkout = ({ }: SavedWorkoutType) => {
                 onClick={() => setActiveTab('generate')}>
                 Generate Workout</Button>
             </Box>
-            {/* Saved workouts */}
             <Box sx={{
               paddingTop: '20px',
             }}>
               <Box sx={{ height: '490px' }}>
                 {
-                  savedWorkouts.savedSwims[currentSavedSwim].type === 'distance' ? (
+                  savedWorkouts?.savedSwims[currentSavedSwim]?.type === 'distance' ? (
                     <DistanceWorkout
-                      interval={savedWorkouts.savedSwims[currentSavedSwim].interval}
-                      workoutDetails={savedWorkouts.savedSwims[currentSavedSwim]}
+                      interval={savedWorkouts?.savedSwims[currentSavedSwim].interval}
+                      workoutDetails={savedWorkouts?.savedSwims[currentSavedSwim]}
                       savedSwim={true}
                     />)
                     :
-                    savedWorkouts.savedSwims[currentSavedSwim].type === 'easy' ? (
+                    savedWorkouts?.savedSwims[currentSavedSwim].type === 'easy' ? (
                       <EasyWorkout
-                        workoutDetails={savedWorkouts.savedSwims[currentSavedSwim]}
+                        workoutDetails={savedWorkouts?.savedSwims[currentSavedSwim]}
                         savedSwim={true}
 
                       />) :
-                      savedWorkouts.savedSwims[currentSavedSwim].type === 'sprint' ?
+                      savedWorkouts?.savedSwims[currentSavedSwim].type === 'sprint' ?
                         (<SprintWorkout
-                          interval={savedWorkouts.savedSwims[currentSavedSwim].interval}
-                          workoutDetails={savedWorkouts.savedSwims[currentSavedSwim]}
+                          interval={savedWorkouts?.savedSwims[currentSavedSwim].interval}
+                          workoutDetails={savedWorkouts?.savedSwims[currentSavedSwim]}
                           savedSwim={true}
 
-                        />) : savedWorkouts.savedSwims[currentSavedSwim].type === 'threshold'
+                        />) : savedWorkouts?.savedSwims[currentSavedSwim].type === 'threshold'
                         && (<ThresholdWorkout
-                          yardage={savedWorkouts.savedSwims[currentSavedSwim].yardage}
-                          interval={savedWorkouts.savedSwims[currentSavedSwim].interval}
-                          workoutDetails={savedWorkouts.savedSwims[currentSavedSwim]}
+                          yardage={savedWorkouts?.savedSwims[currentSavedSwim].yardage}
+                          interval={savedWorkouts?.savedSwims[currentSavedSwim].interval}
+                          workoutDetails={savedWorkouts?.savedSwims[currentSavedSwim]}
                           savedSwim={true}
 
                         />)
@@ -135,7 +128,7 @@ const SavedWorkout = ({ }: SavedWorkoutType) => {
                   }}
                   onClick={() => setCurrentSavedSwim(
                     currentSavedSwim !== 0 ?
-                      currentSavedSwim - 1 : savedWorkouts.savedSwims.length - 1
+                      currentSavedSwim - 1 : savedWorkouts?.savedSwims.length - 1
                   )}>
                   Past</Button>
                 <Button variant="outlined"
@@ -146,7 +139,7 @@ const SavedWorkout = ({ }: SavedWorkoutType) => {
                     fontSize: '12px'
                   }}
                   onClick={() => setCurrentSavedSwim(
-                    savedWorkouts.savedSwims.length - 1 !== currentSavedSwim ?
+                    savedWorkouts?.savedSwims.length - 1 !== currentSavedSwim ?
                       currentSavedSwim + 1 : 0
                   )}>
                   Next</Button>
@@ -156,8 +149,7 @@ const SavedWorkout = ({ }: SavedWorkoutType) => {
           </Box>
         </Box>
       </Box>
-
-    </Box >
+    </Box>
   );
 }
 
