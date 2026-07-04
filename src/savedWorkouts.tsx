@@ -4,36 +4,34 @@ import DistanceWorkout from './workouts/distanceWorkout';
 import SprintWorkout from "./workouts/sprintWorkout";
 import ThresholdWorkout from './workouts/thresholdWorkout';
 import EasyWorkout from './workouts/easyWorkout';
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
-type SavedWorkoutType = {
-  // determine what these are
-}
-
-const SavedWorkout = ({ }: SavedWorkoutType) => {
-  const [activeTab, setActiveTab] = useState('generate')
+const SavedWorkout = () => {
   const [savedWorkouts, setSavedWorkouts] = useState<any>({}); // THIS NEEDS A TYPE
   const [currentSavedSwim, setCurrentSavedSwim] = useState<number>(0)
   const [loading, setLoading] = useState(false)
 
-  // clean this up
   useEffect(() => {
-    fetch("http://localhost:3001/api/workouts")
-      .then((res) => res.json())
-      .then((data) => setSavedWorkouts(data))
+    const fetchSwims = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/api/workouts');
+        const data = await response.json();
+
+        setSavedWorkouts(data);
+      } catch (err) {
+      } finally {
+        setLoading(true);
+      }
+    };
+
+    fetchSwims();
   }, []);
 
-  useEffect(() => {
-    setLoading(true);
-    console.log('this totally not working hahahah so fried right now', savedWorkouts)
-  }, [savedWorkouts]);
-
-  return (loading && savedWorkouts.length > 0 &&
+  return (loading && savedWorkouts.length !== 0 &&
     <Box sx={{
       '& .MuiOutlinedInput-root': {
         marginBottom: '10px'
       },
-
       '& .MuiFormGroup-root': {
         flexDirection: 'row',
         marginBottom: '20px'
@@ -47,42 +45,7 @@ const SavedWorkout = ({ }: SavedWorkoutType) => {
         }}>
         </Box>
         <Box>
-          <Box sx={{
-            marginLeft: '40px',
-            marginRight: '40px',
-            paddingBottom: '20px',
-            borderTop: '1px solid #7d34eb',
-            borderLeft: '1px solid #7d34eb',
-            borderRight: '1px solid #7d34eb',
-            borderBottom: '1px solid #7d34eb',
-            borderRadius: '10px',
-            height: '600px'
-          }}>
-            <Box sx={{
-              textAlign: 'center',
-              backgroundColor: '#7d34eb',
-              color: 'white',
-              borderRadius: '10px 10px 0 0',
-              paddingTop: '10px',
-              paddingBottom: '10px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              paddingLeft: '10px',
-              paddingRight: '10px'
-            }}>
-              <Typography>Swim Workout Generator
-              </Typography>
-              <Button variant="outlined"
-                sx={{
-                  backgroundColor: 'white',
-                  color: '#7d34eb',
-                  width: '200px',
-                  fontSize: '12px'
-                }}
-                onClick={() => setActiveTab('generate')}>
-                Generate Workout</Button>
-            </Box>
+          <Box>
             <Box sx={{
               paddingTop: '20px',
             }}>
@@ -114,9 +77,7 @@ const SavedWorkout = ({ }: SavedWorkoutType) => {
                           workoutDetails={savedWorkouts?.savedSwims[currentSavedSwim]}
                           savedSwim={true}
 
-                        />)
-
-                }
+                        />)}
               </Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button variant="outlined"
@@ -144,7 +105,6 @@ const SavedWorkout = ({ }: SavedWorkoutType) => {
                   )}>
                   Next</Button>
               </Box>
-
             </Box>
           </Box>
         </Box>
