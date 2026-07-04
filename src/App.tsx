@@ -22,7 +22,6 @@ function App() {
   const [workoutDetails, setWorkoutDetails] = useState({}) // CREATE TYPES HERE
   const [generateText, setGenerateText] = useState('Generate')
   const [regenerate, setRegenerate] = useState(false)
-  const [savedWorkouts, setSavedWorkouts] = useState<any>({}); // THIS NEEDS A TYPE
 
   const addItem = async () => {
     try {
@@ -38,7 +37,7 @@ function App() {
         alert(data.error || 'Failed to create tab')
       }
     } catch (err) {
-      console.error('Failed to add tab:', err)
+      console.error('Failed to add:', err)
     }
   }
 
@@ -96,8 +95,6 @@ function App() {
     setWorkoutDetails(warmUpCoolDownCalculations(yardage, percentage, workoutType, interval))
 
   }, [workoutType, yardage, regenerate])
-
-  console.log('savedWorkouts', savedWorkouts)
 
   return (
     <Box sx={{
@@ -354,71 +351,6 @@ function App() {
               </Box>
               {/* Saved workouts */}
               <SavedWorkout />
-              {/* <Box sx={{
-                paddingTop: '20px',
-              }}>
-                {/* need to feed it into whatever workout type it is, 
-                also need an arrow to search through the workouts one by one*/}
-              {/* <Box sx={{ height: '490px' }}>
-                  {
-                    savedWorkouts.savedSwims[currentSavedSwim].type === 'distance' ? (
-                      <DistanceWorkout
-                        interval={savedWorkouts.savedSwims[currentSavedSwim].interval}
-                        workoutDetails={savedWorkouts.savedSwims[currentSavedSwim]}
-                        savedSwim={true}
-                      />)
-                      :
-                      savedWorkouts.savedSwims[currentSavedSwim].type === 'easy' ? (
-                        <EasyWorkout
-                          workoutDetails={savedWorkouts.savedSwims[currentSavedSwim]}
-                          savedSwim={true}
-
-                        />) :
-                        savedWorkouts.savedSwims[currentSavedSwim].type === 'sprint' ?
-                          (<SprintWorkout
-                            interval={savedWorkouts.savedSwims[currentSavedSwim].interval}
-                            workoutDetails={savedWorkouts.savedSwims[currentSavedSwim]}
-                            savedSwim={true}
-
-                          />) : savedWorkouts.savedSwims[currentSavedSwim].type === 'threshold'
-                          && (<ThresholdWorkout
-                            yardage={savedWorkouts.savedSwims[currentSavedSwim].yardage}
-                            interval={savedWorkouts.savedSwims[currentSavedSwim].interval}
-                            workoutDetails={savedWorkouts.savedSwims[currentSavedSwim]}
-                            savedSwim={true}
-
-                          />)
-
-                  }
-                </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Button variant="outlined"
-                    sx={{
-                      backgroundColor: 'white',
-                      color: '#7d34eb',
-                      width: '200px',
-                      fontSize: '12px'
-                    }}
-                    onClick={() => setCurrentSavedSwim(
-                      currentSavedSwim !== 0 ?
-                        currentSavedSwim - 1 : savedWorkouts.savedSwims.length - 1
-                    )}>
-                    Past</Button>
-                  <Button variant="outlined"
-                    sx={{
-                      backgroundColor: 'white',
-                      color: '#7d34eb',
-                      width: '200px',
-                      fontSize: '12px'
-                    }}
-                    onClick={() => setCurrentSavedSwim(
-                      savedWorkouts.savedSwims.length - 1 !== currentSavedSwim ?
-                        currentSavedSwim + 1 : 0
-                    )}>
-                    Next</Button>
-                </Box>
-
-              </Box> */}
             </Box>
           </Box>
         </Box>)}
