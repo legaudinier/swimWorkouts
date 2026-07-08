@@ -4,7 +4,7 @@ import DistanceWorkout from './workouts/distanceWorkout';
 import SprintWorkout from "./workouts/sprintWorkout";
 import ThresholdWorkout from './workouts/thresholdWorkout';
 import EasyWorkout from './workouts/easyWorkout';
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const SavedWorkout = () => {
   const [savedWorkouts, setSavedWorkouts] = useState<any>({}); // THIS NEEDS A TYPE
@@ -92,6 +92,7 @@ const SavedWorkout = () => {
                       currentSavedSwim - 1 : savedWorkouts?.savedSwims.length - 1
                   )}>
                   Past</Button>
+                <Box><Typography>Saved Workout #{currentSavedSwim + 1}</Typography></Box>
                 <Button variant="outlined"
                   sx={{
                     backgroundColor: 'white',
