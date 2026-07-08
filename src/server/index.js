@@ -11,10 +11,6 @@ const FILE_PATH = './savedSwims.xlsx'
 app.use(cors());
 app.use(express.json());
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from Express backend!" });
-});
-
 app.get("/api/workouts", (req, res) => {
   if (!existsSync(FILE_PATH)) {
     app.listen(console.log(`exist sync got fired`));
@@ -129,8 +125,6 @@ app.post('/api/addWorkout', (req, res) => {
   const breathWorkoutPattern = req.body.workoutDetails.mainSetDetails.breathWorkoutPattern;
   const breathWorkPatternText = req.body.workoutDetails.mainSetDetails.breathWorkPatternText;
 
-  app.listen(console.log(req.body));
-
   try {
     const swimArray = readSwims()
 
@@ -175,7 +169,5 @@ app.post('/api/addWorkout', (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
-
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
